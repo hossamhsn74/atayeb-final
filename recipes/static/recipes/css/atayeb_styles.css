@@ -1,0 +1,54 @@
+@font-face {
+    font-family: 'Tajawal';
+    src: url("fonts/Tajawal-Regular.ttf") format("truetype"), local("Tajawal");
+}
+
+html, body {
+    direction: rtl;
+    text-align: right;
+}
+
+body {
+    font-family: 'Tajawal', sans-serif;
+}
+
+.dropdown-menu, .dropdown-item {
+    text-align: right
+}
+
+.page-title {
+    font-size: 48px;
+}
+
+.team-tag {
+    font-size: 13px;
+}
+
+.site-navigation.navbar .dropdown-menu .dropdown-item {
+    font-size: 15px;
+    font-weight: 400;
+}
+.site-navigation .navbar-nav .nav-item .nav-link {
+    font-size: 16px;
+}
+.recipe-auth span {
+    font-size: 14px;
+}
+
+.recipe-desc p {
+    font-size: 14px;
+}
+
+.profile-navigation {
+    display: none;
+    justify-content: flex-end;
+    padding-top: 1rem;
+}
+
+.profile-container {
+    padding: 0.4rem 1rem;
+}
+
+button .primaryAction {
+
+}

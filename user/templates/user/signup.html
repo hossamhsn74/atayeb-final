@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <div class="head-title">
+        <div class="container">
+            <h2 class="page-title">الاشتراك</h2>
+        </div><!-- end container -->
+    </div><!-- end head-title -->
+
+    <div id="main">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-6">
+                    <div class="acc-box equal">
+{#                        <h2>الاشتراك</h2>#}
+                        <span>نرحب بعضويتكم في موقعنا.</span>
+                        <br>
+                        <form>
+                            <div class="form-group">
+                                <label for="completeName">الاسم الكامل</label>
+                                <input type="text" class="form-control" id="completeName"
+                                       placeholder="ex. Indra Kurniawan">
+                            </div>
+                            <div class="form-group">
+                                <label for="InputEmailAcc2">البريد الإلكتروني *</label>
+                                <input type="email" class="form-control" id="InputEmailAcc2"
+                                       placeholder="you@email.com">
+                            </div>
+                            <button type="submit" class="btn btn-primary">سجل</button>
+                            <span class="float-end"> إذا كنت عضواً في الموقع، يمكنك الدخول <a href="{% url 'user:login' %}">من هنا.</a></span>
+                        </form>
+                    </div><!-- end acc-box -->
+                </div><!-- end col -->
+            </div>
+        </div><!-- end container -->
+    </div><!-- end main -->
+
+{% endblock %}

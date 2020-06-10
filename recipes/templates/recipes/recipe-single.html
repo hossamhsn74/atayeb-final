@@ -1,0 +1,444 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+
+{% block content %}
+
+    <div class="head-title">
+        <div class="container">
+            <h2 class="page-title">الأطباق الرئيسية</h2>
+        </div><!-- end container -->
+    </div><!-- end head-title -->
+
+    <div id="main">
+        <div class="container">
+
+            <div class="recipe-content">
+
+                <div class="row">
+                    <div class="col">
+                        <div class="recipe-lvl">
+                            <span>المستوى: <a href="#">متقدم</a></span>
+                            <span>الوقت: 2 ساعة</span>
+                        </div><!-- end recipe level -->
+                        <div class="recipe-head">
+                            <h1 class="recipe-title">الوصفة قلاية بندورة</h1>
+                            <div class="recipe-auth">
+                                <img src="{% static 'recipes/images/content/auth-03.png' %}" alt="recipe author">
+                                <span>الناشر: <a href="#">كارمن مسيح</a></span>
+                            </div><!-- recipe author -->
+                            <div class="recipe-finger">
+
+                                <div class="box-sharing">
+                                    <a href="#"><i class="fas fa-print"></i></a>
+                                    <a href="#"><i class="fas fa-share-alt"></i></a>
+                                    <a href="#"><i class="fas fa-bookmark"></i></a>
+                                </div>
+
+                                <div class="recipe-rating">
+                                    <span>درجة الرضا:<i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                            class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                            class="far fa-star"></i></span>
+                                </div>
+                            </div><!-- end recipe finger -->
+                        </div>
+                    </div><!-- end col -->
+                </div><!-- end row -->
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <figure class="recipe-pict">
+                            <img src="{% static 'recipes/images/content/image-recipe.png' %}" alt="IMG 01">
+                        </figure>
+                    </div><!-- end col -->
+                    <div class="col-md-6">
+                        <div class="detail-desc">
+                            <p><strong>الوصف</strong></p>
+                            <p>هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص
+                                العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى إضافة إلى زيادة عدد
+                                الحروف التى يولدها التطبيق.
+                                إذا كنت تحتاج إلى عدد أكبر من الفقرات يتيح لك مولد النص العربى زيادة عدد الفقرات كما
+                                تريد، النص لن يبدو مقسما ولا يحوي أخطاء لغوية، مولد النص العربى مفيد لمصممي المواقع على
+                                وجه الخصوص، حيث يحتاج العميل فى كثير من الأحيان أن يطلع على صورة حقيقية لتصميم
+                                الموقع.</p>
+
+                            <p>هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص
+                                العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى إضافة إلى زيادة عدد
+                                الحروف التى يولدها التطبيق.
+                                إذا كنت تحتاج إلى عدد أكبر من الفقرات يتيح لك مولد النص العربى زيادة عدد الفقرات كما
+                                تريد، النص لن يبدو مقسما ولا يحوي أخطاء لغوية، مولد النص العربى مفيد لمصممي المواقع على
+                                وجه الخصوص، حيث يحتاج العميل فى كثير من الأحيان أن يطلع على صورة حقيقية لتصميم
+                                الموقع.</p>
+                        </div><!-- recipe desc -->
+                        <div class="recipe-tags">
+                            <span>العلامات: <a href="#">cooking</a>, <a href="#">pawn</a>, <a href="#">roasted</a>, <a
+                                    href="#">delicious</a></span>
+                        </div><!-- end recipe tags -->
+                    </div><!-- end col -->
+                </div><!-- end row -->
+
+                <div class="space-section"></div>
+
+                <div class="row">
+                    <div class="ingredient col-md-4">
+                        <p><strong>المكونات والمقادير</strong></p>
+                        <ul>
+                            <li>1/2 ملعقة ملح</li>
+                            <li>1 كغم لحمة راس عصفور</li>
+                            <li>1/2 كيلو بندورة</li>
+                            <li>1 (14.5 ounce) marshmallow liquorice</li>
+                            <li>1 cup crushed tortilla chips</li>
+                            <li>1/2 cup sour cream (optional)</li>
+                            <li>1/4 cup chopped red onions</li>
+                            <li>1 ounce sugar plum pastry fruitcake</li>
+                            <li>1/3 fruitcake powder halvah</li>
+                            <li>1/2 cup marzipan</li>
+                            <li>1/4 ounce muffin caramels</li>
+                            <li>1/2 cup jujubes jelly chupa</li>
+                            <li>1/4 ounce bonbon topping</li>
+                        </ul>
+                    </div><!-- end col -->
+                    <div class="direction col-md-8">
+                        <p><strong>طريقة الإعداد</strong></p>
+                        <ol>
+                            <li><p>هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد
+                                النص العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى إضافة إلى زيادة
+                                عدد الحروف التى يولدها التطبيق.
+                                إذا كنت تحتاج إلى عدد أكبر من الفقرات يتيح لك مولد النص العربى زيادة عدد الفقرات كما
+                                تريد، النص لن يبدو مقسما ولا يحوي أخطاء لغوية، مولد النص العربى مفيد لمصممي المواقع على
+                                وجه الخصوص، حيث يحتاج العميل فى كثير من الأحيان أن يطلع على صورة حقيقية لتصميم
+                                الموقع.</p></li>
+                            <li><p>هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد
+                                النص العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى إضافة إلى زيادة
+                                عدد الحروف التى يولدها التطبيق.</p></li>
+                            <li><p>Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium
+                                lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram,
+                                anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta
+                                decima.</p></li>
+                            <li><p>Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes in futurum,
+                                consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore
+                                magna aliquam erat volutpat.</p></li>
+                            <li><p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit
+                                lobortis nisl ut aliquip ex ea commodo consequat.</p></li>
+                            <li><p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie
+                                consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto
+                                odio dignissim qui blandit praesent luptatum zzril delenit augue duis.</p></li>
+                        </ol>
+                    </div><!-- end col -->
+                </div><!-- end row -->
+
+                <div class="space-section"></div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <p><strong>NUTRITION</strong></p>
+                        <table style="width: 100%">
+                            <tr>
+                                <td><strong>Calories</strong></td>
+                                <td>102 kcal</td>
+                                <td>5%</td>
+                            </tr>
+                            <tr>
+                                <td><strong>كوليسترول</strong></td>
+                                <td>9 ملغم</td>
+                                <td>3%</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Carbohydrates</strong></td>
+                                <td>12.4 gr</td>
+                                <td>4%</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Fat</strong></td>
+                                <td>4.8 gr</td>
+                                <td>7%</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Protein</strong></td>
+                                <td>4.6 gr</td>
+                                <td>9%</td>
+                            </tr>
+                        </table>
+                    </div><!-- end col -->
+                    <div class="col-md-8">
+                        <div class="nutrition-bar">
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25"
+                                     aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" style="width: 10%" aria-valuenow="10"
+                                     aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" style="width: 15%" aria-valuenow="15"
+                                     aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" style="width: 20%" aria-valuenow="20"
+                                     aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" style="width: 30%" aria-valuenow="30"
+                                     aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                    </div><!-- end col -->
+
+                </div><!-- end row -->
+
+            </div><!-- end recipe content -->
+
+        </div><!-- end container -->
+    </div><!-- end main -->
+
+    <div class="related-recipe">
+        <div class="container">
+            <h3>وصفات ذات علاقة</h3>
+            <div class="row">
+                <div class="col-6 col-md-3">
+                    <div class="recipe-thumb">
+                        <img src="{% static 'recipes/images/content/thumb-1.png' %}" alt="Recipe Image">
+                        <a href="#" class="bookmarker"><i class="fas fa-bookmark"></i></a>
+                        <a href="#" class="view-recipe">VIEW RECIPE</a>
+                    </div>
+                    <div class="recipe-desc">
+                        <h2 class="recipe-title">
+                            <a href="#">Salad Nicoise</a>
+                        </h2>
+                        <p><em>By Lina Sukowati</em></p>
+                        <span><i class="fas fa-clock"></i> 9 دقائق</span>
+                    </div><!-- end recipe-desc -->
+                </div><!-- end col -->
+                <div class="col-6 col-md-3">
+                    <div class="recipe-thumb">
+                        <img src="{% static 'recipes/images/content/thumb-2.png' %}" alt="Recipe Image">
+                        <a href="#" class="bookmarker"><i class="fas fa-bookmark"></i></a>
+                        <a href="#" class="view-recipe">إلى الوصفة</a>
+                    </div>
+                    <div class="recipe-desc">
+                        <h2 class="recipe-title">
+                            <a href="#">منسف شركسي</a>
+                        </h2>
+                        <p><em>الناشر: كارمن مسيح</em></p>
+                        <span><i class="fas fa-clock"></i> 9 دقائق</span>
+                    </div><!-- end recipe-desc -->
+                </div><!-- end col -->
+                <div class="col-6 col-md-3">
+                    <div class="recipe-thumb">
+                        <img src="{% static 'recipes/images/content/thumb-3.png' %}" alt="Recipe Image">
+                        <a href="#" class="bookmarker"><i class="fas fa-bookmark"></i></a>
+                        <a href="#" class="view-recipe">VIEW RECIPE</a>
+                    </div>
+                    <div class="recipe-desc">
+                        <h2 class="recipe-title">
+                            <a href="#">Tiger Prawns Roasted</a>
+                        </h2>
+                        <p><em>By Nurjanah</em></p>
+                        <span><i class="fas fa-clock"></i>&nbsp;27 Minutes</span>
+                    </div><!-- end recipe-desc -->
+                </div><!-- end col -->
+                <div class="col-6 col-md-3">
+                    <div class="recipe-thumb">
+                        <img src="{% static 'recipes/images/content/thumb-4.png' %}" alt="Recipe Image">
+                        <a href="#" class="bookmarker"><i class="fas fa-bookmark"></i></a>
+                        <a href="#" class="view-recipe">VIEW RECIPE</a>
+                    </div>
+                    <div class="recipe-desc">
+                        <h2 class="recipe-title">
+                            <a href="#">Korean Soup</a>
+                        </h2>
+                        <p><em>By Lina Sukowati</em></p>
+                        <span><i class="fas fa-clock"></i>&nbsp;45 Minutes</span>
+                    </div><!-- end recipe-desc -->
+                </div><!-- end col -->
+            </div><!-- end row -->
+        </div><!-- end container -->
+    </div><!-- related recipe -->
+
+    <div class="recipe-comment">
+        <div class="container">
+            <div class="row justify-content-md-center">
+                <div class="col-md-8">
+                    <div class="comment-outer">
+                        <div id="comments" class="comments-area">
+                            <h2 class="comments-title">4 تعليقات على هذه الوصفة</h2>
+                            <ol class="comment-list">
+
+                                <li class="comment"><!-- start comment -->
+                                    <div class="comment-body">
+
+                                        <figure class="comment-author vcard">
+                                            <img src="{% static 'recipes/images/content/auth-00.png' %}" alt="">
+                                        </figure><!-- end comment-author vcard -->
+
+                                        <div class="comment-wrapper">
+                                            <div class="comment-meta">
+                                                <b class="fn">لمى المصري</b>
+                                                <div class="reply">
+                                                    <a href="#" class="comment-reply-link">إجابة</a>
+                                                </div>
+                                            </div><!-- end comment-meta -->
+                                            <div class="comment-metadata">
+                                                <a href="#">
+                                                    <time datetime="2019-09-04T18:44:25+00:00">15 أيار 2020 الساعة 15:30
+                                                    </time>
+                                                </a>
+                                            </div>
+                                            <div class="comment-content">
+                                                <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse
+                                                    molestie consequat, vel illum dolore eu feugiat nulla facilisis at
+                                                    vero eros et accumsan et iusto odio dignissim qui blandit praesent
+                                                    luptatum zzril delenit augue duis dolore te feugait nulla
+                                                    facilisi.</p>
+                                            </div><!-- end comment-content -->
+                                        </div><!-- end comment-wrapper -->
+
+                                    </div><!-- end comment-body -->
+                                </li><!-- end li -->
+
+                                <li class="comment"><!-- start comment -->
+                                    <div class="comment-body">
+
+                                        <figure class="comment-author vcard">
+                                            <img src="{% static 'recipes/images/content/auth-01.png' %}" alt="">
+                                        </figure><!-- end comment-author vcard -->
+
+                                        <div class="comment-wrapper">
+                                            <div class="comment-meta">
+                                                <b class="fn">Paijo Kossim</b>
+                                                <div class="reply">
+                                                    <a href="#" class="comment-reply-link">Reply</a>
+                                                </div>
+                                            </div><!-- end comment-meta -->
+                                            <div class="comment-metadata">
+                                                <a href="#">
+                                                    <time datetime="2019-09-04T18:44:25+00:00">December 23 2019 pada
+                                                        6:44 pm
+                                                    </time>
+                                                </a>
+                                            </div>
+                                            <div class="comment-content">
+                                                <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse
+                                                    molestie consequat, vel illum dolore eu feugiat nulla facilisis at
+                                                    vero eros et accumsan et iusto odio dignissim qui blandit praesent
+                                                    luptatum zzril delenit augue duis dolore te feugait nulla
+                                                    facilisi.</p>
+                                            </div><!-- end comment-content -->
+                                        </div><!-- end comment-wrapper -->
+
+                                    </div><!-- end comment-body -->
+
+                                    <ol class="children">
+                                        <li class="comment"><!-- start-children-comment -->
+                                            <div class="comment-body">
+
+                                                <figure class="comment-author vcard">
+                                                    <img src="{% static 'recipes/images/content/auth-03.png' %}" alt="">
+                                                </figure><!-- end comment-author vcard -->
+
+                                                <div class="comment-wrapper">
+                                                    <div class="comment-meta">
+                                                        <b class="fn">Dina Makulatuwa</b>
+                                                        <div class="reply">
+                                                            <a href="#" class="comment-reply-link">Reply</a>
+                                                        </div>
+                                                    </div><!-- end comment-meta -->
+                                                    <div class="comment-metadata">
+                                                        <a href="#">
+                                                            <time datetime="2019-09-04T18:44:25+00:00">December 23 2019
+                                                                pada 6:44 pm
+                                                            </time>
+                                                        </a>
+                                                    </div>
+                                                    <div class="comment-content">
+                                                        <p>Duis autem vel eum iriure dolor in hendrerit in vulputate
+                                                            velit esse molestie consequat, vel illum dolore eu feugiat
+                                                            nulla facilisis at vero eros et accumsan et iusto odio
+                                                            dignissim qui blandit praesent luptatum zzril delenit augue
+                                                            duis dolore te feugait nulla facilisi.</p>
+                                                    </div><!-- end comment-content -->
+                                                </div><!-- end comment-wrapper -->
+
+                                            </div><!-- end comment-body -->
+                                        </li><!-- end comment -->
+                                    </ol><!-- end children -->
+                                </li><!-- end li -->
+
+                                <li class="comment"><!-- start comment -->
+                                    <div class="comment-body">
+
+                                        <figure class="comment-author vcard">
+                                            <img src="{% static 'recipes/images/content/auth-02.png' %}" alt="">
+                                        </figure><!-- end comment-author vcard -->
+
+                                        <div class="comment-wrapper">
+                                            <div class="comment-meta">
+                                                <b class="fn">Johnny Kurniawan</b>
+                                                <div class="reply">
+                                                    <a href="#" class="comment-reply-link">Reply</a>
+                                                </div>
+                                            </div><!-- end comment-meta -->
+                                            <div class="comment-metadata">
+                                                <a href="#">
+                                                    <time datetime="2019-09-04T18:44:25+00:00">December 23 2019 pada
+                                                        6:44 pm
+                                                    </time>
+                                                </a>
+                                            </div>
+                                            <div class="comment-content">
+                                                <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse
+                                                    molestie consequat, vel illum dolore eu feugiat nulla facilisis at
+                                                    vero eros et accumsan et iusto odio dignissim qui blandit praesent
+                                                    luptatum zzril delenit augue duis dolore te feugait nulla
+                                                    facilisi.</p>
+                                            </div><!-- end comment-content -->
+                                        </div><!-- end comment-wrapper -->
+
+                                    </div><!-- end comment-body -->
+                                </li><!-- end li -->
+
+                            </ol><!-- end .comment-list -->
+                        </div><!-- end #comments-area -->
+
+                        <div id="respond" class="comment-respond">
+                            <h2 id="reply-title" class="comment-reply-title">Leave a Reply</h2>
+                            <form class="comment-form">
+                                <p class="comment-notes">Your email address will not be published. All fields are
+                                    required.</p>
+                                <p class="comment-form-email">
+                                    <label for="author">Name</label>
+                                    <span class="required">*</span>
+                                    <input id="author" type="text" class="input-text" name="author">
+                                </p>
+                                <p class="comment-form-author">
+                                    <label for="email">Email</label>
+                                    <span class="required">*</span>
+                                    <input id="email" type="text" class="input-text" name="author">
+                                </p>
+                                <p class="comment-form-url">
+                                    <label for="url">Website</label>
+                                    <span class="required">*</span>
+                                    <input id="url" type="text" class="input-text" name="author">
+                                </p>
+                                <p class="comment-form-comment">
+                                    <label for="comment">Comment</label>
+                                    <textarea name="comment" id="comment" cols="45" rows="10"
+                                              class="input-text"></textarea>
+                                </p>
+                                <p class="form-submit">
+                                    <input class="btn btn-primary" name="submit" type="submit" id="button"
+                                           value="Post Comment">
+                                </p>
+                            </form><!-- end #comment-form -->
+                        </div><!-- end comment-respond -->
+
+                    </div><!-- end comment-outer -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <div class="head-title">
+        <div class="container">
+            <h2 class="page-title">الدخول إلى الموقع</h2>
+        </div><!-- end container -->
+    </div><!-- end head-title -->
+
+    <div id="main">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-6">
+                    <div class="acc-box equal">
+{#                        <h2>الدخول</h2>#}
+                        <span>إذا لم تكن عضوا في الموقع من قبل يمكنك الاشتراك <a href="{% url 'user:signup' %} ">من هنا</a></span>
+                        <br>
+                        <form>
+                            <div class="form-group">
+                                <label for="InputEmailAcc1">البريد الالكتروني *</label>
+                                <input type="email" class="form-control" id="InputEmailAcc1" placeholder="Enter email">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">كلمة المرور *</label>
+                                <input type="password" class="form-control" id="exampleInputPassword1"
+                                       placeholder="Password">
+                            </div>
+                            <div class="form-check">
+                                <label class="form-check-label" for="rememberCheck">تذكرني  </label>
+                                <input type="checkbox" class="form-check-input" id="rememberCheck">
+                            </div>
+                            <button type="submit" class="btn btn-primary">دخول</button>
+                            <span class="float-end">نسيت كلمة المرور؟ <a href="#">إضغط هنا</a></span>
+                        </form>
+                    </div><!-- end acc-box -->
+                </div><!-- end col -->
+            </div>
+        </div><!-- end container -->
+    </div><!-- end main -->
+
+{% endblock %}

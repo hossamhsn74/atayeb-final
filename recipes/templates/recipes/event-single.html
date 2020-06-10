@@ -1,0 +1,234 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+        <div class="head-title">
+            <div class="container">
+                <h2 class="page-title">Events</h2>
+            </div><!-- end container -->
+        </div><!-- end head-title -->
+
+        <div id="main">
+            <div class="container">
+                <div class="row">
+                    
+                    <div id="primary" class="content-area col-md-8">
+                        <div id="content" class="site-content">
+
+                            <div class="site-event">
+                                <h2 class="event-title">Posuere Tincidunt Garcu Sodales</h2>
+                                <div class="event-date">
+                                    <a href="#">
+                                        <time class="published" datetime="2019-12-22" title="December 11, 2019 - 21:12 pm">Dec<span class="date">11</span>2019</time>
+                                    </a>
+                                </div><!-- event-date -->
+                                <figure class="event-img">
+                                    <img src="{% static 'recipes/images/content/event-img.jpg' %}" alt="">
+                                </figure>
+                                <div class="row">
+                                    <div class="col-md-5">
+
+                                        <div class="event-details">
+                                            <h3>Details</h3>
+                                            <table>
+                                                <tbody>
+                                                    <tr>
+                                                        <th> Start: </th>
+                                                        <td>
+                                                            <abbr class="" title="2019-12-10">Dec 10 @ 8:00 am</abbr>
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <th> End: </th>
+                                                        <td>
+                                                            <abbr class="" title="2019-12-10">Dec 11 @ 5:00 pm</abbr>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th> Cost: </th>
+                                                        <td class="event-cost"> $38 </td>
+                                                    </tr>
+                                                
+                                                    <tr>
+                                                        <th>Event Categories:</th>
+                                                        <td class="event-cat">
+                                                            <a href="#" rel="tag">Cooking Moms</a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Event Tags:</th>
+                                                        <td class="event-tags">
+                                                            <a href="#" rel="tag">magic kitchen</a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th> Website: </th>
+                                                        <td class="event-url"> 
+                                                            <a href="#">Visit Event Website</a> 
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <h3>Venue</h3>
+                                            <p>Ganolia Building<br>Lapangan Serak Tenggara Jalan Teratai No. 11, Cimahi. Jawa Barat</p>
+                                            <p><a href="#"><em>view google map</em></a></p>
+                                        </div><!-- end event-details -->
+                                    </div><!-- end col-->
+
+                                    <div class="col-md-7">
+                                        <div class="event-desc">
+                                            <p><strong>Description</strong></p>
+                                            <p>Sed sed sapien sed massa pharetra feugiat. Sed leo mi, vulputate et augue tempus, eleifend varius mauris. Aliquam dui erat, imperdiet mollis ante non, pharetra finibus diam. Nulla non ligula tempor, varius enim id, tincidunt nibh. Mauris sit amet dictum eros. Aenean massa justo, tincidunt sed sapien ut, mollis aliquam felis. In consectetur leo eros, vitae tincidunt ex feugiat at. Vestibulum vel fringilla turpis, ac dictum dolor.</p>
+                                            <p><strong>Schedule</strong></p>
+                                            <ul>
+                                                <li>08:00 - 09:00 Opening.</li>
+                                                <li>09:00 - 10:00 Session 1</li>
+                                                <li>12:00 - 13:00 Break</li>
+                                                <li>13:00 - 16:00 Session 2</li>
+                                                <li>16:00 - 17:00 Photo Session</li>
+                                            </ul>
+                                            <button class="btn btn-primary"><i class="fas fa-ticket-alt">&nbsp;</i>Register Now</button>
+                                        </div>
+                                    </div><!-- end col -->
+                                </div><!-- end row -->
+                            </div><!-- event-post -->
+
+                        </div><!-- end content -->
+                    </div><!-- end primary -->
+
+                    <div id="secondary" class="col-md-4">
+
+                        <div id="search-2" class="widget widget_search">
+                            <div class="widget-title-outer">
+                                <h3 class="widget-title">Search</h3>
+                            </div>
+                            <div class="searchform">
+                                <form>
+                                    <input type="text" class="txt" name="s" placeholder="Type Keywords">
+                                    <input type="submit" value="search" class="btn btn-sm">
+                                </form>
+                            </div><!-- end searchform -->
+                        </div><!-- end search widget -->
+
+                        <div class="widget post-type-widget">
+                            <div class="widget-title-outer">
+                                <h3 class="widget-title">Recent Posts</h3>
+                            </div>
+                            <ul>
+                                <li>
+                                    <span class="post-category">
+                                        <a href="#">Uncategorized</a>
+                                    </span>
+                                    <figure class="post-thumbnail">
+                                        <a href="#"><img src="{% static 'recipes/images/content/thumb-post-01.png' %}" alt=""></a>
+                                    </figure>
+                                    <h2 class="post-title">
+                                        <a href="#">Lorem Ipsum Dolor Sit Amet, Consetetuer Adipiscing Elit</a>
+                                    </h2>
+                                </li>
+                                <li>
+                                    <span class="post-category">
+                                        <a href="#">Cooking Tips</a>
+                                    </span>
+                                    <figure class="post-thumbnail">
+                                        <a href="#"><img src="{% static 'recipes/images/content/thumb-post-02.png' %}" alt=""></a>
+                                    </figure>
+                                    <h2 class="post-title">
+                                        <a href="#">Euismod Tincidunt ut Laoreet Dolore Magna Aliquam</a>
+                                    </h2>
+                                </li>
+                                <li>
+                                    <span class="post-category">
+                                        <a href="#">Kitchen</a>
+                                    </span>
+                                    <figure class="post-thumbnail">
+                                        <a href="#"><img src="{% static 'recipes/images/content/thumb-post-03.png' %}" alt=""></a>
+                                    </figure>
+                                    <h2 class="post-title">
+                                        <a href="#">Ullamcorper Suscipit Lobortis Nisl ut Aliquip Commodo Consequat</a>
+                                    </h2>
+                                </li>
+                                <li>
+                                    <span class="post-category">
+                                        <a href="#">Vegetable</a>
+                                    </span>
+                                    <figure class="post-thumbnail">
+                                        <a href="#"><img src="{% static 'recipes/images/content/thumb-post-04.png' %}" alt=""></a>
+                                    </figure>
+                                    <h2 class="post-title">
+                                        <a href="#">Quod Mazim Placerat Facer Possim Assum</a>
+                                    </h2>
+                                </li>
+                            </ul>
+                            </div><!-- end widget -->
+
+                            <div class="widget widget_categories">
+                                <div class="widget-title-outer">
+                                    <h3 class="widget-title">Post Categories</h3>
+                                </div>
+                                <ul>
+                                    <li>
+                                        <a class="float-left" href="#">Cooking Tips</a>
+                                        <span class="float-right">17</span>
+                                    </li>
+                                    <li>
+                                        <a class="float-left" href="#">Kitchen</a>
+                                        <span class="float-right">14</span>
+                                    </li>
+                                    <li>
+                                        <a class="float-left" href="#">Chef's Secret</a>
+                                        <span class="float-right">10</span>
+                                    </li>
+                                    <li>
+                                        <a class="float-left" href="#">Vegetable</a>
+                                        <span class="float-right">8</span>
+                                    </li>
+                                    <li>
+                                        <a class="float-left" href="#">Nutrition</a>
+                                        <span class="float-right">6</span>
+                                    </li>
+                                    <li>
+                                        <a class="float-left" href="#">Ingredients</a>
+                                        <span class="float-right">4</span>
+                                    </li>
+                                </ul>
+                            </div><!-- end widget -->
+
+                            <div class="widget">
+                                <div class="widget-title-outer">
+                                    <h3 class="widget-title">News Tags</h3>
+                                </div>
+                                <div class="tagcloud">
+                                    <a href="#">food</a>
+                                    <a href="#">ingredients</a>
+                                    <a href="#">chef</a>
+                                    <a href="#">kitchen</a>
+                                    <a href="#">vegetable</a>
+                                    <a href="#">cake</a>
+                                    <a href="#">beverage</a>
+                                    <a href="#">tips</a>
+                                    <a href="#">nutrition</a>
+                                    <a href="#">tools</a>
+                                </div>
+                            </div><!-- end widget -->
+
+                            <div class="widget">
+                                <a href="#"><img src="{% static 'recipes/images/content/banner.png' %}" alt="Banner"></a>
+                            </div>
+
+                            <div class="widget">
+                                <div class="widget-title-outer">
+                                    <h3 class="widget-title">Our Facebook Page</h3>
+                                </div>
+                                <iframe src="//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2FFacebookDevelopers&amp;colorscheme=light&amp;show_faces=true&amp;header=true&amp;stream=false&amp;show_border=true"></iframe>
+                            </div><!-- end widget -->
+
+                    </div><!-- end #secondary -->
+
+                </div><!-- end row -->
+            </div><!-- end container -->
+        </div><!-- end main -->
+
+{% endblock %}
