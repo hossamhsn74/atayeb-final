@@ -30,7 +30,7 @@ urlpatterns = [
     path('submit-recipe/', TemplateView.as_view(template_name='recipes/submit-recipe.html'), name='submit-recipe'),
     path('typography/', TemplateView.as_view(template_name='recipes/typography.html'), name='typography'),
 
-    path('test/', TemplateView.as_view(template_name='recipes/z_test_template.html'), name='test_code'),
+    path('test/', TemplateView.as_view(template_name='user/invite_form.html'), name='test_code'),
 
 
 

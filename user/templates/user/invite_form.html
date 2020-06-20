@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% load i18n %}
+
+{% block content %}
+
+    <div class="head-title">
+        <div class="container">
+            <h2 class="page-title">دعوة صديق</h2>
+        </div><!-- end container -->
+    </div><!-- end head-title -->
+
+    <div id="main">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-6">
+                    <div class="acc-box equal">
+
+
+{#                        <h4 class="title">{% trans "Invite" %}</h4>#}
+{#                        <span class="alert alert-info">{% trans "Please add an email below. The user will receive an email with instructions." %}</span>#}
+
+                        <span>أدخل البريد الإلكتروني لمن تريد دعوته، وسيتلقى رسالة تخوله بالاشتراك.</span>
+                        <br>
+
+                        <form id="invite-form" method="POST" action="{% url 'invitations:send-invite' %}">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <input type="text" name="email" id="id_email" value="{{ form.email.value }}"
+                                       class="form-control validate-email" placeholder="{% trans 'Email' %}">
+                            </div>
+                            <div class="form-group">
+                                {% for error in form.email.errors %}
+                                    <div class="alert alert-danger">{{ error }}</div>
+                                {% endfor %}
+                                {{ success_message }}
+                            </div>
+                            <input type="submit" value="أرسل الدعوة" class="btn btn-primary generic-ajax-submit">
+                        </form>
+
+                    </div><!-- end acc-box -->
+                </div><!-- end col -->
+            </div>
+        </div><!-- end container -->
+    </div><!-- end main -->
+
+{% endblock %}

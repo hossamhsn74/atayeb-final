@@ -53,8 +53,7 @@ INSTALLED_APPS = [
 
     # For django-invitations link: https://github.com/bee-keeper/django-invitations
     'invitations',
-    # For django-tagulous link: http://radiac.net/projects/django-tagulous/documentation/
-    # 'tagulous',
+
 
 ]
 
@@ -165,7 +164,7 @@ LOGIN_URL = '/accounts/login'
 # }
 # ----------------------------------- end Tagulous ---------------------------------------------
 
-# ----------------------------------- start allauth ---------------------------------------------
+# ----------------------------------- start allauth & Invitations ---------------------------------------------
 # For 'allauth' app link: https://django-allauth.readthedocs.io/en/latest/configuration.html
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
@@ -213,6 +212,7 @@ ACCOUNT_USERNAME_BLACKLIST = ['Allah', 'God']
 # ACCOUNT_ADAPTER = 'allauth.account.adapter.DefaultAccountAdapter'
 # For django-invitations link: https://github.com/bee-keeper/django-invitations
 ACCOUNT_ADAPTER = 'invitations.models.InvitationsAdapter'
+INVITATIONS_INVITATION_ONLY = True
 
 # Account Signup
 # ACCOUNT_FORMS = {'signup': 'allauthdemo.forms.SignupForm', }
@@ -270,4 +270,4 @@ ACCOUNT_ADAPTER = 'invitations.models.InvitationsAdapter'
 #         }
 #     }
 # }
-# ----------------------------------- end allauth ---------------------------------------------
+# ----------------------------------- end allauth & Invitations ---------------------------------------------
