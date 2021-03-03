@@ -1,2 +1,2 @@
 user: admin
-pass: qwe123!@#
+pass: q@123456
