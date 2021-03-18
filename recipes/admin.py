@@ -56,8 +56,17 @@ class RecipeIngredientAdmin(admin.ModelAdmin):
 class InstructionAdmin(admin.ModelAdmin):
     list_display = (
         'recipe',
-        'number',
+        'order',
         'description'
+    )
+
+
+class NutrationFactsAdmin(admin.ModelAdmin):
+    list_display = (
+        'recipe',
+        'element',
+        'quantity',
+        'daily_percent'
     )
 
 
@@ -77,6 +86,8 @@ admin.site.register(IngredientCategory, IngredientCategoryAdmin)
 admin.site.register(Ingredient, IngredientAdmin)
 admin.site.register(Recipe, RecipeAdmin)
 admin.site.register(RecipeIngredient, RecipeIngredientAdmin)
-admin.site.register(Instruction, InstructionAdmin)
+admin.site.register(RecipeInstruction, InstructionAdmin)
 
-admin.site.register(Comment, CommentAdmin)
+admin.site.register(RecipeComment, CommentAdmin)
+admin.site.register(Tag)
+admin.site.register(RecipeNutritionFacts, NutrationFactsAdmin)

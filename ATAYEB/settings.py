@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
-
+# from django.utils.translation import gettext_lazy as _
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -24,7 +24,7 @@ SECRET_KEY = 'jx1f!%dqrro+iz87qled^0)d5w&ei%nn@=x*ur!c=2!w8h2wx^'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1']
 
 # Application definition
 
@@ -36,10 +36,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
-
+    'core.apps.CoreConfig',
     'recipes',
     'user',
-
     'crispy_forms',
 
     # For 'allauth' app link: https://django-allauth.readthedocs.io/en/latest/overview.html
@@ -50,8 +49,6 @@ INSTALLED_APPS = [
     # 'allauth.socialaccount.providers.google',
     # 'allauth.socialaccount.providers.facebook',
     # 'allauth.socialaccount.providers.microsoft',
-
-    # For django-invitations link: https://github.com/bee-keeper/django-invitations
     'invitations',
 
 
@@ -83,8 +80,7 @@ AUTHENTICATION_BACKENDS = [
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')]
-        ,
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -107,6 +103,26 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'HOST': os.environ.get('DB_HOST'),
+    #     'NAME': os.environ.get('DB_NAME'),
+    #     'USER': os.environ.get('DB_USER'),
+    #     'PASSWORD': os.environ.get('DB_PASSWORD'),
+    # }
+
+    # 'default': {
+    #     'ENGINE': 'sql_server.pyodbc',
+    #     'NAME': '*********',
+    #     'USER': 'sa',
+    #     'PASSWORD': '********',
+    #     'HOST': '192.168.1.97',
+    #     'PORT': '1433',
+
+    #     'OPTIONS': {
+    #         'driver': 'ODBC Driver 13 for SQL Server',
+    #     },
+    # },
 }
 
 # Password validation
@@ -185,17 +201,20 @@ ACCOUNT_EMAIL_CONFIRMATION_HMAC = True
 # ACCOUNT_EMAIL_CONFIRMATION_COOLDOWN = 180
 ACCOUNT_EMAIL_REQUIRED = True
 # ACCOUNT_EMAIL_MAX_LENGTH = 254
-ACCOUNT_EMAIL_VERIFICATION = "mandatory"  # choose one of "mandatory", "optional", or "none"
+# choose one of "mandatory", "optional", or "none"
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 # ACCOUNT_EMAIL_SUBJECT_PREFIX =”[Site] “
 
 
 ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 5
-ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 86400  # 1 day. This does not prevent admin login from being brut forced.
+# 1 day. This does not prevent admin login from being brut forced.
+ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 86400
 ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = False
 
 ACCOUNT_LOGOUT_REDIRECT_URL = '/accounts/login/'  # or any other page
 
-ACCOUNT_PRESERVE_USERNAME_CASING = False  # reduces the delays in iexact lookups
+# reduces the delays in iexact lookups
+ACCOUNT_PRESERVE_USERNAME_CASING = False
 ACCOUNT_SESSION_REMEMBER = None
 
 ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = False
