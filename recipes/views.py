@@ -1,6 +1,7 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView
-from recipes.models import Recipe, RecipeIngredient, RecipeInstruction, RecipeComment, RecipeNutritionFacts
+from django.views.generic import ListView, DetailView, CreateView
+from recipes.models import Recipe, RecipeIngredient, RecipeInstruction, RecipeComment, RecipeNutritionFacts, RecipeCategory
+from django.db.models import Count
 
 # for pdf
 # from django.core.files.storage import FileSystemStorage
@@ -92,9 +93,28 @@ class RecipeDetailsView(DetailView):
         return context
 
 
-def RecipeIndexView(request):
-    return render(request, "recipes/recipe-index.html")
+def AddCommentView(request, id):
+    # print(request.POST)
+    # text = request.POST['text']
+    # myproduct = products.objects.get(id=id)
+    # new_comment = Comment.objects.create(
+    #     text=text, product_comment=myproduct, user=request.user)
+    # new_comment.save()
+    # return HttpResponseRedirect(reverse("details", kwargs={'id': id}))
+    pass
 
+
+class RecipeIndexView(ListView):
+    # model = RecipeCategory
+    # template_name = "recipes/recipe-index.html"
+    # context_object_name = "categories"
+
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     # context['info'] = [*qs]
+    #     print(context)
+    #     return context
+    pass
 
 def SubmitRecipeView(request):
     return render(request, "recipes/submit-recipe.html")

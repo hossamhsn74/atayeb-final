@@ -1,0 +1,224 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <div class="head-title">
+        <div class="container">
+            <h2 class="page-title">التدوينات</h2>
+        </div><!-- end container -->
+    </div><!-- end head-title -->
+
+    <div id="main">
+        <div class="container">
+            <div class="row">
+
+                <div id="primary" class="content-area col-md-8">
+                    <div id="content" class="site-content">
+
+                        <div class="post format-image hentry">
+
+                            <div class="entry-format">
+                                <div class="entry-meta">
+                                    <div class="entry-date">
+                                        <a href="#">
+                                            <time class="published" datetime="2019-12-22"
+                                                  title="December 22, 2019 - 21:12 pm">Dec<span class="date">22</span>2019
+                                            </time>
+                                        </a>
+                                    </div><!-- end entry-date -->
+
+                                </div><!-- end entry-meta -->
+                            </div><!-- end entry-format -->
+
+                            <div class="inner">
+
+                                <div class="entry-header">
+                                        <span class="author vcard">
+                                            الناشر: <a href="#">مصطفى عبدالرحمن</a>
+                                        </span><!-- end author -->
+                                    <span class="cat-links">
+                                            <a href="#">recipe</a>,
+                                            <a href="#">random</a>,
+                                            <a href="#">traditional</a>
+                                        </span><!-- end cat-links -->
+                                    <div class="comment-link">
+                                        <i class="fas fa-comments"></i>
+                                        <a href="#">3 تعليقات </a>
+                                    </div>
+                                </div><!-- end entry-header -->
+
+                                <h1 class="entry-title">
+                                    <a href="#">هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا
+                                        النص من مولد النص العربى.</a>
+                                </h1>
+
+                                <div class="entry-media">
+                                    <img src="{% static 'recipes/images/content/media-01.png' %}" alt="">
+                                </div><!-- end entry-media -->
+
+                                <div class="entry-content">
+                                    <p>هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد
+                                        النص العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى إضافة إلى
+                                        زيادة عدد الحروف التى يولدها التطبيق. إذا كنت تحتاج إلى عدد أكبر من الفقرات يتيح
+                                        لك مولد النص العربى زيادة عدد الفقرات كما تريد، النص لن يبدو مقسما ولا يحوي
+                                        أخطاء لغوية، مولد النص العربى مفيد لمصممي المواقع على وجه الخصوص، حيث يحتاج
+                                        العميل فى كثير من الأحيان أن يطلع على صورة حقيقية لتصميم الموقع.</p>
+                                </div>
+
+                            </div><!-- end inner -->
+
+                        </div><!-- end format-image hentry -->
+
+                    </div><!-- end content -->
+
+                    <nav class="pagination-container" aria-label="Page navigation">
+                        <ul class="pagination justify-content-start">
+                            <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                        </ul>
+                    </nav>
+                </div><!-- end primary -->
+
+                <div id="secondary" class="col-md-4">
+
+                    <div id="search-2" class="widget widget_search">
+                        <div class="widget-title-outer">
+                            <h3 class="widget-title">البحث</h3>
+                        </div>
+                        <div class="searchform">
+                            <form>
+                                <input type="text" class="txt" name="s" placeholder="ابحث عن...">
+                                <input type="submit" value="إبحث" class="btn btn-sm">
+                            </form>
+                        </div><!-- end searchform -->
+                    </div><!-- end search widget -->
+
+                    <div class="widget post-type-widget">
+                        <div class="widget-title-outer">
+                            <h3 class="widget-title">أحدث التدوينات</h3>
+                        </div>
+                        <ul>
+                            <li>
+                                    <span class="post-category">
+                                        <a href="#">غير مصنف</a>
+                                    </span>
+                                <figure class="post-thumbnail">
+                                    <a href="#"><img src="{% static 'recipes/images/content/thumb-post-01.png' %}"
+                                                     alt=""></a>
+                                </figure>
+                                <span><h2 class="post-title">
+                                    <a href="#">هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى،</a>
+                                </h2>
+                                    </span>
+                            </li>
+                            <li>
+                                    <span class="post-category">
+                                        <a href="#">Cooking Tips</a>
+                                    </span>
+                                <figure class="post-thumbnail">
+                                    <a href="#"><img src="{% static 'recipes/images/content/thumb-post-02.png' %}"
+                                                     alt=""></a>
+                                </figure>
+                                <h2 class="post-title">
+                                    <a href="#">Euismod Tincidunt ut Laoreet Dolore Magna Aliquam</a>
+                                </h2>
+                            </li>
+                            <li>
+                                    <span class="post-category">
+                                        <a href="#">Kitchen</a>
+                                    </span>
+                                <figure class="post-thumbnail">
+                                    <a href="#"><img src="{% static 'recipes/images/content/thumb-post-03.png' %}"
+                                                     alt=""></a>
+                                </figure>
+                                <h2 class="post-title">
+                                    <a href="#">Ullamcorper Suscipit Lobortis Nisl ut Aliquip Commodo Consequat</a>
+                                </h2>
+                            </li>
+                            <li>
+                                    <span class="post-category">
+                                        <a href="#">Vegetable</a>
+                                    </span>
+                                <figure class="post-thumbnail">
+                                    <a href="#"><img src="{% static 'recipes/images/content/thumb-post-04.png' %}"
+                                                     alt=""></a>
+                                </figure>
+                                <h2 class="post-title">
+                                    <a href="#">Quod Mazim Placerat Facer Possim Assum</a>
+                                </h2>
+                            </li>
+                        </ul>
+                    </div><!-- end widget -->
+
+                    <div class="widget widget_categories">
+                        <div class="widget-title-outer">
+                            <h3 class="widget-title">فئات التدوينات</h3>
+                        </div>
+                        <ul>
+                            <li>
+                                <a class="float-right" href="#">نهفات الطبخ</a>
+                                <span class="float-left">17</span>
+                            </li>
+                            <li>
+                                <a class="float-right" href="#">المطبخ</a>
+                                <span class="float-left">14</span>
+                            </li>
+                            <li>
+                                <a class="float-right" href="#">Chef's Secret</a>
+                                <span class="float-left">10</span>
+                            </li>
+                            <li>
+                                <a class="float-right" href="#">Vegetable</a>
+                                <span class="float-left">8</span>
+                            </li>
+                            <li>
+                                <a class="float-right" href="#">Nutrition</a>
+                                <span class="float-left">6</span>
+                            </li>
+                            <li>
+                                <a class="float-right" href="#">Ingredients</a>
+                                <span class="float-left">4</span>
+                            </li>
+                        </ul>
+                    </div><!-- end widget -->
+
+                    <div class="widget">
+                        <div class="widget-title-outer">
+                            <h3 class="widget-title">News Tags</h3>
+                        </div>
+                        <div class="tagcloud">
+                            <a href="#">food</a>
+                            <a href="#">ingredients</a>
+                            <a href="#">chef</a>
+                            <a href="#">kitchen</a>
+                            <a href="#">vegetable</a>
+                            <a href="#">cake</a>
+                            <a href="#">beverage</a>
+                            <a href="#">tips</a>
+                            <a href="#">nutrition</a>
+                            <a href="#">tools</a>
+                        </div>
+                    </div><!-- end widget -->
+
+                    <div class="widget">
+                        <a href="#"><img src="{% static 'recipes/images/content/banner.png' %}" alt="Banner"></a>
+                    </div>
+
+                    <div class="widget">
+                        <div class="widget-title-outer">
+                            <h3 class="widget-title">Our Facebook Page</h3>
+                        </div>
+                        <iframe src="//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2FFacebookDevelopers&amp;colorscheme=light&amp;show_faces=true&amp;header=true&amp;stream=false&amp;show_border=true"></iframe>
+                    </div><!-- end widget -->
+
+                </div><!-- end #secondary -->
+
+            </div><!-- end row -->
+        </div><!-- end container -->
+    </div><!-- end main -->
+
+{% endblock %}        

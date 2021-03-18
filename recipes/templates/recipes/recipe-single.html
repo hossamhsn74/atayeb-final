@@ -8,7 +8,7 @@
 
 <div class="head-title">
     <div class="container">
-        <h2 class="page-title">الأطباق الرئيسية</h2>
+        <h2 class="page-title">{{recipe.category.name}}</h2>
     </div><!-- end container -->
 </div><!-- end head-title -->
 
@@ -197,7 +197,8 @@
 
                     <div id="respond" class="comment-respond">
                         <h2 id="reply-title" class="comment-reply-title">Leave a Reply</h2>
-                        <form class="comment-form">
+                        <form class="comment-form" action="#" method="POST">
+                            {% csrf_token %}
                             <p class="comment-notes">Your email address will not be published. All fields are
                                 required.</p>
                             <p class="comment-form-email">

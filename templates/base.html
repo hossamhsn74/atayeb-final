@@ -80,8 +80,8 @@
                                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button"
                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Events</a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
-                                            <a class="dropdown-item" href="{% url 'recipes:event' %}">Event List</a>
-                                            <a class="dropdown-item" href="{% url 'recipes:event-single' %}">Event
+                                            <a class="dropdown-item" href="{% url 'events:event' %}">Event List</a>
+                                            <a class="dropdown-item" href="{% url 'events:event-single' %}">Event
                                                 Single</a>
                                         </div>
                                     </li>
@@ -89,24 +89,22 @@
                                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown3" role="button"
                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">المدونة</a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdown3">
-                                            <a class="dropdown-item" href="{% url 'recipes:blog' %}">التدوينات</a>
-                                            <a class="dropdown-item" href="{% url 'recipes:blog-single' %}">عرض
+                                            <a class="dropdown-item" href="{% url 'blog:blog' %}">التدوينات</a>
+                                            <a class="dropdown-item" href="{% url 'blog:blog-single' %}">عرض
                                                 تدوينة</a>
-                                            <a class="dropdown-item" href="{% url 'recipes:archive' %}">الأرشيف</a>
+                                            <a class="dropdown-item" href="{% url 'blog:archive' %}">الأرشيف</a>
                                         </div>
                                     </li>
                                     <li class="nav-item dropdown">
                                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown4" role="button"
                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">الصفحات</a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdown4">
-                                            <a class="dropdown-item" href="{% url 'recipes:contacts' %}">اتصل بنا</a>
-                                            <a class="dropdown-item" href="{% url 'recipes:faq' %}">FAQ</a>
-                                            <a class="dropdown-item"
-                                               href="{% url 'recipes:typography' %}">Typography</a>
+                                            <a class="dropdown-item" href="{% url 'blog:contacts' %}">اتصل بنا</a>
+                                            <a class="dropdown-item" href="{% url 'blog:faq' %}">FAQ</a>
                                         </div>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{% url 'recipes:about' %}">معلومات عنا</a>
+                                        <a class="nav-link" href="{% url 'blog:about' %}">معلومات عنا</a>
                                     </li>
 
 
