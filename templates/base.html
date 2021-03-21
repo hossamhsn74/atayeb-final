@@ -134,9 +134,9 @@
                                                 <i class="fas fa-user-alt-slash fa-lg"></i>
                                             </a>
                                             <div class="dropdown-menu" aria-labelledby="userNotLoggedIn">
-                                                <a class="dropdown-item" href="{% url 'account_login' %}"><i class="fas fa-sign-in-alt fa-rotate-180"></i> تسجيل الدخول</a>
+                                                <a class="dropdown-item" href="{% url 'user:account_login' %}"><i class="fas fa-sign-in-alt fa-rotate-180"></i> تسجيل الدخول</a>
 
-                                                <a class="dropdown-item" href="{% url 'account_signup' %}"><i class="fas fa-user-plus"></i> الاشتراك</a>
+                                                <a class="dropdown-item" href="{% url 'user:account_signup' %}"><i class="fas fa-user-plus"></i> الاشتراك</a>
                                             </div>
                                         {% endif %}
                                     </li>

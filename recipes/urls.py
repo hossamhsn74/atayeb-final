@@ -11,11 +11,11 @@ urlpatterns = [
     path('', HomePageView, name='home'),
     path('recipes/', RecipeListView.as_view(), name='recipes'),
     path('recipes/<int:pk>', RecipeDetailsView.as_view(), name='recipe-single'),
+    path('recipes/<int:pk>/pdf/', ExportToPDFView.as_view(), name='recipe-pdf'),
 
     # path('recipes/<int:pk>/addcomment', AddCommentView, name='recipe-single'),
     path('recipe-index/', RecipeIndexView.as_view(), name='recipe-index'),
     path('submit-recipe/', SubmitRecipeView, name='submit-recipe'),
-    #     path('pdf/', ExportToPdf.as_view()),
 
     # to be deleted
     #     path('typography/', TemplateView.as_view(template_name='recipes/typography.html'),
