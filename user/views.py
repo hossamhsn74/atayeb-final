@@ -18,7 +18,6 @@ from invitations.signals import invite_accepted
 from invitations.utils import get_invitation_model
 from invitations.views import AcceptInvite
 
-from recipes import my_settings
 from recipes.models import Recipe
 from .forms import UserCreationForm, UserUpdateForm, ProfileUpdateForm
 
@@ -70,8 +69,8 @@ class ProfileDetail(LoginRequiredMixin, SingleObjectMixin, ListView):
     login_url = 'user:login'
     model = User
     template_name = 'user/profile.html'
-    paginate_by = my_settings.user_recipes_paginate_by
-    paginate_orphans = my_settings.user_recipes_paginate_orphans
+    paginate_by = 10
+    paginate_orphans = 10
 
     def get(self, request, *args, **kwargs):
         self.object = get_object_or_404(User, username=self.request.user)

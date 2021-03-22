@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'core.apps.CoreConfig',
     'recipes',
+    'blog',
+    'events',
     'user',
     'crispy_forms',
 
