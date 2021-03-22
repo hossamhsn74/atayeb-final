@@ -1,8 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.utils import timezone
-
-from .my_functions import get_resized_image
+from django_resized import ResizedImageField
 
 
 class Tag(models.Model):
@@ -11,24 +10,21 @@ class Tag(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        verbose_name_plural = "العلامات"
+
 
 class RecipeCategory(models.Model):
     name = models.CharField(max_length=255, unique=True,
                             verbose_name='فئة الوصفة')
-    image = models.ImageField(null=True, blank=True,
-                              default='static/recipes/images/assets/default_no_pic.png.png',
+    image = ResizedImageField(null=True, blank=True,
+                              default='static/recipes/images/assets/default_no_pic.png',
                               upload_to='recipes_pics',
                               verbose_name='الصورة')
     description = models.TextField(null=True, blank=True, verbose_name='الوصف')
 
     def __str__(self):
         return self.name
-
-    def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
-
-        img = get_resized_image(self, req_width=300, req_height=300)
-        img.save(self.image.path)
 
     def delete(self, *args, **kwargs):
         self.image.delete()
@@ -42,14 +38,12 @@ class Recipe(models.Model):
     name = models.CharField(max_length=255, verbose_name='اسم الوصفة')
     category = models.ForeignKey(
         RecipeCategory, on_delete=models.CASCADE, verbose_name='فئة الوصفة')
-    recipe_source = models.CharField(
-        max_length=255, null=True, blank=True, verbose_name='مصدر الوصفة')
     feeds_up_to = models.SmallIntegerField(
         default=1, verbose_name='تكفي لإطعام')
     prep_time = models.CharField(max_length=50, verbose_name='وقت التحضير')
     date_created = models.DateTimeField(
         default=timezone.now, verbose_name='تاريخ الإضافة')
-    image = models.ImageField(null=True, blank=True,
+    image = ResizedImageField(null=True, blank=True,
                               default='static/recipes/images/assets/default_no_pic.png',
                               upload_to='recipes_pics',
                               verbose_name='الصورة')
@@ -60,12 +54,6 @@ class Recipe(models.Model):
 
     def __str__(self):
         return self.name
-
-    def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
-
-        img = get_resized_image(self, req_width=600, req_height=600)
-        img.save(self.image.path)
 
     def delete(self, *args, **kwargs):
         self.image.delete()
@@ -79,19 +67,9 @@ class Recipe(models.Model):
 class IngredientCategory(models.Model):
     name = models.CharField(max_length=255, unique=True,
                             verbose_name='فئة المكون')
-    # image = models.ImageField(null=True, blank=True,
-    #                           default='static/recipes/images/assets/default_no_pic.png.jpg',
-    #                           upload_to='recipes_pics',
-    #                           verbose_name='الصورة')
 
     def __str__(self):
         return self.name
-
-    # def save(self, *args, **kwargs):
-    #     super().save(*args, **kwargs)
-
-    #     img = get_resized_image(self, req_width=300, req_height=300)
-    #     img.save(self.image.path)
 
     class Meta:
         verbose_name_plural = "فئات المكونات"
@@ -102,22 +80,9 @@ class Ingredient(models.Model):
     category = models.ForeignKey(IngredientCategory,
                                  on_delete=models.CASCADE,
                                  verbose_name='فئة المكون')
-    # image = models.ImageField(null=True, blank=True,
-    #                           default='static/recipes/images/assets/default_no_pic.png.jpg',
-    #                           upload_to='recipes_pics',
-    #                           verbose_name='الصورة')
 
     def __str__(self):
         return self.name
-
-    # def save(self, *args, **kwargs):
-    #     super().save(*args, **kwargs)
-
-    #     img = get_resized_image(self, req_width=300, req_height=300)
-    #     img.save(self.image.path)
-
-    def delete(self, *args, **kwargs):
-        super().delete(*args, **kwargs)
 
     class Meta:
         verbose_name_plural = "المكونات"
@@ -166,20 +131,22 @@ class RecipeInstruction(models.Model):
         verbose_name_plural = "الخطوات"
         ordering = ('order',)
 
+
 NUTRITION_ELEMENTS_CHOICES = (
-    ('اجمالي الدهون','اجمالي الدهون'),
-    ('حجم الوجبة','حجم الوجبة'),
-    ('سعرات حراريه','سعرات حراريه'),
-    ('الدهون المشبعة','الدهون المشبعة'),
-    ('دهون غير مشبعة','دهون غير مشبعة'),
-    ('الدهون الأحادية غير المشبعة','الدهون الأحادية غير المشبعة'),
-    ('صوديوم','صوديوم'),
-    ('ألياف','ألياف'),
+    ('اجمالي الدهون', 'اجمالي الدهون'),
+    ('حجم الوجبة', 'حجم الوجبة'),
+    ('سعرات حراريه', 'سعرات حراريه'),
+    ('الدهون المشبعة', 'الدهون المشبعة'),
+    ('دهون غير مشبعة', 'دهون غير مشبعة'),
+    ('الدهون الأحادية غير المشبعة', 'الدهون الأحادية غير المشبعة'),
+    ('صوديوم', 'صوديوم'),
+    ('ألياف', 'ألياف'),
     ('الكوليسترول', 'الكوليسترول'),
-    ('الدهون المتحولة','الدهون المتحولة'),
-    ('اجمالي الكربوهيدرات','اجمالي الكربوهيدرات'),
-    ('البروتين','البروتين'),
-    ('سكر','سكر')
+    ('الدهون المتحولة', 'الدهون المتحولة'),
+    ('اجمالي الكربوهيدرات', 'اجمالي الكربوهيدرات'),
+    ('البروتين', 'البروتين'),
+    ('سكر', 'سكر'),
+    ('البوتاسبوم', 'البوتاسيوم')
 )
 
 
@@ -187,7 +154,7 @@ class RecipeNutritionFacts(models.Model):
     recipe = models.ForeignKey(
         Recipe, on_delete=models.CASCADE, verbose_name='الوصفة')
     element = models.CharField(max_length=128,
-        choices=NUTRITION_ELEMENTS_CHOICES, verbose_name='العنصر')
+                               choices=NUTRITION_ELEMENTS_CHOICES, verbose_name='العنصر')
     quantity = models.CharField(max_length=255, verbose_name='الكمية')
     daily_percent = models.PositiveSmallIntegerField(
         verbose_name='نسبة المقادير اليومية')

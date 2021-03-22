@@ -7,14 +7,12 @@ from .views import *
 
 app_name = 'recipes'
 urlpatterns = [
-
-    path('', HomePageView, name='home'),
     path('recipes/', RecipeListView.as_view(), name='recipes'),
     path('recipes/<int:pk>', RecipeDetailsView.as_view(), name='recipe-single'),
     path('recipes/<int:pk>/pdf/', ExportToPDFView.as_view(), name='recipe-pdf'),
+    path('recipe-index/', RecipeIndexView, name='recipe-index'),
 
     # path('recipes/<int:pk>/addcomment', AddCommentView, name='recipe-single'),
-    path('recipe-index/', RecipeIndexView.as_view(), name='recipe-index'),
     path('submit-recipe/', SubmitRecipeView, name='submit-recipe'),
 
     # to be deleted

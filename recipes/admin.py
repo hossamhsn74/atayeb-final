@@ -32,7 +32,6 @@ class RecipeAdmin(admin.ModelAdmin):
     list_display = (
         'name',
         'category',
-        'recipe_source',
         'prep_time',
         'id'
     )

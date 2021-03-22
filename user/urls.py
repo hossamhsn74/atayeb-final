@@ -18,7 +18,6 @@ urlpatterns = [
          name='invite_form'),
 
     path('invite/', invite_friend, name='invite_friend'),
-    path('accounts/', include('allauth.urls')),
     # path(r'^invitations/accept-invite/(?P<key>\w+)/?$', AcceptInviteView.as_view(), name='accept-invite'),
     path('invitations/', include('invitations.urls', namespace='invitations')),
     

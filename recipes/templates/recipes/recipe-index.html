@@ -5,36 +5,33 @@
 
         <div class="head-title">
             <div class="container">
-                <h2 class="page-title">Recipe Index</h2>
+                <h2 class="page-title">دليل الوصفات</h2>
             </div><!-- end container -->
         </div><!-- end head-title -->
 
         <div id="main">
             <div class="container">
-
+                {% for key, value  in data.items %}
                 <div class="recipe-index card-columns">
-                    {% for category in categories %}
                     <div class="card">
                         <div class="index-box">
                             <div class="index-head">
-                                <h3>{{category.name}}</h3>
+                                <h3>{{key}}</h3>
                             </div>
                             <div class="index-list">
                                 <ul>
+                                    {% for item in value %}
                                     <li>
-                                        <a href="#">All</a>
-                                        <span>38</span>
+                                        <a href="{% url 'recipes:recipe-single'  item.id %}">{{item}}</a>
+                                        <span>{{item.prep_time}} دقيقة</span>
                                     </li>
-                                    <li>
-                                        <a href="#">آسيوي</a>
-                                        <span>3</span>
-                                    </li>
+                                    {% endfor %}
                                 </ul>
                             </div><!-- end index-list -->
                         </div><!-- end index-box -->
                     </div><!-- end col -->
-                    {% endfor %}
                 </div><!-- end card colum -->
+                {% endfor %}
 
             </div><!-- end container -->
         </div><!-- end main -->

@@ -6,14 +6,6 @@ from recipes.models import (Recipe, RecipeCategory, RecipeComment,
                             RecipeNutritionFacts)
 
 
-def HomePageView(request):
-    recipes = Recipe.objects.all()[0:10]
-    context = {
-        'recipes': recipes
-    }
-    return render(request, 'recipes/home.html', context)
-
-
 class RecipeListView(ListView):
     paginate_by = 16
     model = Recipe
@@ -94,17 +86,17 @@ def AddCommentView(request, id):
     pass
 
 
-class RecipeIndexView(ListView):
-    # model = RecipeCategory
-    # template_name = "recipes/recipe-index.html"
-    # context_object_name = "categories"
-
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     # context['info'] = [*qs]
-    #     print(context)
-    #     return context
-    pass
+def RecipeIndexView(request):
+    context = {}
+    data = {}
+    categories = RecipeCategory.objects.all()
+    print("category", categories)
+    for category in categories:
+        recipes = Recipe.objects.filter(category=category)
+        data[category] = [*recipes]
+    context["data"] = data
+    print("context", context)
+    return render(request, "recipes/recipe-index.html", context)
 
 
 def SubmitRecipeView(request):

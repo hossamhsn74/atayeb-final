@@ -21,14 +21,15 @@
                 <div class="col">
                     <div class="recipe-lvl">
                         <span>الفئة : <a href="#">{{recipe.category}}</a></span>
-                        <span>وقت التحضير : {{recipe.prep_time}} دقيقة </span>
                     </div><!-- end recipe level -->
                     <div class="recipe-head">
                         <h1 class="recipe-title">{{recipe.name}}</h1>
                         <div class="recipe-auth">
                             <img src="{% static 'recipes/images/content/auth-03.png' %}" alt="recipe author">
                             <span> الكاتب : <a href="#">{{recipe.author}}</a></span>
+                            <span> تاريخ الاضافة : {{recipe.date_created}} </span>
                         </div><!-- recipe author -->
+
                         <div class="recipe-finger">
 
                             <div class="box-sharing">
@@ -66,12 +67,15 @@
                             {% endfor %}
                         </span>
                     </div><!-- end recipe tags -->
+
                 </div><!-- end col -->
             </div><!-- end row -->
             <div class="space-section"></div>
             <div class="row">
                 <div class="ingredient col-md-4">
+                    <span>تكفي ل {{recipe.feeds_up_to}} اشخاص </span>
                     <p><strong>المكونات والمقادير</strong></p>
+
                     <ul>
                         {% for item in ingredents %}
                         <li> <span> {{item.quantity}} {{item.ingredient}} </span></li>
@@ -79,7 +83,9 @@
                     </ul>
                 </div><!-- end col -->
                 <div class="direction col-md-8">
+                    <span>وقت التحضير : {{recipe.prep_time}} دقيقة </span>
                     <p><strong>طريقة الإعداد</strong></p>
+
                     <ol>
                         {% for item in instructions %}
                         <li>
@@ -109,8 +115,8 @@
                     <div class="nutrition-bar">
                         {% for item in nutration_facts %}
                         <div class="progress">
-                            <div class="progress-bar" role="progressbar" style="width: {{item.daily_percent}}%" aria-valuenow="25"
-                                aria-valuemin="0" aria-valuemax="100"></div>
+                            <div class="progress-bar" role="progressbar" style="width: {{item.daily_percent}}%"
+                                aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                         {% endfor %}
                     </div>
