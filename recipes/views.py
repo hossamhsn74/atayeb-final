@@ -1,9 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import CreateView, DetailView, ListView
 from django_renderpdf.views import PDFView
 from recipes.models import (Recipe, RecipeCategory, RecipeComment,
                             RecipeIngredient, RecipeInstruction,
-                            RecipeNutritionFacts)
+                            RecipeNutritionFacts, Tag)
+from django.contrib.auth.decorators import login_required
+from user.models import Profile
+from django.db.models import Q
 
 
 class RecipeListView(ListView):
@@ -75,15 +78,15 @@ class ExportToPDFView(PDFView):
         return context
 
 
+@login_required
 def AddCommentView(request, id):
-    # print(request.POST)
-    # text = request.POST['text']
-    # myproduct = products.objects.get(id=id)
-    # new_comment = Comment.objects.create(
-    #     text=text, product_comment=myproduct, user=request.user)
-    # new_comment.save()
-    # return HttpResponseRedirect(reverse("details", kwargs={'id': id}))
-    pass
+    comment = request.POST['comment']
+    recipe = Recipe.objects.get(id=id)
+    author = Profile.objects.get(user=request.user)
+    new_comment = RecipeComment.objects.create(
+        body=comment, recipe=recipe, author=author)
+    new_comment.save()
+    return redirect("recipes:recipe-single", pk=recipe.id)
 
 
 def RecipeIndexView(request):
@@ -95,9 +98,73 @@ def RecipeIndexView(request):
         recipes = Recipe.objects.filter(category=category)
         data[category] = [*recipes]
     context["data"] = data
-    print("context", context)
     return render(request, "recipes/recipe-index.html", context)
 
 
+@login_required
 def SubmitRecipeView(request):
-    return render(request, "recipes/submit-recipe.html")
+    categories = RecipeCategory.objects.all()
+    context = {}
+    context['categories'] = [*categories]
+    return render(request, "recipes/submit-recipe.html", context=context)
+
+
+def AddRecipeView(request):
+    # create recipe category
+    category_field = request.POST['category']
+    if category_field == "other":
+        other_category_field = request.POST['other_category']
+        recipe_category = RecipeCategory.objects.get_or_create(
+            name=other_category_field)
+    else:
+        recipe_category = RecipeCategory.objects.get(
+            name=request.POST['category'])
+
+    recipe_name = request.POST['name']
+    recipe_image = request.POST['image']
+    recipe_feeds_up_to = request.POST['feeds_up_to']
+    recipe_prep_time = request.POST['prep_time']
+    recipe_description = request.POST['description']
+
+    # author
+    recipe_author = Profile.objects.get(user=request.user)
+
+    # tags
+    recipe_tags = []
+    tags_input = request.POST['tags']
+    tags_list = [x.strip() for x in tags_input.split(',')]
+
+    for item in tags_list:
+        recipe_tags.append(Tag.objects.get_or_create(name=item))
+
+    # create recipe item
+    recipe = Recipe.objects.create(
+        name=recipe_name, category=recipe_category,
+        description=recipe_description, feeds_up_to=recipe_feeds_up_to,
+        prep_time=recipe_prep_time, author=recipe_author,
+        image=recipe_image)
+
+    for item in recipe_tags:
+        recipe.tags.add(item[0].id)
+
+    # create instructions
+    # recipe_instructions = []
+    # instructions_input = request.POST['instructions']
+    # instructions_list = [x.strip() for x in tags_input.split(',')]
+
+    # for item in instructions_list:
+    #     recipe_instructions.append(RecipeInstruction.objects.get_or_create(
+    #         recipe=recipe, description=description, order=order))
+
+    # create ingredianets
+    # ingredients_input = request.POST['ingredients']
+
+    # create nutration facts
+
+    return redirect("recipes:recipes")
+
+
+def SearchRecipes(request):
+    keyword = request.GET.get('keyword')
+    myrecipes = Recipe.objects.filter(name__icontains=keyword)
+    return render(request, "recipes/recipes.html", {'recipes': myrecipes})

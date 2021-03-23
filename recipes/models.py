@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from user.models import Profile
 from django.db import models
 from django.utils import timezone
 from django_resized import ResizedImageField
@@ -48,7 +49,7 @@ class Recipe(models.Model):
                               upload_to='recipes_pics',
                               verbose_name='الصورة')
     author = models.ForeignKey(
-        User, on_delete=models.CASCADE, verbose_name='الكاتب')
+        Profile, on_delete=models.CASCADE, verbose_name='الكاتب')
     description = models.TextField(verbose_name="الوصف", blank=True, null=True)
     tags = models.ManyToManyField(Tag)
 
@@ -92,11 +93,10 @@ class RecipeComment(models.Model):
     body = models.TextField(verbose_name='نص التعليق')
     comment_date = models.DateTimeField(
         default=timezone.now, verbose_name='تاريخ التعليق')
-    active = models.BooleanField(default=False)
     recipe = models.ForeignKey(
         Recipe, on_delete=models.CASCADE, related_name='comments', verbose_name='الوصفة')
     author = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name='comments', verbose_name='الكاتب')
+        Profile, on_delete=models.CASCADE, related_name='comments', verbose_name='الكاتب')
 
     def __str__(self):
         return 'تعليق {} على {}.'.format(self.author, self.recipe)
@@ -165,3 +165,7 @@ class RecipeNutritionFacts(models.Model):
     class Meta:
         verbose_name_plural = "الحقائق الغذائية للوصفة"
         unique_together = ('recipe', 'element')
+
+
+# bookmarks > (recipe, profile)
+# for each profile we have (post, recipe.author, recipe.bookmarks)

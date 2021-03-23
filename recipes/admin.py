@@ -72,11 +72,9 @@ class NutrationFactsAdmin(admin.ModelAdmin):
 class CommentAdmin(admin.ModelAdmin):
     list_display = (
         'author',
-        'active',
         'recipe',
         'body',
         'comment_date',
-        'id'
     )
 
 

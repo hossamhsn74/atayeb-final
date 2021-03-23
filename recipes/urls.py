@@ -9,9 +9,10 @@ urlpatterns = [
     path('recipes/', RecipeListView.as_view(), name='recipes'),
     path('recipes/<int:pk>', RecipeDetailsView.as_view(), name='recipe-single'),
     path('recipes/<int:pk>/pdf/', ExportToPDFView.as_view(), name='recipe-pdf'),
-    path('recipe-index/', RecipeIndexView, name='recipe-index'),
-
+    path('recipes/<int:id>/addcomment', AddCommentView, name='recipe-comment'),
+    # path('recipes/<int:pk>/bookmark', AddCommentView, name='recipe-bookmark'),
     path('submit-recipe/', SubmitRecipeView, name='submit-recipe'),
-    # path('recipes/<int:pk>/addcomment', AddCommentView, name='recipe-single'),
-    # path('recipes/<int:pk>/bookmark', AddCommentView, name='recipe-single'),
+    path('add-recipe/', AddRecipeView, name='add-recipe'),
+    path('recipe-index/', RecipeIndexView, name='recipe-index'),
+    path("search",SearchRecipes,name='search'),
 ]

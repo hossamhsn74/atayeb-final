@@ -177,9 +177,9 @@
         </header><!-- end #masthead -->
 
         <div class="container searchbardiv" id="formsearch">
-            <form role="search" method="get" id="searchform">
+            <form role="search" action="{% url 'recipes:search' %}" method="get" id="searchform">
                 <div class="input-group">
-                    <input type="text" id="searchbox" class="form-control" name="s">
+                    <input type="text" id="searchbox" class="form-control" name="keyword">
                     <div class="input-group-btn">
                         <button class="btn btn-search" id="searchsubmit" type="submit">
                             <strong>Search</strong>

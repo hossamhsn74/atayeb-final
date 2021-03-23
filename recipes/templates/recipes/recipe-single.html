@@ -25,7 +25,12 @@
                     <div class="recipe-head">
                         <h1 class="recipe-title">{{recipe.name}}</h1>
                         <div class="recipe-auth">
+                            {% if recipe.author.image %}
+                            <img src="{{ recipe.author.image.url }}" alt="">
+                            {% else %}
                             <img src="{% static 'recipes/images/content/auth-03.png' %}" alt="recipe author">
+                            {% endif%}
+
                             <span> الكاتب : <a href="#">{{recipe.author}}</a></span>
                             <span> تاريخ الاضافة : {{recipe.date_created}} </span>
                         </div><!-- recipe author -->
@@ -33,17 +38,17 @@
                         <div class="recipe-finger">
 
                             <div class="box-sharing">
-                                <a href="#"><i class="fas fa-print"></i></a>
-                                <a href="#"><i class="fas fa-share-alt"></i></a>
+                                <!-- <a href="#"><i class="fas fa-print"></i></a>
+                                <a href="#"><i class="fas fa-share-alt"></i></a> -->
                                 <a href="#"><i class="fas fa-bookmark"></i></a>
-                                <a href="{% url 'recipes:recipe-pdf'  recipe.id %}"><i class="fas fa-file-pdf"></i></a>
+                                <a href="{% url 'recipes:recipe-pdf' recipe.id %}"><i class="fas fa-file-pdf"></i></a>
                             </div>
 
-                            <div class="recipe-rating">
+                            <!-- <div class="recipe-rating">
                                 <span>درجة الرضا:<i class="fas fa-star"></i><i class="fas fa-star"></i><i
                                         class="fas fa-star"></i><i class="fas fa-star"></i><i
                                         class="far fa-star"></i></span>
-                            </div>
+                            </div> -->
                         </div><!-- end recipe finger -->
                     </div>
                 </div><!-- end col -->
@@ -60,20 +65,14 @@
                         <p><strong>الوصف</strong></p>
                         <p>{{recipe.description}}</p>
                     </div><!-- recipe desc -->
-                    <div class="recipe-tags">
-                        <span>العلامات:
-                            {% for item in recipe.tags.values %}
-                            <a href="#">{{item.name}}</a>,
-                            {% endfor %}
-                        </span>
-                    </div><!-- end recipe tags -->
+                    <span>تكفي ل {{recipe.feeds_up_to}} اشخاص </span>
+                    <span>وقت التحضير : {{recipe.prep_time}} دقيقة </span>
 
                 </div><!-- end col -->
             </div><!-- end row -->
             <div class="space-section"></div>
             <div class="row">
                 <div class="ingredient col-md-4">
-                    <span>تكفي ل {{recipe.feeds_up_to}} اشخاص </span>
                     <p><strong>المكونات والمقادير</strong></p>
 
                     <ul>
@@ -83,7 +82,6 @@
                     </ul>
                 </div><!-- end col -->
                 <div class="direction col-md-8">
-                    <span>وقت التحضير : {{recipe.prep_time}} دقيقة </span>
                     <p><strong>طريقة الإعداد</strong></p>
 
                     <ol>
@@ -155,6 +153,7 @@
     </div><!-- end container -->
 </div><!-- related recipe -->
 
+{% if user.is_authenticated %}
 <div class="recipe-comment">
     <div class="container">
         <div class="row justify-content-md-center">
@@ -179,9 +178,9 @@
                                     <div class="comment-wrapper">
                                         <div class="comment-meta">
                                             <b class="fn">{{comment.author}}</b>
-                                            <div class="reply">
+                                            <!-- <div class="reply">
                                                 <a href="#" class="comment-reply-link">إجابة</a>
-                                            </div>
+                                            </div> -->
                                         </div><!-- end comment-meta -->
                                         <div class="comment-metadata">
                                             <a href="#">
@@ -202,33 +201,27 @@
                     </div><!-- end #comments-area -->
 
                     <div id="respond" class="comment-respond">
-                        <h2 id="reply-title" class="comment-reply-title">Leave a Reply</h2>
-                        <form class="comment-form" action="#" method="POST">
+                        <h2 id="reply-title" class="comment-reply-title"> شارك بالتعليق علي هذه الوصفة</h2>
+                        <form class="comment-form" action="{% url 'recipes:recipe-comment' recipe.id %}" method="POST">
                             {% csrf_token %}
-                            <p class="comment-notes">Your email address will not be published. All fields are
-                                required.</p>
+                            <!-- <p class="comment-notes">لن يتم مشاركة اي من معلوماتك</p>
                             <p class="comment-form-email">
-                                <label for="author">Name</label>
+                                <label for="author">الاسم</label>
                                 <span class="required">*</span>
                                 <input id="author" type="text" class="input-text" name="author">
                             </p>
                             <p class="comment-form-author">
-                                <label for="email">Email</label>
+                                <label for="email">البريد الالكتروني</label>
                                 <span class="required">*</span>
-                                <input id="email" type="text" class="input-text" name="author">
-                            </p>
-                            <p class="comment-form-url">
-                                <label for="url">Website</label>
-                                <span class="required">*</span>
-                                <input id="url" type="text" class="input-text" name="author">
-                            </p>
+                                <input id="email" type="text" class="input-text" name="email">
+                            </p> -->
                             <p class="comment-form-comment">
-                                <label for="comment">Comment</label>
-                                <textarea name="comment" id="comment" cols="45" rows="10" class="input-text"></textarea>
+                                <label for="comment">التعليق</label>
+                                <textarea name="comment" id="comment" cols="45" rows="5" class="input-text"></textarea>
                             </p>
                             <p class="form-submit">
                                 <input class="btn btn-primary" name="submit" type="submit" id="button"
-                                    value="Post Comment">
+                                    value="أضف تعليق">
                             </p>
                         </form><!-- end #comment-form -->
                     </div><!-- end comment-respond -->
@@ -238,5 +231,5 @@
         </div>
     </div>
 </div>
-
+{% endif %}
 {% endblock %}

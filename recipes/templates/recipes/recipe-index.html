@@ -3,37 +3,37 @@
 
 {% block content %}
 
-        <div class="head-title">
-            <div class="container">
-                <h2 class="page-title">دليل الوصفات</h2>
-            </div><!-- end container -->
-        </div><!-- end head-title -->
+<div class="head-title">
+    <div class="container">
+        <h2 class="page-title">دليل الوصفات</h2>
+    </div><!-- end container -->
+</div><!-- end head-title -->
 
-        <div id="main">
-            <div class="container">
-                {% for key, value  in data.items %}
-                <div class="recipe-index card-columns">
-                    <div class="card">
-                        <div class="index-box">
-                            <div class="index-head">
-                                <h3>{{key}}</h3>
-                            </div>
-                            <div class="index-list">
-                                <ul>
-                                    {% for item in value %}
-                                    <li>
-                                        <a href="{% url 'recipes:recipe-single'  item.id %}">{{item}}</a>
-                                        <span>{{item.prep_time}} دقيقة</span>
-                                    </li>
-                                    {% endfor %}
-                                </ul>
-                            </div><!-- end index-list -->
-                        </div><!-- end index-box -->
-                    </div><!-- end col -->
-                </div><!-- end card colum -->
-                {% endfor %}
+<div id="main">
+    <div class="container">
+        <div class="recipe-index card-columns">
+            {% for key, value in data.items %}
+            <div class="card">
+                <div class="index-box">
+                    <div class="index-head">
+                        <h3>{{key}}</h3>
+                    </div>
+                    <div class="index-list">
+                        <ul>
+                            {% for item in value %}
+                            <li>
+                                <a href="{% url 'recipes:recipe-single'  item.id %}">{{item}}</a>
+                                <span>{{item.prep_time}} دقيقة</span>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div><!-- end index-list -->
+                </div><!-- end index-box -->
+            </div><!-- end col -->
+            {% endfor %}
+        </div><!-- end card colum -->
 
-            </div><!-- end container -->
-        </div><!-- end main -->
+    </div><!-- end container -->
+</div><!-- end main -->
 
 {% endblock %}

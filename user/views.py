@@ -1,14 +1,13 @@
-from django.contrib.auth import login, authenticate, logout
 from allauth.account.models import EmailAddress
 from allauth.account.signals import user_signed_up
 from django.contrib import messages
-from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.dispatch import receiver
 from django.http import HttpResponse
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic import ListView
 from django.views.generic.detail import SingleObjectMixin
 from invitations.adapters import get_invitations_adapter
@@ -17,9 +16,9 @@ from invitations.models import Invitation
 from invitations.signals import invite_accepted
 from invitations.utils import get_invitation_model
 from invitations.views import AcceptInvite
-
 from recipes.models import Recipe
-from .forms import UserCreationForm, UserUpdateForm, ProfileUpdateForm
+from user.models import Profile
+from .forms import ProfileUpdateForm, UserCreationForm, UserUpdateForm
 
 
 def register(request):
@@ -188,3 +187,16 @@ def accept_invite(sender, request, user, **kwargs):
             invite_accepted.send(sender=Invitation, email=invite.email)
 
         # Figure out if you care if there are multiple invites here
+
+
+@login_required
+def MyProfileView(request):
+    profile = Profile.objects.get(user=request.user)
+    recipes = Recipe.objects.filter(author=request.user)
+    # bookmarks =
+    # posts
+    context = {
+    }
+    context['profile'] = profile
+    context['recipes'] = recipes
+    return render(request, "user/my-account.html", context)

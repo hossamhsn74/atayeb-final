@@ -8,16 +8,16 @@ from .views import *
 
 app_name = 'user'
 urlpatterns = [
+    path('my-account/', MyProfileView, name='my-account'),
 
     path('profile_update/', profile_update, name='profile_update'),
 
-    path('my-account/', TemplateView.as_view(template_name='user/my-account.html'),
-         name='my-account'),
 
     path('invite-form/', TemplateView.as_view(template_name='user/invite_form.html'),
          name='invite_form'),
 
     path('invite/', invite_friend, name='invite_friend'),
-    path(r'^invitations/accept-invite/(?P<key>\w+)/?$', AcceptInviteView.as_view(), name='accept-invite'),
-    
+    path(r'^invitations/accept-invite/(?P<key>\w+)/?$',
+         AcceptInviteView.as_view(), name='accept-invite'),
+
 ]
