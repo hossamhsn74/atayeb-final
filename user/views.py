@@ -16,7 +16,7 @@ from invitations.models import Invitation
 from invitations.signals import invite_accepted
 from invitations.utils import get_invitation_model
 from invitations.views import AcceptInvite
-from recipes.models import Recipe
+from recipes.models import Recipe, Bookmarks
 from user.models import Profile
 from .forms import ProfileUpdateForm, UserCreationForm, UserUpdateForm
 
@@ -192,11 +192,13 @@ def accept_invite(sender, request, user, **kwargs):
 @login_required
 def MyProfileView(request):
     profile = Profile.objects.get(user=request.user)
-    recipes = Recipe.objects.filter(author=request.user)
-    # bookmarks =
+    recipes = Recipe.objects.filter(author=profile)
+    bookmarks = Bookmarks.objects.get(profile=profile).recipes.all()
+
     # posts
     context = {
     }
     context['profile'] = profile
     context['recipes'] = recipes
+    context['bookmarks'] = bookmarks
     return render(request, "user/my-account.html", context)

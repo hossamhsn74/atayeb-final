@@ -17,11 +17,11 @@
 
                     <div class="profile-details">
                         <figure class="profile-ava">
-                            <img src="{{ profile.image.url}}" alt="Author">
+                            <img src="{{ profile.image.url}}" height="150px" width="150px" alt="Author">
                         </figure>
                         <div class="profile-context">
                             <div class="profile-name">
-                                <h3>{{profile.user.name}}</h3>
+                                <h3>{{profile.user}}</h3>
                             </div>
                             <div class="profile-content">
                                 <p> {{profile.bio}} </p>
@@ -41,12 +41,13 @@
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link active" id="recipe-tab" data-toggle="tab" href="#recipe" role="tab"
-                                    aria-controls="recipe" aria-selected="false">وصفاتي <strong>{{recipes.count}}</strong></a>
+                                    aria-controls="recipe" aria-selected="false">وصفاتي
+                                    <strong>({{recipes.count}})</strong></a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" id="bookmark-tab" data-toggle="tab" href="#bookmark" role="tab"
                                     aria-controls="bookmark" aria-selected="false">وصفاتي المفضلة
-                                    <strong>(3)</strong></a>
+                                    <strong> ({{bookmarks.count}}) </strong></a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" id="article-tab" data-toggle="tab" href="#article" role="tab"
@@ -58,23 +59,26 @@
                             <div class="tab-pane fade  show active" id="recipe" role="tabpanel"
                                 aria-labelledby="recipe-tab">
                                 {% if recipes %}
-                                {% for recipe in recipes%}
-                                <div class="col-6 col-md-3">
-                                    <div class="recipe-thumb">
-                                        <img src="{{ recipe.image.url }}" alt="Recipe Image">
-                                        <a href="#" class="bookmarker"><i class="fas fa-bookmark"></i></a>
-                                        <a href="{% url 'recipes:recipe-single'  recipe.id %}" class="view-recipe">عرض
-                                            الوصفة</a>
-                                    </div>
-                                    <div class="recipe-desc">
-                                        <h2 class="recipe-title">
-                                            <a href="{% url 'recipes:recipe-single'  recipe.id %}"> {{recipe.name}} </a>
-                                        </h2>
-                                        <p><em> بواسطة {{ recipe.author}} </em></p>
-                                        <span><i class="fas fa-clock"></i> {{recipe.prep_time}} دقيقة </span>
-                                    </div><!-- end recipe-desc -->
-                                </div><!-- end col -->
-                                {% endfor %}
+                                <div class="row">
+                                    {% for recipe in recipes%}
+                                    <div class="col-4">
+                                        <div class="recipe-thumb">
+                                            <img src="{{ recipe.image.url }}" alt="Recipe Image">
+                                            <a href="#" class="bookmarker"><i class="fas fa-bookmark"></i></a>
+                                            <a href="{% url 'recipes:recipe-single'  recipe.id %}"
+                                                class="view-recipe">عرض الوصفة</a>
+                                        </div>
+                                        <div class="recipe-desc">
+                                            <h2 class="recipe-title">
+                                                <a href="{% url 'recipes:recipe-single'  recipe.id %}"> {{recipe.name}}
+                                                </a>
+                                            </h2>
+                                            <p><em> بواسطة {{ recipe.author}} </em></p>
+                                            <span><i class="fas fa-clock"></i> {{recipe.prep_time}} دقيقة </span>
+                                        </div><!-- end recipe-desc -->
+                                    </div><!-- end col -->
+                                    {% endfor %}
+                                </div><!-- end row -->
                                 {% else %}
                                 <div class="row justify-content-center">
                                     <h2>لم تقم باضافة وصفات بعد .. </h2>
@@ -83,51 +87,23 @@
                             </div><!-- end tab -->
                             <div class="tab-pane fade" id="bookmark" role="tabpanel" aria-labelledby="bookmark-tab">
                                 <div class="row">
+                                    {% for recipe in bookmarks %}
                                     <div class="col-4">
                                         <div class="recipe-thumb">
-                                            <img src="{% static 'recipes/images/content/thumb-4.png' %}"
-                                                alt="Recipe Image">
-                                            <a href="#" class="bookmarker"><i class="fas fa-bookmark"></i></a>
-                                            <a href="#" class="view-recipe">VIEW RECIPE</a>
+                                            <img src="{{ recipe.image.url }}" alt="Recipe Image">
+                                            <a href="{% url 'recipes:recipe-single'  recipe.id %}"
+                                                class="view-recipe">عرض الوصفة</a>
                                         </div>
                                         <div class="recipe-desc">
                                             <h2 class="recipe-title">
-                                                <a href="#">Korean Soup</a>
+                                                <a href="{% url 'recipes:recipe-single'  recipe.id %}"> {{recipe.name}}
+                                                </a>
                                             </h2>
-                                            <p><em>By Lina Sukowati</em></p>
-                                            <span><i class="fas fa-clock"></i>&nbsp;45 Minutes</span>
+                                            <p><em> بواسطة {{ recipe.author}} </em></p>
+                                            <span><i class="fas fa-clock"></i> {{recipe.prep_time}} دقيقة </span>
                                         </div><!-- end recipe-desc -->
                                     </div><!-- end col -->
-                                    <div class="col-4">
-                                        <div class="recipe-thumb">
-                                            <img src="{% static 'recipes/images/content/thumb-5.png' %}"
-                                                alt="Recipe Image">
-                                            <a href="#" class="bookmarker"><i class="fas fa-bookmark"></i></a>
-                                            <a href="#" class="view-recipe">VIEW RECIPE</a>
-                                        </div>
-                                        <div class="recipe-desc">
-                                            <h2 class="recipe-title">
-                                                <a href="#">Roast Aubergine</a>
-                                            </h2>
-                                            <p><em>By Lina Sukowati</em></p>
-                                            <span><i class="fas fa-clock"></i>&nbsp;1 Hour</span>
-                                        </div><!-- end recipe-desc -->
-                                    </div><!-- end col -->
-                                    <div class="col-4">
-                                        <div class="recipe-thumb">
-                                            <img src="{% static 'recipes/images/content/thumb-6.png' %}"
-                                                alt="Recipe Image">
-                                            <a href="#" class="bookmarker"><i class="fas fa-bookmark"></i></a>
-                                            <a href="#" class="view-recipe">VIEW RECIPE</a>
-                                        </div>
-                                        <div class="recipe-desc">
-                                            <h2 class="recipe-title">
-                                                <a href="#">Indian Mixed Rice</a>
-                                            </h2>
-                                            <p><em>By Eka Nurwasilah</em></p>
-                                            <span><i class="fas fa-clock"></i>&nbsp;26 Minutes</span>
-                                        </div><!-- end recipe-desc -->
-                                    </div><!-- end col -->
+                                    {% endfor %}
                                 </div><!-- end row -->
                             </div>
                             <div class="tab-pane fade" id="article" role="tabpanel" aria-labelledby="article-tab">

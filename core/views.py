@@ -2,22 +2,15 @@ from django.shortcuts import render, redirect
 
 from .models import (AboutUsCard, AboutUsParagraph, ContactParagraph,
                      ContactSideParagraph, FaqQuestionBanner, FaqShortBanner,
-                     SiteIdentity, ContactLocation, ContactMessages, NewsLetterEmail)
+                     ContactLocation, ContactMessages, NewsLetterEmail, HomePageSlider, HomePageLogo)
 
 
 def HomePageView(request):
     context = {}
-
-    # site_identity = SiteIdentity.objects.filter(user=request.user)[:1]
-    # print(type([site_identity[0]]))
-    # item = site_identity[0]
-    # if site_identity != None:
-    #     print(item.title)
-    #     context['identity'] = item
-    # else:
-    #     pass
-
-    print("context", context)
+    logo = HomePageLogo.objects.all()[:1]
+    context['logo'] = [*logo]
+    images = HomePageSlider.objects.all()
+    context['images'] = [*images]
     return render(request, 'core/home.html', context)
 
 

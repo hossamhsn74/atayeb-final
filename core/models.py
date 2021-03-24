@@ -3,21 +3,25 @@ from django.contrib.auth.models import User
 from django_resized import ResizedImageField
 
 
-class SiteIdentity(models.Model):
-    """ change site logo and title """
-    user = models.ForeignKey(
-        User, on_delete=models.CASCADE, verbose_name="المستخدم")
-    logo = models.ImageField(null=True, blank=True,
-                             default='static/recipes/images/content/atayeb_logo_300.png',
-                             upload_to='logo_pics',
-                             verbose_name='لوجو الموقع')
-    title = models.CharField(max_length=64, verbose_name="اسم الموقع")
+class HomePageLogo(models.Model):
+    image = models.ImageField(null=True, blank=True,
+                              default='static/recipes/images/content/atayeb_logo_300.png',
+                              upload_to='carousel_pics',
+                              verbose_name='الصورة')
 
     class Meta:
-        verbose_name_plural = "هوية الموقع"
+        verbose_name_plural = "logo"
 
-    def __str__(self):
-        return self.title
+
+class HomePageSlider(models.Model):
+    image = models.ImageField(null=True, blank=True,
+                              default='static/recipes/images/content/atayeb_logo_300.png',
+                              upload_to='carousel_pics',
+                              verbose_name='الصورة')
+
+    class Meta:
+        verbose_name_plural = "slider"
+
 
 # FAQ PAGE
 
