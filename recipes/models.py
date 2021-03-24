@@ -167,8 +167,6 @@ class RecipeNutritionFacts(models.Model):
         unique_together = ('recipe', 'element')
 
 
-# bookmarks > (recipe, profile)
-# for each profile we have (post, recipe.author, recipe.bookmarks)
 class Bookmarks(models.Model):
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
     recipes = models.ManyToManyField(Recipe)

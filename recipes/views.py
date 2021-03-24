@@ -3,7 +3,7 @@ from django.views.generic import CreateView, DetailView, ListView
 from django_renderpdf.views import PDFView
 from recipes.models import (Recipe, RecipeCategory, RecipeComment,
                             RecipeIngredient, RecipeInstruction,
-                            RecipeNutritionFacts, Tag)
+                            RecipeNutritionFacts, Bookmarks, Tag)
 from django.contrib.auth.decorators import login_required
 from user.models import Profile
 from django.db.models import Q
@@ -168,3 +168,13 @@ def SearchRecipes(request):
     keyword = request.GET.get('keyword')
     myrecipes = Recipe.objects.filter(name__icontains=keyword)
     return render(request, "recipes/recipes.html", {'recipes': myrecipes})
+
+
+@login_required
+def BookmarkRecipeView(request, id):
+    recipe = Recipe.objects.get(id=id)
+    profile = Profile.objects.get(user=request.user)
+    bookmarks_pool = Bookmarks.objects.get_or_create(profile=profile)
+    bookmarks_pool[0].recipes.add(recipe)
+    BookmarkedFlag = True
+    return redirect("recipes:recipe-single", pk=recipe.id)
