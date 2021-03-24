@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="head-title">
+    <div class="container">
+        <h2 class="page-title">معلومات عنا</h2>
+    </div><!-- end container -->
+</div><!-- end head-title -->
+<div id="main">
+    <div class="container">
+        <div id="primary" class="content-area fullwidth">
+            <div id="content" class="site-content">
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <div class="about-desc">
+                            {% for item in paragraphs %}
+                            <p><strong>{{item.title}}</strong></p>
+                            <p>{{item.descreption}}</p>
+                            {% endfor %}
+                        </div><!-- end team desc -->
+                    </div><!-- end col -->
+                </div><!-- end row -->
+                <div class="row">
+                    {% for item in cards %}
+                    <div class="col-md-4">
+                        <div class="team-col">
+                            <figure>
+                                <img src="{{item.image.url}}" height="180px" width="180px">
+                            </figure>
+                            <p class="team-name">{{item.name}}</p>
+                            <span class="team-tag">{{item.position}}</span>
+                            <p class="team-desc">{{item.more_info}}</p>
+                            <div class="team-media">
+                                <a href="{{item.twitter_url}}"><i class="fab fa-twitter"></i></a>
+                                <a href="{{item.facebook_url}}"><i class="fab fa-facebook-square"></i></a>
+                                <a href="{{item.instgram_url}}"><i class="fab fa-instagram"></i></a>
+                            </div><!-- end team media -->
+                        </div><!-- end team col -->
+                    </div><!-- end col -->
+                    {% endfor %}
+
+                </div><!-- end row -->
+
+            </div><!-- end content -->
+        </div><!-- end primary -->
+
+    </div><!-- end container -->
+</div><!-- end main -->
+
+{% endblock %}

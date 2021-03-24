@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="head-title">
+    <div class="container">
+        <h2 class="page-title">اتصل بنا</h2>
+    </div><!-- end container -->
+</div><!-- end head-title -->
+
+<div id="main">
+    <div class="container">
+
+        <div id="primary" class="content-area">
+            <div id="content" class="site-content">
+
+                <div class="row no-gutters">
+
+
+                    <div class="col-md-8">
+                        <div class="contact-form">
+                            <h3>اترك لنا رسالتك هنا</h3>
+                            <p>الرجاء ملء جميع البيانات وسوف نقوم بالرد عليك في اقرب وقت</p>
+                            <form action="{% url 'core:send-contact-message' %}" method="POST">
+                                {% csrf_token %}
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="inputAddress">العنوان</label>
+                                        <input type="text" class="form-control" id="inputAddress" name="address"
+                                            placeholder="32 شارع الشيخ زايد" required>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="inputEmail">البريد الالكتروني</label>
+                                        <input type="email" class="form-control" name="email" id="inputEmail"
+                                            placeholder="البريد الالكتروني" required>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <label for="messageTextarea">رسالتك</label>
+                                    <textarea class="form-control" id="messageTextarea" name="message" rows="10"
+                                        required></textarea>
+                                </div><!-- end form-row -->
+                                <div class="form-button">
+                                    <button type="submit" class="btn btn-primary">ارسال الرسالة</button>
+                                </div>
+                            </form>
+                        </div><!-- end contact-form -->
+                    </div><!-- end col -->
+                    {% for item in location %}
+                    <div class="col-md-4">
+                        <div class="gmap entry-media">
+                            <iframe src="{{item.locationURL}}" width="620" height="510"></iframe>
+                        </div><!-- end entry-media -->
+                    </div><!-- end col -->
+                    {% endfor %}
+                </div><!-- end row -->
+
+                <div class="row-space"></div>
+
+                <div class="row justify-content-between">
+                    {% for item in paragraphs %}
+                    <div class="col-md-8">
+                        <h2>{{item.title}}</h2>
+                        <p>{{item.descreption}}</p>
+                    </div>
+                    {% endfor %}
+
+                    {% for item in side_paragraphs %}
+                    <div class="col-md-4">
+                        <p><strong>{{item.title}}</strong></p>
+                        <p>{{item.descreption}}</p>
+                    </div><!-- end col -->
+                    {% endfor %}
+
+
+                </div><!-- end row -->
+
+            </div><!-- end content -->
+        </div><!-- end primary -->
+
+    </div><!-- end container -->
+</div><!-- end main -->
+
+{% endblock %}

@@ -75,7 +75,7 @@
                                                     جديدة</a>
                                             </div>
                                         </li>
-                                        <li class="nav-item dropdown">
+                                        <!-- <li class="nav-item dropdown">
                                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2"
                                                 role="button" data-toggle="dropdown" aria-haspopup="true"
                                                 aria-expanded="false">Events</a>
@@ -84,29 +84,34 @@
                                                 <a class="dropdown-item" href="{% url 'events:event-single' %}">Event
                                                     Single</a>
                                             </div>
-                                        </li>
+                                        </li> -->
                                         <li class="nav-item dropdown">
                                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown3"
                                                 role="button" data-toggle="dropdown" aria-haspopup="true"
                                                 aria-expanded="false">المدونة</a>
                                             <div class="dropdown-menu" aria-labelledby="navbarDropdown3">
                                                 <a class="dropdown-item" href="{% url 'blog:blog' %}">التدوينات</a>
-                                                <a class="dropdown-item" href="{% url 'blog:blog-single' %}">عرض
-                                                    تدوينة</a>
+                                                <!-- <a class="dropdown-item" href="{% url 'blog:blog-single' %}">عرض
+                                                    تدوينة</a> -->
                                                 <a class="dropdown-item" href="{% url 'blog:archive' %}">الأرشيف</a>
                                             </div>
                                         </li>
-                                        <li class="nav-item dropdown">
+                                        <!-- <li class="nav-item dropdown">
                                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown4"
                                                 role="button" data-toggle="dropdown" aria-haspopup="true"
                                                 aria-expanded="false">الصفحات</a>
                                             <div class="dropdown-menu" aria-labelledby="navbarDropdown4">
-                                                <a class="dropdown-item" href="{% url 'blog:contacts' %}">اتصل بنا</a>
-                                                <a class="dropdown-item" href="{% url 'blog:faq' %}">FAQ</a>
+                                                <a class="dropdown-item" href="{% url 'core:faq' %}">FAQ</a>
                                             </div>
+                                        </li> -->
+                                        <li class="nav-item active">
+                                            <a class="nav-link" href="{% url 'core:about' %}">معلومات عنا</a>
                                         </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="{% url 'blog:about' %}">معلومات عنا</a>
+                                        <li class="nav-item active">
+                                            <a class="nav-link" href="{% url 'core:contacts' %}">اتصل بنا</a>
+                                        </li>
+                                        <li class="nav-item active">
+                                            <a class="nav-link" href="{% url 'core:faq' %}"> أسئلة متكررة</a>
                                         </li>
 
 
@@ -121,8 +126,7 @@
                                                         class="fas fa-address-card"></i> الملف الشخصي</a>
                                                 <a class="dropdown-item" href="{% url 'account_email' %}"><i
                                                         class="fas fa-at"></i> تغيير البريد الإلكتروني</a>
-                                                <a class="dropdown-item"
-                                                    href="{% url 'account_change_password' %}"><i
+                                                <a class="dropdown-item" href="{% url 'account_change_password' %}"><i
                                                         class="fas fa-key"></i> تغيير كلمة المرور</a>
                                                 <div class="dropdown-divider"></div>
                                                 <a class="dropdown-item" href="{% url 'user:invite_form' %}"><i
@@ -235,8 +239,11 @@
                                 <h3 class="widget-title">إبق على اطلاع</h3>
                                 <span>سجل معنا لتبقى على اطلاع على آخر الإضافات والتحديثات</span>
                                 <div class="subscribe-form">
-                                    <input type="email" name="EMAIL" placeholder="Your email address" required="">
-                                    <input type="submit" value="سجل">
+                                    <form action="{% url 'core:subscribe' %}" method="POST">
+                                        {% csrf_token %}
+                                        <input type="email" name="EMAIL" placeholder="Your email address" required="">
+                                        <input type="submit" value="سجل">
+                                    </form>
                                 </div><!-- end subscribe-form -->
                             </div><!-- end widget-inner -->
                         </div><!-- end widget -->
