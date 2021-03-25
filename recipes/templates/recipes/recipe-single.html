@@ -153,7 +153,6 @@
     </div><!-- end container -->
 </div><!-- related recipe -->
 
-{% if user.is_authenticated %}
 <div class="recipe-comment">
     <div class="container">
         <div class="row justify-content-md-center">
@@ -199,6 +198,7 @@
 
                         </ol><!-- end .comment-list -->
                     </div><!-- end #comments-area -->
+                    {% if user.is_authenticated %}
 
                     <div id="respond" class="comment-respond">
                         <h2 id="reply-title" class="comment-reply-title"> شارك بالتعليق علي هذه الوصفة</h2>
@@ -225,11 +225,11 @@
                             </p>
                         </form><!-- end #comment-form -->
                     </div><!-- end comment-respond -->
+                    {% endif %}
 
                 </div><!-- end comment-outer -->
             </div>
         </div>
     </div>
 </div>
-{% endif %}
 {% endblock %}

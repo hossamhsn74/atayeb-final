@@ -170,7 +170,7 @@ MEDIA_URL = '/media/'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # LOGIN_REDIRECT_URL = '/accounts/email/'  # redirects to profile page by default
-LOGIN_REDIRECT_URL = '/home/'
+LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = '/accounts/login'
 
 # ----------------------------------- start Tagulous ---------------------------------------------
