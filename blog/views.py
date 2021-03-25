@@ -73,3 +73,26 @@ def SearchBlog(request):
     keyword = request.GET.get('keyword')
     myposts = Post.objects.filter(title__icontains=keyword)
     return render(request, "blog/blog.html", {'posts': myposts})
+
+
+def BlogIndexView(request):
+    context = {}
+
+    recent_posts_qs = Post.objects.all().order_by('date_created')[:4]
+    context['recent_posts'] = [*recent_posts_qs]
+
+    context['tags'] = [*Tag.objects.all()]
+    data = {}
+    categories = PostCategory.objects.all()
+    for category in categories:
+        posts = Post.objects.filter(category=category).count()
+        data[category] = posts
+    context["index_data"] = data
+
+    data = {}
+    categories = PostCategory.objects.all()
+    for category in categories:
+        posts = Post.objects.filter(category=category)
+        data[category] = [*posts]
+    context["data"] = data
+    return render(request, "blog/archive.html", context)

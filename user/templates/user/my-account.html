@@ -52,7 +52,7 @@
                             <li class="nav-item">
                                 <a class="nav-link" id="article-tab" data-toggle="tab" href="#article" role="tab"
                                     aria-controls="article" aria-selected="true">تدويناتي
-                                    <strong>(5)</strong></a>
+                                    <strong>({{posts.count}})</strong></a>
                             </li>
                         </ul>
                         <div class="tab-content" id="myTabContent">
@@ -109,138 +109,31 @@
                             <div class="tab-pane fade" id="article" role="tabpanel" aria-labelledby="article-tab">
                                 <div class="article-list">
                                     <div class="row">
+                                        {% for item in posts %}
+    
                                         <div class="col-md-2">
-                                            <p class="cat-list">Cooking Tips</p>
+                                            <p class="cat-list">{{item.category}}</p>
                                             <div class="entry-date">
                                                 <a href="#">
                                                     <time class="published" datetime="2019-12-22"
-                                                        title="December 22, 2019 - 21:12 pm">Dec<span
-                                                            class="date">22</span>2019
-                                                    </time>
-                                                </a>
+                                                    title="December 22, 2019 - 21:12 pm">{{item.date_created|date}} </time>                                            </a>
                                             </div><!-- end entry-date -->
                                         </div>
                                         <div class="col-md-5">
                                             <figure>
-                                                <img src="{% static 'recipes/images/content/list-01.png' %}" alt="">
+                                                <img src="{{item.image.url}}" width="180px" height="180px">
                                             </figure>
                                         </div>
                                         <div class="col-md-5">
                                             <h3>
-                                                <a href="#">Eodem Modo Typi, Qui Nunc Nobis Videntur Parum Clari</a>
+                                                <a href="{% url 'blog:blog-single' item.id %}">{{item.title}}</a>
                                             </h3>
-                                            <a href="#" class="readmore"><em>Continue Reading</em></a>
+                                            <a href="{% url 'blog:blog-single' item.id %}" class="readmore"><em>اقرأ المزيد</em></a>
                                         </div>
+                                        {% endfor %}
                                     </div>
                                 </div><!-- end article-list -->
-
-                                <div class="article-list">
-                                    <div class="row">
-                                        <div class="col-md-2">
-                                            <p class="cat-list">Cooking Tips</p>
-                                            <div class="entry-date">
-                                                <a href="#">
-                                                    <time class="published" datetime="2019-12-22"
-                                                        title="December 22, 2019 - 21:12 pm">Dec<span
-                                                            class="date">22</span>2019
-                                                    </time>
-                                                </a>
-                                            </div><!-- end entry-date -->
-                                        </div>
-                                        <div class="col-md-5">
-                                            <figure>
-                                                <img src="{% static 'recipes/images/content/list-02.png' %}" alt="">
-                                            </figure>
-                                        </div>
-                                        <div class="col-md-5">
-                                            <h3>
-                                                <a href="#">Nullam Volutpat at Lectus ut Mollis</a>
-                                            </h3>
-                                            <a href="#" class="readmore"><em>Continue Reading</em></a>
-                                        </div>
-                                    </div>
-                                </div><!-- end article-list -->
-
-                                <div class="article-list">
-                                    <div class="row">
-                                        <div class="col-md-2">
-                                            <p class="cat-list">Cooking Tips</p>
-                                            <div class="entry-date">
-                                                <a href="#">
-                                                    <time class="published" datetime="2019-12-22"
-                                                        title="December 22, 2019 - 21:12 pm">Dec<span
-                                                            class="date">22</span>2019
-                                                    </time>
-                                                </a>
-                                            </div><!-- end entry-date -->
-                                        </div>
-                                        <div class="col-md-5">
-                                            <figure>
-                                                <img src="{% static 'recipes/images/content/list-03.png' %}" alt="">
-                                            </figure>
-                                        </div>
-                                        <div class="col-md-5">
-                                            <h3>
-                                                <a href="#">Suspendisse Tempor Feugiat Ultricies</a>
-                                            </h3>
-                                            <a href="#" class="readmore"><em>Continue Reading</em></a>
-                                        </div>
-                                    </div>
-                                </div><!-- end article-list -->
-
-                                <div class="article-list">
-                                    <div class="row">
-                                        <div class="col-md-2">
-                                            <p class="cat-list">Cooking Tips</p>
-                                            <div class="entry-date">
-                                                <a href="#">
-                                                    <time class="published" datetime="2019-12-22"
-                                                        title="December 22, 2019 - 21:12 pm">Dec<span
-                                                            class="date">22</span>2019
-                                                    </time>
-                                                </a>
-                                            </div><!-- end entry-date -->
-                                        </div>
-                                        <div class="col-md-5">
-                                            <figure>
-                                                <img src="{% static 'recipes/images/content/list-04.png' %}" alt="">
-                                            </figure>
-                                        </div>
-                                        <div class="col-md-5">
-                                            <h3>
-                                                <a href="#">Rhoncus Gravida Augue Imperdiet</a>
-                                            </h3>
-                                            <a href="#" class="readmore"><em>Continue Reading</em></a>
-                                        </div>
-                                    </div>
-                                </div><!-- end article-list -->
-
-                                <div class="article-list">
-                                    <div class="row">
-                                        <div class="col-md-2">
-                                            <p class="cat-list">Cooking Tips</p>
-                                            <div class="entry-date">
-                                                <a href="#">
-                                                    <time class="published" datetime="2019-12-22"
-                                                        title="December 22, 2019 - 21:12 pm">Dec<span
-                                                            class="date">22</span>2019
-                                                    </time>
-                                                </a>
-                                            </div><!-- end entry-date -->
-                                        </div>
-                                        <div class="col-md-5">
-                                            <figure>
-                                                <img src="{% static 'recipes/images/content/list-05.png' %}" alt="">
-                                            </figure>
-                                        </div>
-                                        <div class="col-md-5">
-                                            <h3>
-                                                <a href="#">Curabitur Lobortis Sapien Sit Amet</a>
-                                            </h3>
-                                            <a href="#" class="readmore"><em>Continue Reading</em></a>
-                                        </div>
-                                    </div>
-                                </div><!-- end article-list -->
+                                
                             </div>
                         </div>
                     </div><!-- end my-content -->
@@ -255,8 +148,9 @@
                         <h3 class="widget-title">البحث</h3>
                     </div>
                     <div class="searchform">
-                        <form>
-                            <input type="text" class="txt" name="s" placeholder="ابحث عن...">
+                        <form action="{% url 'blog:search' %}" method="get">
+                            {% csrf_token %}
+                            <input type="text" class="txt" name="keyword" placeholder="ابحث عن...">
                             <input type="submit" value="إبحث" class="btn btn-sm">
                         </form>
                     </div><!-- end searchform -->
@@ -267,57 +161,20 @@
                         <h3 class="widget-title">أحدث التدوينات</h3>
                     </div>
                     <ul>
+                        {% for post in recent_posts %}
                         <li>
                             <span class="post-category">
-                                <a href="#">غير مصنف</a>
+                                <a href="#">{{post.category}}</a>
                             </span>
                             <figure class="post-thumbnail">
-                                <a href="#"><img src="{% static 'recipes/images/content/thumb-post-01.png' %}"
-                                        alt=""></a>
-                            </figure>
-                            <span>
-                                <h2 class="post-title">
-                                    <a href="#">هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا
-                                        النص من مولد النص العربى،</a>
-                                </h2>
-                            </span>
-                        </li>
-                        <li>
-                            <span class="post-category">
-                                <a href="#">Cooking Tips</a>
-                            </span>
-                            <figure class="post-thumbnail">
-                                <a href="#"><img src="{% static 'recipes/images/content/thumb-post-02.png' %}"
+                                <a href="{% url 'blog:blog-single'  post.id %}"><img src="{{post.image.url}}"
                                         alt=""></a>
                             </figure>
                             <h2 class="post-title">
-                                <a href="#">Euismod Tincidunt ut Laoreet Dolore Magna Aliquam</a>
+                                <a href="{% url 'blog:blog-single'  post.id %}">{{post.title}}</a>
                             </h2>
                         </li>
-                        <li>
-                            <span class="post-category">
-                                <a href="#">Kitchen</a>
-                            </span>
-                            <figure class="post-thumbnail">
-                                <a href="#"><img src="{% static 'recipes/images/content/thumb-post-03.png' %}"
-                                        alt=""></a>
-                            </figure>
-                            <h2 class="post-title">
-                                <a href="#">Ullamcorper Suscipit Lobortis Nisl ut Aliquip Commodo Consequat</a>
-                            </h2>
-                        </li>
-                        <li>
-                            <span class="post-category">
-                                <a href="#">Vegetable</a>
-                            </span>
-                            <figure class="post-thumbnail">
-                                <a href="#"><img src="{% static 'recipes/images/content/thumb-post-04.png' %}"
-                                        alt=""></a>
-                            </figure>
-                            <h2 class="post-title">
-                                <a href="#">Quod Mazim Placerat Facer Possim Assum</a>
-                            </h2>
-                        </li>
+                        {% endfor %}
                     </ul>
                 </div><!-- end widget -->
 
@@ -326,48 +183,23 @@
                         <h3 class="widget-title">فئات التدوينات</h3>
                     </div>
                     <ul>
+                        {% for key, value in index_data.items %}
                         <li>
-                            <a class="float-right" href="#">نهفات الطبخ</a>
-                            <span class="float-left">17</span>
+                            <a class="float-right" href="#">{{key}}</a>
+                            <span class="float-left">{{value}}</span>
                         </li>
-                        <li>
-                            <a class="float-right" href="#">المطبخ</a>
-                            <span class="float-left">14</span>
-                        </li>
-                        <li>
-                            <a class="float-right" href="#">Chef's Secret</a>
-                            <span class="float-left">10</span>
-                        </li>
-                        <li>
-                            <a class="float-right" href="#">Vegetable</a>
-                            <span class="float-left">8</span>
-                        </li>
-                        <li>
-                            <a class="float-right" href="#">Nutrition</a>
-                            <span class="float-left">6</span>
-                        </li>
-                        <li>
-                            <a class="float-right" href="#">Ingredients</a>
-                            <span class="float-left">4</span>
-                        </li>
+                        {% endfor %}
                     </ul>
                 </div><!-- end widget -->
 
                 <div class="widget">
                     <div class="widget-title-outer">
-                        <h3 class="widget-title">News Tags</h3>
+                        <h3 class="widget-title">علامات التدوينات</h3>
                     </div>
                     <div class="tagcloud">
-                        <a href="#">food</a>
-                        <a href="#">ingredients</a>
-                        <a href="#">chef</a>
-                        <a href="#">kitchen</a>
-                        <a href="#">vegetable</a>
-                        <a href="#">cake</a>
-                        <a href="#">beverage</a>
-                        <a href="#">tips</a>
-                        <a href="#">nutrition</a>
-                        <a href="#">tools</a>
+                        {% for item in tags %}
+                        <a href="#">{{item}}</a>
+                        {% endfor %}
                     </div>
                 </div><!-- end widget -->
 

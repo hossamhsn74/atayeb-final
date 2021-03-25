@@ -17,6 +17,7 @@ from invitations.signals import invite_accepted
 from invitations.utils import get_invitation_model
 from invitations.views import AcceptInvite
 from recipes.models import Recipe, Bookmarks
+from blog.models import Post, PostCategory , Tag
 from user.models import Profile
 from .forms import ProfileUpdateForm, UserCreationForm, UserUpdateForm
 
@@ -194,11 +195,23 @@ def MyProfileView(request):
     profile = Profile.objects.get(user=request.user)
     recipes = Recipe.objects.filter(author=profile)
     bookmarks = Bookmarks.objects.get(profile=profile).recipes.all()
-
-    # posts
-    context = {
-    }
+    posts = Post.objects.filter(author=profile)
+    context = {}
     context['profile'] = profile
     context['recipes'] = recipes
     context['bookmarks'] = bookmarks
+    context['posts'] = posts
+
+    
+    recent_posts_qs = Post.objects.all().order_by('date_created')[:4]
+    context['recent_posts'] = [*recent_posts_qs]
+
+    context['tags'] = [*Tag.objects.all()]
+
+    data = {}
+    categories = PostCategory.objects.all()
+    for category in categories:
+        posts = Post.objects.filter(category=category).count()
+        data[category] = posts
+    context["index_data"] = data
     return render(request, "user/my-account.html", context)
