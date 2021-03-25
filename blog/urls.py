@@ -10,6 +10,7 @@ urlpatterns = [
     path('blog/<int:pk>', PostDetailsView.as_view(),
          name='blog-single'),
     path('blog/<int:id>/addcomment', AddPostCommentView, name='blog-comment'),
+    path("search",SearchBlog,name='search'),
 
     path('archive/', TemplateView.as_view(template_name='blog/archive.html'), name='archive'),
 ]

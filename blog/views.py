@@ -11,6 +11,22 @@ class PostListView(ListView):
     template_name = "blog/blog.html"
     context_object_name = "posts"
 
+    def get_context_data(self, **kwargs):
+        context = super(PostListView, self).get_context_data(**kwargs)
+
+        recent_posts_qs = Post.objects.all().order_by('date_created')[:4]
+        context['recent_posts'] = [*recent_posts_qs]
+
+        data = {}
+        categories = PostCategory.objects.all()
+        for category in categories:
+            posts = Post.objects.filter(category=category).count()
+            data[category] = posts
+        context["index_data"] = data
+
+        context['tags'] = [*Tag.objects.all()]
+        return context
+
 
 class PostDetailsView(DetailView):
     model = Post
@@ -27,6 +43,18 @@ class PostDetailsView(DetailView):
         related_posts_qs = Post.objects.filter(
             category=context['post'].category).order_by('date_created')[:3]
         context['related_posts'] = [*related_posts_qs]
+
+        recent_posts_qs = Post.objects.all().order_by('date_created')[:4]
+        context['recent_posts'] = [*recent_posts_qs]
+
+        data = {}
+        categories = PostCategory.objects.all()
+        for category in categories:
+            posts = Post.objects.filter(category=category).count()
+            data[category] = posts
+        context["index_data"] = data
+
+        context['tags'] = [*Tag.objects.all()]
         return context
 
 
@@ -39,3 +67,9 @@ def AddPostCommentView(request, id):
         body=comment, post=post, author=author)
     new_comment.save()
     return redirect("blog:blog-single", pk=post.id)
+
+
+def SearchBlog(request):
+    keyword = request.GET.get('keyword')
+    myposts = Post.objects.filter(title__icontains=keyword)
+    return render(request, "blog/blog.html", {'posts': myposts})

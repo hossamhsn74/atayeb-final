@@ -26,7 +26,7 @@
                                             title="December 22, 2019 - 21:12 pm">{{post.date_created|date}} </time>
                                     </a>
                                 </div><!-- end entry-date -->
-<!-- 
+                                <!-- 
                                 <div class="social-shares">
                                     <span class="head-share">
                                         <i class="fas fa-share-alt"></i>
@@ -56,26 +56,26 @@
 
                         <div class="inner">
 
-                            <div class="entry-header">    
+                            <div class="entry-header">
                                 <h1 class="entry-title">
                                     <a href="{% url 'blog:blog-single'  post.id %}"> {{post.title}}</a>
-    
+
                                 </h1>
                                 <div class="entry-header">
                                     <span> الناشر : {{post.author}}</span>
                                 </div><!-- end entry-header -->
-                                
+
                             </div><!-- end entry-header -->
                             <div class="entry-content">
-                                
+
                                 <figure class="wp-caption">
                                     <img src="{{post.image.url}}" alt="">
                                 </figure>
                                 <p>{{post.body}}</p>
-                                
+
                                 <p>
                                     <span>الفئات: <a href="#"><em>{{post.category}}</em></a></span><br />
-                                    <span>علامات:  
+                                    <span>علامات:
                                         <a href="#"><em>{{item}}</em></a>
                                     </span>
                                 </p>
@@ -108,10 +108,10 @@
                         <div class="row">
                             {% if related_posts %}
                             {% for post in related_posts%}
-                
+
                             <div class="col-md-4">
                                 <figure>
-                                    <img src="{{post.image.url}}" width="200px" height="150px" >
+                                    <img src="{{post.image.url}}" width="200px" height="150px">
                                 </figure>
                                 <div class="related-title">
                                     <h3><a href="#"> {{post.title}}</a></h3>
@@ -141,7 +141,8 @@
                                             </div><!-- end comment-meta -->
                                             <div class="comment-metadata">
                                                 <a href="#">
-                                                    <time datetime="2019-09-04T18:44:25+00:00">{{comment.comment_date}}                                                       1530
+                                                    <time datetime="2019-09-04T18:44:25+00:00">{{comment.comment_date}}
+                                                        1530
                                                     </time>
                                                 </a>
                                             </div>
@@ -163,20 +164,10 @@
                             <h2 id="reply-title" class="comment-reply-title"> شارك بالتعليق علي هذا المنشور</h2>
                             <form class="comment-form" action="{% url 'blog:blog-comment' post.id %}" method="POST">
                                 {% csrf_token %}
-                                <!-- <p class="comment-notes">لن يتم مشاركة اي من معلوماتك</p>
-                                <p class="comment-form-email">
-                                    <label for="author">الاسم</label>
-                                    <span class="required">*</span>
-                                    <input id="author" type="text" class="input-text" name="author">
-                                </p>
-                                <p class="comment-form-author">
-                                    <label for="email">البريد الالكتروني</label>
-                                    <span class="required">*</span>
-                                    <input id="email" type="text" class="input-text" name="email">
-                                </p> -->
                                 <p class="comment-form-comment">
                                     <label for="comment">التعليق</label>
-                                    <textarea name="comment" id="comment" cols="45" rows="5" class="input-text"></textarea>
+                                    <textarea name="comment" id="comment" cols="45" rows="5"
+                                        class="input-text"></textarea>
                                 </p>
                                 <p class="form-submit">
                                     <input class="btn btn-primary" name="submit" type="submit" id="button"
@@ -185,7 +176,7 @@
                             </form><!-- end #comment-form -->
                         </div><!-- end comment-respond -->
                         {% endif %}
-    
+
                     </div><!-- end comment-outer -->
                 </div><!-- end content -->
             </div><!-- end primary -->
@@ -197,9 +188,9 @@
                         <h3 class="widget-title">البحث</h3>
                     </div>
                     <div class="searchform">
-                        <form>
+                        <form action="{% url 'blog:search' %}" method="get">
                             {% csrf_token %}
-                            <input type="text" class="txt" name="s" placeholder="ابحث عن...">
+                            <input type="text" class="txt" name="keyword" placeholder="ابحث عن...">
                             <input type="submit" value="إبحث" class="btn btn-sm">
                         </form>
                     </div><!-- end searchform -->
@@ -210,57 +201,20 @@
                         <h3 class="widget-title">أحدث التدوينات</h3>
                     </div>
                     <ul>
+                        {% for post in recent_posts %}
                         <li>
                             <span class="post-category">
-                                <a href="#">غير مصنف</a>
+                                <a href="#">{{post.category}}</a>
                             </span>
                             <figure class="post-thumbnail">
-                                <a href="#"><img src="{% static 'recipes/images/content/thumb-post-01.png' %}"
-                                        alt=""></a>
-                            </figure>
-                            <span>
-                                <h2 class="post-title">
-                                    <a href="#">هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا
-                                        النص من مولد النص العربى،</a>
-                                </h2>
-                            </span>
-                        </li>
-                        <li>
-                            <span class="post-category">
-                                <a href="#">Cooking Tips</a>
-                            </span>
-                            <figure class="post-thumbnail">
-                                <a href="#"><img src="{% static 'recipes/images/content/thumb-post-02.png' %}"
+                                <a href="{% url 'blog:blog-single'  post.id %}"><img src="{{post.image.url}}"
                                         alt=""></a>
                             </figure>
                             <h2 class="post-title">
-                                <a href="#">Euismod Tincidunt ut Laoreet Dolore Magna Aliquam</a>
+                                <a href="{% url 'blog:blog-single'  post.id %}">{{post.title}}</a>
                             </h2>
                         </li>
-                        <li>
-                            <span class="post-category">
-                                <a href="#">Kitchen</a>
-                            </span>
-                            <figure class="post-thumbnail">
-                                <a href="#"><img src="{% static 'recipes/images/content/thumb-post-03.png' %}"
-                                        alt=""></a>
-                            </figure>
-                            <h2 class="post-title">
-                                <a href="#">Ullamcorper Suscipit Lobortis Nisl ut Aliquip Commodo Consequat</a>
-                            </h2>
-                        </li>
-                        <li>
-                            <span class="post-category">
-                                <a href="#">Vegetable</a>
-                            </span>
-                            <figure class="post-thumbnail">
-                                <a href="#"><img src="{% static 'recipes/images/content/thumb-post-04.png' %}"
-                                        alt=""></a>
-                            </figure>
-                            <h2 class="post-title">
-                                <a href="#">Quod Mazim Placerat Facer Possim Assum</a>
-                            </h2>
-                        </li>
+                        {% endfor %}
                     </ul>
                 </div><!-- end widget -->
 
@@ -269,48 +223,23 @@
                         <h3 class="widget-title">فئات التدوينات</h3>
                     </div>
                     <ul>
+                        {% for key, value in index_data.items %}
                         <li>
-                            <a class="float-right" href="#">نهفات الطبخ</a>
-                            <span class="float-left">17</span>
+                            <a class="float-right" href="#">{{key}}</a>
+                            <span class="float-left">{{value}}</span>
                         </li>
-                        <li>
-                            <a class="float-right" href="#">المطبخ</a>
-                            <span class="float-left">14</span>
-                        </li>
-                        <li>
-                            <a class="float-right" href="#">Chef's Secret</a>
-                            <span class="float-left">10</span>
-                        </li>
-                        <li>
-                            <a class="float-right" href="#">Vegetable</a>
-                            <span class="float-left">8</span>
-                        </li>
-                        <li>
-                            <a class="float-right" href="#">Nutrition</a>
-                            <span class="float-left">6</span>
-                        </li>
-                        <li>
-                            <a class="float-right" href="#">Ingredients</a>
-                            <span class="float-left">4</span>
-                        </li>
+                        {% endfor %}
                     </ul>
                 </div><!-- end widget -->
 
                 <div class="widget">
                     <div class="widget-title-outer">
-                        <h3 class="widget-title">News Tags</h3>
+                        <h3 class="widget-title">علامات التدوينات</h3>
                     </div>
                     <div class="tagcloud">
-                        <a href="#">food</a>
-                        <a href="#">ingredients</a>
-                        <a href="#">chef</a>
-                        <a href="#">kitchen</a>
-                        <a href="#">vegetable</a>
-                        <a href="#">cake</a>
-                        <a href="#">beverage</a>
-                        <a href="#">tips</a>
-                        <a href="#">nutrition</a>
-                        <a href="#">tools</a>
+                        {% for item in tags %}
+                        <a href="#">{{item}}</a>
+                        {% endfor %}
                     </div>
                 </div><!-- end widget -->
 
