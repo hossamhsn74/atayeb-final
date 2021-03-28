@@ -19,8 +19,8 @@ class RecipeCategory(models.Model):
     name = models.CharField(max_length=255, unique=True,
                             verbose_name='فئة الوصفة')
     image = ResizedImageField(null=True, blank=True,
-                              default='static/recipes/images/assets/default_no_pic.png',
-                              upload_to='recipe_images',
+                              default='/static/images/assets/default_no_pic.png',
+                              upload_to='recipe_images/',
                               verbose_name='الصورة')
     description = models.TextField(null=True, blank=True, verbose_name='الوصف')
 
@@ -45,8 +45,8 @@ class Recipe(models.Model):
     date_created = models.DateTimeField(
         default=timezone.now, verbose_name='تاريخ الإضافة')
     image = ResizedImageField(null=True, blank=True,
-                              default='static/recipes/images/assets/default_no_pic.png',
-                              upload_to='recipe_images',
+                              default='static/images/assets/default_no_pic.png',
+                              upload_to='recipe_images/',
                               verbose_name='الصورة')
     author = models.ForeignKey(
         Profile, on_delete=models.CASCADE, verbose_name='الكاتب')

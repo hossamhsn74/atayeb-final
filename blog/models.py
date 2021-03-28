@@ -33,8 +33,8 @@ class Post(models.Model):
     date_created = models.DateTimeField(
         default=timezone.now, verbose_name='تاريخ الإضافة')
     image = ResizedImageField(null=True, blank=True,
-                              default='static/recipes/images/assets/default_no_pic.png',
-                              upload_to='post_images',
+                              default='static/images/assets/default_no_pic.png',
+                              upload_to='post_images/',
                               verbose_name='الصورة')
     author = models.ForeignKey(
         Profile, on_delete=models.CASCADE, verbose_name='الكاتب')
@@ -50,7 +50,7 @@ class Post(models.Model):
 
     class Meta:
         verbose_name_plural = "المنشورات"
-        ordering = ('date_created',)
+        ordering = ('-date_created',)
 
 
 class PostComment(models.Model):

@@ -76,7 +76,9 @@
                                 <p>
                                     <span>الفئات: <a href="#"><em>{{post.category}}</em></a></span><br />
                                     <span>علامات:
+                                        {% for item in tags %}
                                         <a href="#"><em>{{item}}</em></a>
+                                        {% endfor %}
                                     </span>
                                 </p>
                             </div><!-- end entry-content -->
@@ -104,7 +106,7 @@
                     </div><!-- end author-area -->
 
                     <div class="related-content">
-                        <h2>مواضيع ذات عقة</h2>
+                        <h2>مواضيع ذات علاقة</h2>
                         <div class="row">
                             {% if related_posts %}
                             {% for post in related_posts%}
@@ -142,7 +144,6 @@
                                             <div class="comment-metadata">
                                                 <a href="#">
                                                     <time datetime="2019-09-04T18:44:25+00:00">{{comment.comment_date}}
-                                                        1530
                                                     </time>
                                                 </a>
                                             </div>
@@ -243,7 +244,7 @@
                     </div>
                 </div><!-- end widget -->
 
-                <div class="widget">
+                <!-- <div class="widget">
                     <a href="#"><img src="{% static 'recipes/images/content/banner.png' %}" alt="Banner"></a>
                 </div>
 
@@ -253,7 +254,7 @@
                     </div>
                     <iframe
                         src="//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2FFacebookDevelopers&amp;colorscheme=light&amp;show_faces=true&amp;header=true&amp;stream=false&amp;show_border=true"></iframe>
-                </div><!-- end widget -->
+                </div>end widget -->
 
             </div><!-- end #secondary -->
 

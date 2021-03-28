@@ -14,7 +14,7 @@ class PostListView(ListView):
     def get_context_data(self, **kwargs):
         context = super(PostListView, self).get_context_data(**kwargs)
 
-        recent_posts_qs = Post.objects.all().order_by('date_created')[:4]
+        recent_posts_qs = Post.objects.all().order_by('-date_created')[:4]
         context['recent_posts'] = [*recent_posts_qs]
 
         data = {}
@@ -37,14 +37,14 @@ class PostDetailsView(DetailView):
         context = super(PostDetailsView, self).get_context_data(**kwargs)
 
         comments_qs = PostComment.objects.filter(
-            post=context['post'].id).order_by('comment_date')
+            post=context['post'].id).order_by('-comment_date')
         context['comments'] = [*comments_qs]
 
         related_posts_qs = Post.objects.filter(
-            category=context['post'].category).order_by('date_created')[:3]
+            category=context['post'].category).order_by('-date_created')[:3]
         context['related_posts'] = [*related_posts_qs]
 
-        recent_posts_qs = Post.objects.all().order_by('date_created')[:4]
+        recent_posts_qs = Post.objects.all().order_by('-date_created')[:4]
         context['recent_posts'] = [*recent_posts_qs]
 
         data = {}
