@@ -6,7 +6,7 @@ from django_resized import ResizedImageField
 class HomePageLogo(models.Model):
     image = models.ImageField(null=True, blank=True,
                               default='static/recipes/images/content/atayeb_logo_300.png',
-                              upload_to='carousel_pics',
+                              upload_to='core_images',
                               verbose_name='الصورة')
 
     class Meta:
@@ -16,7 +16,7 @@ class HomePageLogo(models.Model):
 class HomePageSlider(models.Model):
     image = models.ImageField(null=True, blank=True,
                               default='static/recipes/images/content/atayeb_logo_300.png',
-                              upload_to='carousel_pics',
+                              upload_to='core_images',
                               verbose_name='الصورة')
 
     class Meta:
@@ -66,7 +66,7 @@ class AboutUsParagraph(models.Model):
 
 class AboutUsCard(models.Model):
     image = ResizedImageField(
-        default='static/recipes/images/assets/default_profile_picture.png', upload_to='about_pics', verbose_name="الصورة")
+        default='static/recipes/images/assets/default_profile_picture.png', upload_to='core_images', verbose_name="الصورة")
     name = models.CharField(max_length=128, verbose_name="الاسم")
     position = models.CharField(max_length=128, verbose_name="الوظيفة")
     more_info = models.CharField(max_length=256, verbose_name="تفاصيل اخري")

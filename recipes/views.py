@@ -6,7 +6,6 @@ from recipes.models import (Recipe, RecipeCategory, RecipeComment,
                             RecipeNutritionFacts, Bookmarks, Tag)
 from django.contrib.auth.decorators import login_required
 from user.models import Profile
-from django.db.models import Q
 
 
 class RecipeListView(ListView):
@@ -93,7 +92,6 @@ def RecipeIndexView(request):
     context = {}
     data = {}
     categories = RecipeCategory.objects.all()
-    print("category", categories)
     for category in categories:
         recipes = Recipe.objects.filter(category=category)
         data[category] = [*recipes]
@@ -110,7 +108,6 @@ def SubmitRecipeView(request):
 
 
 def AddRecipeView(request):
-    # create recipe category
     category_field = request.POST['category']
     if category_field == "other":
         other_category_field = request.POST['other_category']

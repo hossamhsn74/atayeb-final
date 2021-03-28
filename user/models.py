@@ -6,7 +6,7 @@ from django_resized import ResizedImageField
 
 class Profile(models.Model):
     image = ResizedImageField(
-        default='static/recipes/images/assets/default_profile_picture.png', upload_to='profile_pics')
+        default='static/recipes/images/assets/default_profile_picture.png', upload_to='profile_images')
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.TextField(max_length=250, blank=True,
                            default="Contributer User")

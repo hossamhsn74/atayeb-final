@@ -34,19 +34,14 @@ class AboutUsCardAdmin(admin.ModelAdmin):
     )
 
 
-# admin.site.register(SiteIdentity, SiteIdentityAdmin)
-
 admin.site.register(FaqShortBanner, ShortBannerAdmin)
 admin.site.register(FaqQuestionBanner, QuestionBannerAdmin)
-
 admin.site.register(AboutUsCard, AboutUsCardAdmin)
 admin.site.register(AboutUsParagraph)
-
 admin.site.register(ContactMessages)
 admin.site.register(ContactParagraph)
 admin.site.register(ContactLocation)
 admin.site.register(ContactSideParagraph)
-
 admin.site.register(NewsLetterEmail)
 admin.site.register(HomePageSlider)
 admin.site.register(HomePageLogo)

@@ -34,7 +34,7 @@ class Post(models.Model):
         default=timezone.now, verbose_name='تاريخ الإضافة')
     image = ResizedImageField(null=True, blank=True,
                               default='static/recipes/images/assets/default_no_pic.png',
-                              upload_to='recipes_pics',
+                              upload_to='post_images',
                               verbose_name='الصورة')
     author = models.ForeignKey(
         Profile, on_delete=models.CASCADE, verbose_name='الكاتب')

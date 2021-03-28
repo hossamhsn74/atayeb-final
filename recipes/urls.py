@@ -14,5 +14,5 @@ urlpatterns = [
     path('submit-recipe/', SubmitRecipeView, name='submit-recipe'),
     path('add-recipe/', AddRecipeView, name='add-recipe'),
     path('recipe-index/', RecipeIndexView, name='recipe-index'),
-    path("search",SearchRecipes,name='search'),
+    path("search", SearchRecipes, name='search'),
 ]

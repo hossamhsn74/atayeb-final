@@ -14,8 +14,7 @@ def HomePageView(request):
     context['logo'] = [*logo]
     images = HomePageSlider.objects.all()
     context['images'] = [*images]
-    # name, count
-    # 3 recipes images
+
     data = {}
     categories = RecipeCategory.objects.all()[:4]
     for category in categories:
