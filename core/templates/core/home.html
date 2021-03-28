@@ -40,71 +40,31 @@
                 <h3>Editor's Choice</h3>
             </div><!-- end section-title -->
             <div class="row">
+                {% for key, value in echoice.items %}
                 <div class="col-6 col-md-3">
                     <div class="big-bone">
                         <a href="#" class="figure-caption">
                             <div class="caption-inner">
-                                <p>FOOD</p>
-                                <span>20 Recipes</span>
+                                <p>{{key}}</p>
+                                <span>{{value|length}}</span>
                             </div>
                         </a>
                         <figure><img src="{% static 'recipes/images/content/food-l.png' %}" alt="food l"></figure>
                     </div>
                     <div class="small-bone">
+                        <!-- {% for item in value %}
+                            {% if item.image.url %}
+                                <figure><img src="{{item.image.url}}" width="100px" height="80px" alt="food s"></figure>
+                            {% else %}
+                                <figure><img src="{% static 'recipes/images/content/food-s.png' %}" alt="food s"></figure>
+                            {%endif%}
+                        {% endfor %} -->
                         <figure><img src="{% static 'recipes/images/content/food-s.png' %}" alt="food s"></figure>
-                        <figure><img src="{% static 'recipes/images/content/food-s2.png' %}" alt="food s"></figure>
+                        <figure><img src="{% static 'recipes/images/content/food-s.png' %}" alt="food s"></figure>
                     </div>
                 </div><!-- end col -->
-                <div class="col-6 col-md-3">
-                    <div class="big-bone">
-                        <a href="#" class="figure-caption">
-                            <div class="caption-inner">
-                                <p>BEVERAGE</p>
-                                <span>16 Recipes</span>
-                            </div>
-                        </a>
-                        <figure><img src="{% static 'recipes/images/content/beverage-l.png' %}" alt="beverage l">
-                        </figure>
-                    </div>
-                    <div class="small-bone">
-                        <figure><img src="{% static 'recipes/images/content/beverage-s.png' %}" alt="beverage s">
-                        </figure>
-                        <figure><img src="{% static 'recipes/images/content/beverage-s2.png' %}" alt="beverage s">
-                        </figure>
-                    </div>
-                </div><!-- end col -->
-                <div class="col-6 col-md-3">
-                    <div class="big-bone">
-                        <a href="#" class="figure-caption">
-                            <div class="caption-inner">
-                                <p>DESSERT</p>
-                                <span>18 Recipes</span>
-                            </div>
-                        </a>
-                        <figure><img src="{% static 'recipes/images/content/dessert-l.png' %}" alt="dessert l"></figure>
-                    </div>
-                    <div class="small-bone">
-                        <figure><img src="{% static 'recipes/images/content/dessert-s.png' %}" alt="dessert s"></figure>
-                        <figure><img src="{% static 'recipes/images/content/dessert-s2.png' %}" alt="dessert s">
-                        </figure>
-                    </div>
-                </div><!-- end col -->
-                <div class="col-6 col-md-3">
-                    <div class="big-bone">
-                        <a href="#" class="figure-caption">
-                            <div class="caption-inner">
-                                <p>PUDDING</p>
-                                <span>28 Recipes</span>
-                            </div>
-                        </a>
-                        <figure><img src="{% static 'recipes/images/content/pudding-l.png' %}" alt="pudding l"></figure>
-                    </div>
-                    <div class="small-bone">
-                        <figure><img src="{% static 'recipes/images/content/pudding-s.png' %}" alt="pudding s"></figure>
-                        <figure><img src="{% static 'recipes/images/content/pudding-ss.png' %}" alt="pudding s">
-                        </figure>
-                    </div>
-                </div><!-- end col -->
+                {% endfor %}
+
             </div><!-- end row -->
 
         </div><!-- end container -->
@@ -113,30 +73,28 @@
     <div class="features-section parallax-bg">
         <div class="container">
             <div class="section-title">
-                <h3>Special Features</h3>
+                <h3>مميزات موقعنا</h3>
             </div><!-- end section-title -->
             <div class="row">
                 <div class="col-md-4">
                     <div class="inner">
                         <span class="fitcon"><i class="fas fa-chart-line"></i></span>
-                        <h4>Food Nutritions</h4>
-                        <p>Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes in futurum.</p>
+                        <h4>الحقائق الغذائية</h4>
+                        <p>نوفر الحقائق الغذائية الخاصة بكل وصفة من وصفاتنا</p>
                     </div>
                 </div><!-- end col -->
                 <div class="col-md-4">
                     <div class="inner">
                         <span class="fitcon"><i class="far fa-clock"></i></span>
-                        <h4>Cooking Period</h4>
-                        <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat,
-                            vel illum dolore eu feugiat nulla facilisis.</p>
+                        <h4>وقت التحضير</h4>
+                        <p>كل وصفة من وصفاتنا تحتوي وقت التحضير الخاص بها</p>
                     </div>
                 </div><!-- end col -->
                 <div class="col-md-4">
                     <div class="inner">
                         <span class="fitcon"><i class="fas fa-user-friends"></i></span>
-                        <h4>Membership</h4>
-                        <p>Ut wisi enim ad minim veniam, quis nostrud exerci tation coper suscipit lobortis nisl ut
-                            aliquip commodo consequat.</p>
+                        <h4>الاشتراك</h4>
+                        <p>سهولة الاشتراك في موقعنا</p>
                     </div>
                 </div><!-- end col -->
             </div><!-- end row -->
@@ -278,81 +236,23 @@
                 <h3>أطايب Editor</h3>
             </div><!-- end section-title -->
             <div class="row justify-content-center">
+                {% for profile in editors %}
                 <div class="col-6 col-md-2">
                     <div class="author-col">
                         <figure class="auth-ava">
-                            <img src="{% static 'recipes/images/content/ava-1.png' %}" alt="Avatar">
+                            {% if profile.image.url %}
+                                <img src="{{profile.image.url}}" width="100px" height="100px"  alt="Avatar">
+                            {% else %}
+                                <img src="{% static 'recipes/images/content/ava-1.png' %}" width="100px" height="100px" alt="Avatar">
+                            {% endif %}
                         </figure>
-                        <h4>Roberta Farina</h4>
-                        <p>Executive Editor</p>
+                        <h4>{{profile.user.username}}</h4>
                     </div><!-- end author-col -->
                 </div><!-- end col -->
-                <div class="col-6 col-md-2">
-                    <div class="author-col">
-                        <figure class="auth-ava">
-                            <img src="{% static 'recipes/images/content/ava-2.png' %}" alt="Avatar">
-                        </figure>
-                        <h4>Nia Kurniasari</h4>
-                        <p>Internet Marketer</p>
-                    </div><!-- end author-col -->
-                </div><!-- end col -->
-                <div class="col-6 col-md-2">
-                    <div class="author-col">
-                        <figure class="auth-ava">
-                            <img src="{% static 'recipes/images/content/ava-3.png' %}" alt="Avatar">
-                        </figure>
-                        <h4>Rina Alexanderia</h4>
-                        <p>Publisher</p>
-                    </div><!-- end author-col -->
-                </div><!-- end col -->
-                <div class="col-6 col-md-2">
-                    <div class="author-col">
-                        <figure class="auth-ava">
-                            <img src="{% static 'recipes/images/content/ava-4.png' %}" alt="Avatar">
-                        </figure>
-                        <h4>Siti Julaiha</h4>
-                        <p>System Administrator</p>
-                    </div><!-- end author-col -->
-                </div><!-- end col -->
-                <div class="col-6 col-md-2">
-                    <div class="author-col">
-                        <figure class="auth-ava">
-                            <img src="{% static 'recipes/images/content/ava-5.png' %}" alt="Avatar">
-                        </figure>
-                        <h4>Laila Delova</h4>
-                        <p>Graphic Designer</p>
-                    </div><!-- end author-col -->
-                </div><!-- end col -->
-                <div class="col-6 col-md-2">
-                    <div class="author-col">
-                        <figure class="auth-ava">
-                            <img src="{% static 'recipes/images/content/ava-1.png' %}" alt="Avatar">
-                        </figure>
-                        <h4>Fatur</h4>
-                        <p>Web Developer</p>
-                    </div><!-- end author-col -->
-                </div><!-- end col -->
+                {% endfor %}
             </div><!-- end row -->
         </div><!-- end container -->
     </div><!-- end editor-section -->
-
-    <div class="event-section parallax-bg">
-        <div class="container">
-            <div class="section-title">
-                <h3>UPCOMING EVENT</h3>
-            </div><!-- end section-title -->
-            <div class="row justify-content-md-center">
-                <div class="col col-md-8">
-                    <div class="event-container">
-                        <h2>Housewife Cooking Competition</h2>
-                        <p><i class="fas fa-calendar"></i>Saturday, January 20, 2019<br>
-                            <i class="fas fa-map-marker-alt"></i>Balai Sartini, Surakarta</p>
-                        <a href="#" class="btn btn-primary">More Info</a>
-                    </div><!-- end event-container -->
-                </div><!-- end col -->
-            </div><!-- end row -->
-        </div><!-- end container -->
-    </div><!-- event-section -->
 
     <div class="blog-section">
         <div class="container">
@@ -360,66 +260,23 @@
                 <h3>RECENT BLOG POST</h3>
             </div><!-- end section-title -->
             <div class="row">
+                {% for post in recent_posts %}
                 <div class="col-6 col-md-3 blog-list">
                     <figure class="blog-thumb">
-                        <img src="{% static 'recipes/images/content/blog-1.png' %}" alt="blog">
+                        <img src="{{post.image.url}}" height="250px" width="300px" alt="blog">
                     </figure>
                     <div class="entry-header">
                         <h2 class="post-title entry-title">
-                            <a href="#">Claritas est etiam processus dynamicus, qui sequitur nembuz</a>
+                            <a href="{% url 'blog:blog-single'  post.id %}">{{post.title}}</a>
                         </h2>
                     </div><!-- end entry-header -->
                     <div class="post-meta">
-                        <div class="cat"><a href="#">Cooking Tips</a></div>
-                        <time class="published" datetime="2019-03-03" title="March 3, 2019 - 21:12 pm">Mar 3, 2019
-                        </time>
+                        <time class="published" datetime="2019-12-22"
+                        title="December 22, 2019 - 21:12 pm">{{post.date_created|date}} </time>
+                        <div class="cat"><a href="#">{{post.category}}</a></div>
                     </div>
                 </div><!-- end col -->
-                <div class="col-6 col-md-3 blog-list">
-                    <figure class="blog-thumb">
-                        <img src="{% static 'recipes/images/content/blog-2.png' %}" alt="blog">
-                    </figure>
-                    <div class="entry-header">
-                        <h2 class="post-title entry-title">
-                            <a href="#">Anteposuerit litterarum formas humanitatis per seacula</a>
-                        </h2>
-                    </div><!-- end entry-header -->
-                    <div class="post-meta">
-                        <div class="cat"><a href="#">How to</a></div>
-                        <time class="published" datetime="2019-03-03" title="March 3, 2019 - 21:12 pm">Mar 3, 2019
-                        </time>
-                    </div>
-                </div><!-- end col -->
-                <div class="col-6 col-md-3 blog-list">
-                    <figure class="blog-thumb">
-                        <img src="{% static 'recipes/images/content/blog-3.png' %}" alt="blog">
-                    </figure>
-                    <div class="entry-header">
-                        <h2 class="post-title entry-title">
-                            <a href="#">هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة</a>
-                        </h2>
-                    </div><!-- end entry-header -->
-                    <div class="post-meta">
-                        <div class="cat"><a href="#">Cooking Tips</a></div>
-                        <time class="published" datetime="2019-03-03" title="March 3, 2019 - 21:12 pm">Mar 3, 2019
-                        </time>
-                    </div>
-                </div><!-- end col -->
-                <div class="col-6 col-md-3 blog-list">
-                    <figure class="blog-thumb">
-                        <img src="{% static 'recipes/images/content/blog-4.png' %}" alt="blog">
-                    </figure>
-                    <div class="entry-header">
-                        <h2 class="post-title entry-title">
-                            <a href="#">Mirum est notare quam littera gothica</a>
-                        </h2>
-                    </div><!-- end entry-header -->
-                    <div class="post-meta">
-                        <div class="cat"><a href="#">Cooking Tips</a></div>
-                        <time class="published" datetime="2019-03-03" title="March 3, 2019 - 21:12 pm">Mar 3, 2019
-                        </time>
-                    </div>
-                </div><!-- end col -->
+                {% endfor %}
             </div><!-- end row -->
         </div><!-- end container -->
     </div><!-- end blog-section -->

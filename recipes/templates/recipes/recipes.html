@@ -20,7 +20,11 @@
                     {% for recipe in recipes%}
                     <div class="col-6 col-md-3">
                         <div class="recipe-thumb">
+                            {% if recipe.image %}
                             <img src="{{ recipe.image.url }}" alt="Recipe Image">
+                            {% else %}
+                            <img src="{% static 'recipes/images/assets/default_no_pic.png' %}" width="100px" height="100px" alt="Recipe Image">
+                            {% endif%}
                             <a href="{% url 'recipes:recipe-single'  recipe.id %}" class="view-recipe">عرض الوصفة</a>
                         </div>
                         <div class="recipe-desc">

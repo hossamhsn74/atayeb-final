@@ -42,18 +42,10 @@ INSTALLED_APPS = [
     'events',
     'user',
     'crispy_forms',
-
-    # For 'allauth' app link: https://django-allauth.readthedocs.io/en/latest/overview.html
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    # ... include the providers you want to enable:
-    # 'allauth.socialaccount.providers.google',
-    # 'allauth.socialaccount.providers.facebook',
-    # 'allauth.socialaccount.providers.microsoft',
     'invitations',
-
-
 ]
 
 # For 'allauth' app link: https://django-allauth.readthedocs.io/en/latest/overview.html
@@ -169,21 +161,9 @@ MEDIA_URL = '/media/'
 # Crispy forms SETTINGS
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-# LOGIN_REDIRECT_URL = '/accounts/email/'  # redirects to profile page by default
 LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = '/accounts/login'
 
-# ----------------------------------- start Tagulous ---------------------------------------------
-# SERIALIZATION_MODULES = {
-#     'xml':    'tagulous.serializers.xml_serializer',
-#     'json':   'tagulous.serializers.json',
-#     'python': 'tagulous.serializers.python',
-#     'yaml':   'tagulous.serializers.pyyaml',
-# }
-# ----------------------------------- end Tagulous ---------------------------------------------
-
-# ----------------------------------- start allauth & Invitations ---------------------------------------------
-# For 'allauth' app link: https://django-allauth.readthedocs.io/en/latest/configuration.html
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
@@ -234,64 +214,6 @@ ACCOUNT_USERNAME_BLACKLIST = ['Allah', 'God']
 # For django-invitations link: https://github.com/bee-keeper/django-invitations
 ACCOUNT_ADAPTER = 'invitations.models.InvitationsAdapter'
 INVITATIONS_INVITATION_ONLY = True
-
-# Account Signup
-# ACCOUNT_FORMS = {'signup': 'allauthdemo.forms.SignupForm', }
-
-# #Social Account Settings
-# SOCIALACCOUNT_PROVIDERS = {
-#     'facebook': {
-#         'METHOD': 'oauth2',
-#         'SCOPE': ['email', 'public_profile', 'user_friends'],
-#         'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
-#         'INIT_PARAMS': {'cookie': True},
-#         'FIELDS': [
-#             'id',
-#             'email',
-#             'name',
-#             'first_name',
-#             'last_name',
-#             'verified',
-#             'locale',
-#             'timezone',
-#             'link',
-#             'gender',
-#             'updated_time',
-#         ],
-#         'EXCHANGE_TOKEN': True,
-#         'LOCALE_FUNC': 'path.to.callable',
-#         'VERIFIED_EMAIL': False,
-#         'VERSION': 'v2.12',
-#     },
-#      'google': {
-#         'SCOPE': [
-#             'profile',
-#             'email',
-#         ],
-#         'AUTH_PARAMS': {
-#             'access_type': 'online',
-#         }
-#     }
-# }
-# SOCIALACCOUNT_QUERY_EMAIL=ACCOUNT_EMAIL_REQUIRED
-# SOCIALACCOUNT_EMAIL_REQUIRED=ACCOUNT_EMAIL_REQUIRED
-# SOCIALACCOUNT_STORE_TOKENS=False
-
-
-# Provider specific settings
-# SOCIALACCOUNT_PROVIDERS = {
-#     'google': {
-#         # For each OAuth based provider, either add a ``SocialApp``
-#         # (``socialaccount`` app) containing the required client
-#         # credentials, or list them here:
-#         'APP': {
-#             'client_id': '123',
-#             'secret': '456',
-#             'key': ''
-#         }
-#     }
-# }
-# ----------------------------------- end allauth & Invitations ---------------------------------------------
 
 
 DJANGORESIZED_DEFAULT_SIZE = [750, 750]

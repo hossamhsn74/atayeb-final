@@ -62,7 +62,7 @@ class Recipe(models.Model):
 
     class Meta:
         verbose_name_plural = "الوصفات"
-        ordering = ('name',)
+        ordering = ('-date_created',)
 
 
 class IngredientCategory(models.Model):

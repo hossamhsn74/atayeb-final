@@ -4,6 +4,9 @@ from .models import (AboutUsCard, AboutUsParagraph, ContactParagraph,
                      ContactSideParagraph, FaqQuestionBanner, FaqShortBanner,
                      ContactLocation, ContactMessages, NewsLetterEmail, HomePageSlider, HomePageLogo)
 
+from recipes.models import RecipeCategory, Recipe
+from blog.models import Post
+from user.models import Profile
 
 def HomePageView(request):
     context = {}
@@ -11,6 +14,21 @@ def HomePageView(request):
     context['logo'] = [*logo]
     images = HomePageSlider.objects.all()
     context['images'] = [*images]
+    # name, count
+    # 3 recipes images
+    data = {}
+    categories = RecipeCategory.objects.all()[:4]
+    for category in categories:
+        recipes = Recipe.objects.filter(category=category)[:3]
+        data[category] = [*recipes]
+    context["echoice"] = data
+
+    recent_posts_qs = Post.objects.all().order_by('date_created')[:4]
+    context['recent_posts'] = [*recent_posts_qs]
+
+    profiles_qs = Profile.objects.all()[:7]
+    context['editors'] = [*profiles_qs]
+
     return render(request, 'core/home.html', context)
 
 
