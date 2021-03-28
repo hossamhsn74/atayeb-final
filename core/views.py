@@ -25,6 +25,10 @@ def HomePageView(request):
     recent_posts_qs = Post.objects.all().order_by('date_created')[:4]
     context['recent_posts'] = [*recent_posts_qs]
 
+
+    recent_recipes_qs = Recipe.objects.all().order_by('date_created')[:8]
+    context['recent_recipes'] = [*recent_recipes_qs]
+
     profiles_qs = Profile.objects.all()[:7]
     context['editors'] = [*profiles_qs]
 

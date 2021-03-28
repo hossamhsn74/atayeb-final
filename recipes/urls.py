@@ -11,8 +11,8 @@ urlpatterns = [
     path('recipes/<int:pk>/pdf/', ExportToPDFView.as_view(), name='recipe-pdf'),
     path('recipes/<int:id>/addcomment', AddCommentView, name='recipe-comment'),
     path('recipes/<int:id>/bookmark', BookmarkRecipeView, name='recipe-bookmark'),
-    path('submit-recipe/', SubmitRecipeView, name='submit-recipe'),
-    path('add-recipe/', AddRecipeView, name='add-recipe'),
+    # path('submit-recipe/', SubmitRecipeView, name='submit-recipe'),
+    # path('add-recipe/', AddRecipeView, name='add-recipe'),
     path('recipe-index/', RecipeIndexView, name='recipe-index'),
     path("search", SearchRecipes, name='search'),
 ]

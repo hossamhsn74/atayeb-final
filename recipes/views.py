@@ -99,50 +99,50 @@ def RecipeIndexView(request):
     return render(request, "recipes/recipe-index.html", context)
 
 
-@login_required
-def SubmitRecipeView(request):
-    categories = RecipeCategory.objects.all()
-    context = {}
-    context['categories'] = [*categories]
-    return render(request, "recipes/submit-recipe.html", context=context)
+# @login_required
+# def SubmitRecipeView(request):
+#     categories = RecipeCategory.objects.all()
+#     context = {}
+#     context['categories'] = [*categories]
+#     return render(request, "recipes/submit-recipe.html", context=context)
 
 
-def AddRecipeView(request):
-    category_field = request.POST['category']
-    if category_field == "other":
-        other_category_field = request.POST['other_category']
-        recipe_category = RecipeCategory.objects.get_or_create(
-            name=other_category_field)
-    else:
-        recipe_category = RecipeCategory.objects.get(
-            name=request.POST['category'])
+# def AddRecipeView(request):
+#     category_field = request.POST['category']
+#     if category_field == "other":
+#         other_category_field = request.POST['other_category']
+#         recipe_category = RecipeCategory.objects.get_or_create(
+#             name=other_category_field)
+#     else:
+#         recipe_category = RecipeCategory.objects.get(
+#             name=request.POST['category'])
 
-    recipe_name = request.POST['name']
-    recipe_image = request.POST['image']
-    recipe_feeds_up_to = request.POST['feeds_up_to']
-    recipe_prep_time = request.POST['prep_time']
-    recipe_description = request.POST['description']
+#     recipe_name = request.POST['name']
+#     recipe_image = request.POST['image']
+#     recipe_feeds_up_to = request.POST['feeds_up_to']
+#     recipe_prep_time = request.POST['prep_time']
+#     recipe_description = request.POST['description']
 
-    # author
-    recipe_author = Profile.objects.get(user=request.user)
+#     # author
+#     recipe_author = Profile.objects.get(user=request.user)
 
-    # tags
-    recipe_tags = []
-    tags_input = request.POST['tags']
-    tags_list = [x.strip() for x in tags_input.split(',')]
+#     # tags
+#     recipe_tags = []
+#     tags_input = request.POST['tags']
+#     tags_list = [x.strip() for x in tags_input.split(',')]
 
-    for item in tags_list:
-        recipe_tags.append(Tag.objects.get_or_create(name=item))
+#     for item in tags_list:
+#         recipe_tags.append(Tag.objects.get_or_create(name=item))
 
-    # create recipe item
-    recipe = Recipe.objects.create(
-        name=recipe_name, category=recipe_category,
-        description=recipe_description, feeds_up_to=recipe_feeds_up_to,
-        prep_time=recipe_prep_time, author=recipe_author,
-        image=recipe_image)
+#     # create recipe item
+#     recipe = Recipe.objects.create(
+#         name=recipe_name, category=recipe_category,
+#         description=recipe_description, feeds_up_to=recipe_feeds_up_to,
+#         prep_time=recipe_prep_time, author=recipe_author,
+#         image=recipe_image)
 
-    for item in recipe_tags:
-        recipe.tags.add(item[0].id)
+#     for item in recipe_tags:
+#         recipe.tags.add(item[0].id)
 
     # create instructions
     # recipe_instructions = []
@@ -158,7 +158,7 @@ def AddRecipeView(request):
 
     # create nutration facts
 
-    return redirect("recipes:recipes")
+    # return redirect("recipes:recipes")
 
 
 def SearchRecipes(request):
