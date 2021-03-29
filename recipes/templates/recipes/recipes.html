@@ -15,34 +15,37 @@
         <div id="primary" class="content-area fullwidth">
             <div id="content" class="site-content">
 
-                <div class="row">
-                    {% if recipes %}
-                    {% for recipe in recipes%}
-                    <div class="col-6 col-md-3">
-                        <div class="recipe-thumb">
-                            {% if recipe.image %}
-                            <img src="{{ recipe.image.url }}" alt="Recipe Image">
-                            {% else %}
-                            <img src="{% static 'recipes/images/assets/default_no_pic.png' %}" width="100px" height="100px" alt="Recipe Image">
-                            {% endif%}
-                            <a href="{% url 'recipes:recipe-single'  recipe.id %}" class="view-recipe">عرض الوصفة</a>
-                        </div>
-                        <div class="recipe-desc">
-                            <h2 class="recipe-title">
-                                <a href="{% url 'recipes:recipe-single'  recipe.id %}"> {{recipe.name}} </a>
-                            </h2>
-                            <p><em> بواسطة {{ recipe.author}} </em></p>
-                            <span><i class="fas fa-clock"></i> {{recipe.prep_time}} دقيقة </span>
-                        </div><!-- end recipe-desc -->
-                    </div><!-- end col -->
-                    {% endfor %}
-                    {% else %}
-                        <div class="row justify-content-center">
-                            <h2>لا توجد وصفات متاحة حاليا .. نعمل علي اضافة المزيد قريبا ! </h2>
-                        </div>
-                    {% endif%}
+                {% if recipes %}
+                    <div class="row">
+                        {% for recipe in recipes%}
+                        <div class="col-6 col-md-3">
+                            <div class="recipe-thumb">
+                                <img src="{{recipe.image.url}}" width="250px" height="200px" alt="Recipe Image">
+                            </div>
+                            <div class="recipe-desc">
+                                <h2 class="recipe-title">
+                                    <a href="{% url 'recipes:recipe-single'  recipe.id %}"> {{recipe.name}} </a>
+                                </h2>
+                                <p><em> بواسطة {{ recipe.author}} </em></p>
+                                <span><i class="fas fa-clock"></i> {{recipe.prep_time}} دقيقة </span>
+                            </div><!-- end recipe-desc -->
+                        </div><!-- end col -->
+                        {% endfor %}
+                    </div><!-- end row -->
+                {% else %}
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <div class="row justify-content-center">
+                        <h2>لا توجد وصفات متاحة حاليا .. نعمل علي اضافة المزيد قريبا ! </h2>
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                {% endif%}
 
-                </div><!-- end row -->
 
             </div><!-- end content -->
         </div><!-- end primary -->

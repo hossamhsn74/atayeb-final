@@ -18,18 +18,9 @@ class Tag(models.Model):
 class RecipeCategory(models.Model):
     name = models.CharField(max_length=255, unique=True,
                             verbose_name='فئة الوصفة')
-    image = ResizedImageField(null=True, blank=True,
-                              default='/static/images/assets/default_no_pic.png',
-                              upload_to='recipe_images/',
-                              verbose_name='الصورة')
-    description = models.TextField(null=True, blank=True, verbose_name='الوصف')
 
     def __str__(self):
         return self.name
-
-    def delete(self, *args, **kwargs):
-        self.image.delete()
-        super().delete(*args, **kwargs)
 
     class Meta:
         verbose_name_plural = "فئات الوصفات"
@@ -44,14 +35,13 @@ class Recipe(models.Model):
     prep_time = models.CharField(max_length=50, verbose_name='وقت التحضير')
     date_created = models.DateTimeField(
         default=timezone.now, verbose_name='تاريخ الإضافة')
-    image = ResizedImageField(null=True, blank=True,
-                              default='static/images/assets/default_no_pic.png',
+    image = ResizedImageField(null=False, blank=False,
                               upload_to='recipe_images/',
                               verbose_name='الصورة')
     author = models.ForeignKey(
         Profile, on_delete=models.CASCADE, verbose_name='الكاتب')
     description = models.TextField(verbose_name="الوصف", blank=True, null=True)
-    tags = models.ManyToManyField(Tag)
+    tags = models.ManyToManyField(Tag, verbose_name="العلامات")
 
     def __str__(self):
         return self.name
