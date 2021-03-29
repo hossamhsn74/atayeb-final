@@ -8,6 +8,7 @@ from recipes.models import RecipeCategory, Recipe
 from blog.models import Post
 from user.models import Profile
 
+
 def HomePageView(request):
     context = {}
     logo = HomePageLogo.objects.all().order_by('-id')[:1]
@@ -24,7 +25,6 @@ def HomePageView(request):
 
     recent_posts_qs = Post.objects.all().order_by('date_created')[:4]
     context['recent_posts'] = [*recent_posts_qs]
-
 
     recent_recipes_qs = Recipe.objects.all().order_by('date_created')[:8]
     context['recent_recipes'] = [*recent_recipes_qs]

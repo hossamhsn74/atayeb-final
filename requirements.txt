@@ -1,7 +1,11 @@
-Django~=3.0.7
-django-allauth~=0.42.0
-Pillow~=7.1.2
+distlib==0.3.0
+distro==1.4.0
+Django==3.0.13
+django-allauth==0.42.0
 django-crispy-forms==1.9.1
-django-invitations==1.9.3
 django-extra-views==0.13.0
-
+django-invitations==1.9.3
+django-mssql-backend==2.8.1
+django-renderpdf==3.0.1
+django-resized==0.3.11
+Pillow==7.1.2

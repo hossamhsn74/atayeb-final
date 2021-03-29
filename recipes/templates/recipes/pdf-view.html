@@ -16,84 +16,85 @@
     <!-- STYLE CSS -->
     <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Yellowtail" rel="stylesheet">
-    <link href="{% static 'recipes/css/styles.css' %}" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'recipes/css/atayeb_styles.css' %}">
-    <link rel="shortcut icon" href="{% static 'recipes/images/atayeb_logo_icon.ico' %}">
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/atayeb_styles.css' %}">
+    <link rel="shortcut icon" href="{% static 'images/atayeb_logo_icon.ico' %}">
 </head>
 
 <body>
 
     <div class="container-fluid" style="display: inline-block;">
+
         <div class="content" style="display: block;" style="clear:left;" style="border-color:brown;">
-            <img src="{% static 'recipes/images/atayeb_logo_300.png' %}" alt="Food Recipe Web Template" title="أطايب"
-                style="float:right; height: 230px; width: 250px;">
-            <div class="head-title" style="float:left;">
-                <h2 class="page-title">{{recipe.category.name}}</h2>
+            <div class="head-title">
+                <div class="container col-6">
+                    <h2 class="page-title">{{recipe.name}}</h2>
+                </div><!-- end container -->
             </div><!-- end head-title -->
         </div>
 
         <div class="container" style="display: inline-block;">
-
             <div class="recipe-content" style="display: block;">
-
+                
                 <div class="row">
                     <div class="col">
-                        <div class="recipe-head" style="text-align: center;">
-                            <h1 class=" recipe-title">{{recipe.name}}</h1>
-                        </div>
                         <div class="recipe-lvl">
-                            <span>
-                                {% for item in recipe.tags.values %}
-                                <a href="#">{{item.name}}</a>
-                                {% endfor %}
-                                العلامات :
-                            </span>
-                            <span> {{recipe.author}} الكاتب :</span>
-                            <span>وقت التحضير : {{recipe.prep_time}} دقيقة </span>
+                            <div>
+                                <span>الفئة : {{recipe.category}}</span>
+                                <span> الكاتب : {{recipe.author}}</span>
+                                <span> تاريخ الاضافة : {{recipe.date_created}} </span>
+                            </div><!-- recipe author -->
+
                         </div><!-- end recipe level -->
                     </div><!-- end col -->
                 </div><!-- end row -->
-
-
+                <hr>
                 <div class="row">
-                    <div class="col">
-                        <figure class="recipe-pict">
-                            <img src="{% static 'recipes/images/atayeb_logo_300.png' %}" alt="Recipe Image">
-                        </figure>
-                    </div><!-- end col -->
-                    <div class="col">
+                    <div class="col-6">
                         <div class="detail-desc">
                             <p><strong>الوصف</strong></p>
                             <p>{{recipe.description}}</p>
                         </div><!-- recipe desc -->
+                        <hr>
+                        <span> تكفي لعدد  {{recipe.feeds_up_to}} اشخاص </span>  
+                        <span>وقت التحضير : {{recipe.prep_time}} دقيقة ,</span>
+
+                    </div><!-- end col -->
+                    <div class="col-6">
+                        <figure class="recipe-pict">
+                            <img src="{% static 'images/atayeb_logo_300.png' %}" width="200px" height="200px"  alt="Recipe Image">
+                        </figure>
                     </div><!-- end col -->
                 </div><!-- end row -->
-
-                <div class="space-section"></div>
-
+                <hr>
                 <div class="row">
-                    <div class="ingredient col-4">
+                    {% if ingredents %}
+                        <div class="ingredient col-md-4">
                         <p><strong>المكونات والمقادير</strong></p>
                         <ul style="list-style: none;">
                             {% for item in ingredents %}
                             <li> <span> {{item.quantity}} {{item.ingredient}} </span></li>
                             {% endfor %}
                         </ul>
-                    </div><!-- end col -->
-                    <div class="direction col-8">
-                        <p><strong>طريقة الإعداد</strong></p>
-                        <ul style="list-style: none;">
-                            {% for item in instructions %}
-                            <li>
-                                <p>{{item.description}}</p>
-                            </li>
-                            {% endfor %}
-                        </ul>
-                    </div><!-- end col -->
+                        </div><!-- end col -->
+                        <br>
+                    {% endif %}
+                    {% if instructions %}
+                        <div class="direction col-md-8">
+                            <p><strong>طريقة الإعداد</strong></p>
+                            <ul style="list-style: none;" >
+                                {% for item in instructions %}
+                                <li>
+                                    <p>{{item.description}}</p>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div><!-- end col -->
+                    {% endif %}
                 </div><!-- end row -->
 
-                <div class="space-section"></div>
-
+                {% if nutration_facts %}
+                <hr>
                 <div class="row">
                     <div class="col-6">
                         <p><strong>حقائق الوصفة الغذائية</strong></p>
@@ -117,9 +118,8 @@
                             {% endfor %}
                         </div>
                     </div><!-- end col -->
-
                 </div><!-- end row -->
-
+                {% endif %}
             </div><!-- end recipe content -->
 
         </div><!-- end container -->
@@ -130,12 +130,12 @@
 
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="{% static 'recipes/js/vendor/modernizr-3.7.1.min.js' %}"></script>
-    <script src="{% static 'recipes/js/vendor/jquery-3.4.1.min.js' %}"></script>
+    <script src="{% static 'js/vendor/modernizr-3.7.1.min.js' %}"></script>
+    <script src="{% static 'js/vendor/jquery-3.4.1.min.js' %}"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="{% static 'recipes/js/bootstrap.bundle.min.js' %}"></script>
-    <script src="{% static 'recipes/js/plugin.js' %}"></script>
-    <script src="{% static 'recipes/js/main.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/plugin.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
 </body>
 
 </html>

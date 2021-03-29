@@ -201,10 +201,10 @@
                     <div class="col-6 col-md-2">
                         <div class="author-col">
                             <figure class="auth-ava">
-                                {% if not profile.image %}
+                                {% if profile.image %}
                                     <img src="{{profile.image.url}}" width="100px" height="100px" alt="Avatar">
                                 {% else %}
-                                    <img src="{% static 'images/content/ava-1.png' %}" alt="Avatar">
+                                    <img src="{% static 'images/content/ava-1.png' %}" width="100px" height="100px" alt="Avatar">
                                 {% endif %}
                             </figure>
                             <h4>{{profile.user.username}}</h4>
@@ -226,7 +226,7 @@
                     {% for post in recent_posts %}
                         <div class="col-6 col-md-3 blog-list">
                             <figure class="blog-thumb">
-                                {% if not post.image %}
+                                {% if post.image %}
                                     <img src="{{post.image.url}}" height="180px" width="270px" alt="blog">
                                 {% else %}
                                     <img src="{% static 'images/content/blog-1.png' %}" alt="blog">

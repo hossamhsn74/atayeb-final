@@ -49,7 +49,7 @@ class RecipeDetailsView(DetailView):
 
 class ExportToPDFView(PDFView):
     template_name = 'recipes/pdf-view.html'
-    prompt_download = True
+    # prompt_download = True
 
     @property
     def download_name(self) -> str:
