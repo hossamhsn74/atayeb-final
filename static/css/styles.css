@@ -11045,7 +11045,7 @@ a.text-dark:hover, a.text-dark:focus {
 
 @media (min-width: 992px) {
     .features-section.parallax-bg {
-        background-image: url("../images/content/features-bg-potrait.jpg");
+        background-color: rgba(227, 61, 38, 0.8);
         background-position: 50% 0;
         background-repeat: no-repeat;
         -webkit-background-size: cover;

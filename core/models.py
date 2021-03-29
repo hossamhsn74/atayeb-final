@@ -4,28 +4,24 @@ from django_resized import ResizedImageField
 
 
 class HomePageLogo(models.Model):
-    image = models.ImageField(null=True, blank=True,
-                              default='static/recipes/images/content/atayeb_logo_300.png',
-                              upload_to='core_images',
-                              verbose_name='الصورة')
+    image = ResizedImageField(null=False, blank=False, size=[50, 50],
+                              upload_to='logo/',
+                              verbose_name='صورة الموقع الرئيسية')
 
     class Meta:
         verbose_name_plural = "logo"
 
 
 class HomePageSlider(models.Model):
-    image = models.ImageField(null=True, blank=True,
-                              default='static/recipes/images/content/atayeb_logo_300.png',
-                              upload_to='core_images',
-                              verbose_name='الصورة')
+    image = ResizedImageField(null=False, blank=False, size=[700, 350],
+                              upload_to='core/',
+                              verbose_name='صور الصفحة الرئيسية')
 
     class Meta:
         verbose_name_plural = "slider"
 
 
 # FAQ PAGE
-
-
 class FaqShortBanner(models.Model):
     question = models.CharField(max_length=128, verbose_name="العنوان")
     answer = models.TextField(max_length=128, verbose_name="التفاصيل")
@@ -36,9 +32,9 @@ class FaqShortBanner(models.Model):
     class Meta:
         verbose_name_plural = "اقسام الاسئلة المكررة"
 
+
+
 # FAQ PAGE
-
-
 class FaqQuestionBanner(models.Model):
     question = models.CharField(max_length=128, verbose_name="العنوان")
     answer = models.TextField(max_length=128, verbose_name="التفاصيل")
@@ -61,12 +57,13 @@ class AboutUsParagraph(models.Model):
     class Meta:
         verbose_name_plural = "فقرات الكتابة - معلومات عنا"
 
+
+
 # About US page
-
-
 class AboutUsCard(models.Model):
-    image = ResizedImageField(
-        default='static/recipes/images/assets/default_profile_picture.png', upload_to='core_images', verbose_name="الصورة")
+    image = ResizedImageField(null=False, blank=False, size=[150,150],
+                              upload_to='core/',
+                              verbose_name='الصورة')
     name = models.CharField(max_length=128, verbose_name="الاسم")
     position = models.CharField(max_length=128, verbose_name="الوظيفة")
     more_info = models.CharField(max_length=256, verbose_name="تفاصيل اخري")

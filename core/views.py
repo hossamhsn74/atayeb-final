@@ -10,7 +10,7 @@ from user.models import Profile
 
 def HomePageView(request):
     context = {}
-    logo = HomePageLogo.objects.all()[:1]
+    logo = HomePageLogo.objects.all().order_by('-id')[:1]
     context['logo'] = [*logo]
     images = HomePageSlider.objects.all()
     context['images'] = [*images]

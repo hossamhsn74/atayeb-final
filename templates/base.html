@@ -8,25 +8,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- {#    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">#} -->
-
     <title>{% block head_title %}{% endblock %}</title>
     <title>أطايب</title>
 
     <!-- STYLE CSS -->
     <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Yellowtail" rel="stylesheet">
-    <link href="{% static 'recipes/css/styles.css' %}" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'recipes/css/atayeb_styles.css' %}">
-    <link rel="shortcut icon" href="{% static 'recipes/images/atayeb_logo_icon.ico' %}">
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/atayeb_styles.css' %}">
+    <link rel="shortcut icon" href="{% static 'images/atayeb_logo_icon.ico' %}">
 
 </head>
 
@@ -75,16 +65,7 @@
                                                     جديدة</a>
                                             </div>
                                         </li>
-                                        <!-- <li class="nav-item dropdown">
-                                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2"
-                                                role="button" data-toggle="dropdown" aria-haspopup="true"
-                                                aria-expanded="false">Events</a>
-                                            <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
-                                                <a class="dropdown-item" href="{% url 'events:event' %}">Event List</a>
-                                                <a class="dropdown-item" href="{% url 'events:event-single' %}">Event
-                                                    Single</a>
-                                            </div>
-                                        </li> -->
+
                                         <li class="nav-item dropdown">
                                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown3"
                                                 role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -94,14 +75,7 @@
                                                 <a class="dropdown-item" href="{% url 'blog:archive' %}">الأرشيف</a>
                                             </div>
                                         </li>
-                                        <!-- <li class="nav-item dropdown">
-                                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown4"
-                                                role="button" data-toggle="dropdown" aria-haspopup="true"
-                                                aria-expanded="false">الصفحات</a>
-                                            <div class="dropdown-menu" aria-labelledby="navbarDropdown4">
-                                                <a class="dropdown-item" href="{% url 'core:faq' %}">FAQ</a>
-                                            </div>
-                                        </li> -->
+
                                         <li class="nav-item active">
                                             <a class="nav-link" href="{% url 'core:about' %}">معلومات عنا</a>
                                         </li>
@@ -156,13 +130,13 @@
 
                         <div class="col-md-2">
                             <nav class="social-navigation">
-                                <div class="social-container">
+                                <!-- <div class="social-container">
                                     <ul class="social-menu">
                                         <li><a href="#"><i class="fab fa-facebook-square"></i></a></li>
                                         <li><a href="#"><i class="fab fa-twitter"></i></a></li>
                                         <li><a href="#"><i class="fab fa-instagram"></i></a></li>
                                     </ul>
-                                </div><!-- end social-container -->
+                                </div>end social-container -->
                                 <div class="search-container">
                                     <button type="button" class="buttonsearch" id="buttonsearch">
                                         <i class="fas fa-search openclosesearch"></i><i
@@ -194,21 +168,24 @@
         {% block content %}
         {% endblock %}
 
-        <div class="footer-instagram">
+        <!-- <div class="footer-instagram">
             <div class="ig-btn">
                 <a href="#" class="ig-follow"> تابعنا على إنستجرام &nbsp;<i class="fab fa-instagram"></i></a>
-            </div><!-- end ig-btn -->
+            </div>
             <ul class="ig-feed">
-                <li><a href="#"><img src="{% static 'recipes/images/content/ig-1.png' %}" alt="photo"></a></li>
-                <li><a href="#"><img src="{% static 'recipes/images/content/ig-2.png' %}" alt="photo"></a></li>
-                <li><a href="#"><img src="{% static 'recipes/images/content/ig-3.png' %}" alt="photo"></a></li>
-                <li><a href="#"><img src="{% static 'recipes/images/content/ig-4.png' %}" alt="photo"></a></li>
-                <li><a href="#"><img src="{% static 'recipes/images/content/ig-5.png' %}" alt="photo"></a></li>
-                <li><a href="#"><img src="{% static 'recipes/images/content/ig-6.png' %}" alt="photo"></a></li>
+                <li><a href="#"><img src="{% static 'images/content/ig-1.png' %}" alt="photo"></a></li>
+                <li><a href="#"><img src="{% static 'images/content/ig-2.png' %}" alt="photo"></a></li>
+                <li><a href="#"><img src="{% static 'images/content/ig-3.png' %}" alt="photo"></a></li>
+                <li><a href="#"><img src="{% static 'images/content/ig-4.png' %}" alt="photo"></a></li>
+                <li><a href="#"><img src="{% static 'images/content/ig-5.png' %}" alt="photo"></a></li>
+                <li><a href="#"><img src="{% static 'images/content/ig-6.png' %}" alt="photo"></a></li>
             </ul>
-        </div><!-- end footer-instagram -->
+        </div> -->
+        <!-- end footer-instagram -->
+        <br>
+        <br>
 
-        <div class="footer-social">
+        <!-- <div class="footer-social">
             <div class="container">
                 <a href="#"><i class="fab fa-facebook-square"></i>Facebook</a>
                 <a href="#"><i class="fab fa-twitter"></i>Twitter</a>
@@ -216,8 +193,10 @@
                 <a href="#"><i class="fab fa-instagram"></i>Instagram</a>
                 <a href="#"><i class="fab fa-linkedin"></i>Linkedin</a>
                 <a href="#"><i class="fab fa-youtube"></i>Youtube</a>
-            </div><!-- end container -->
-        </div><!-- footer-social -->
+            </div>
+        </div> -->
+            <!-- end container -->
+        <!-- footer-social -->
 
         <div class="bottom">
             <div class="container">
@@ -255,10 +234,9 @@
                     </div><!-- end col -->
                     <div class="col-md-6">
                         <ul class="bottom-nav">
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">Contact Us</a></li>
-                            <li><a href="#">Privacy Policy</a></li>
-                            <li><a href="#">Terms and Conditions</a></li>
+                            <li><a href="{% url 'core:home' %}">Home</a></li>
+                            <li><a href="{% url 'core:contacts' %}">Contact Us</a></li>
+                            <li><a href="#"></a></li>
                         </ul>
                     </div><!-- end col -->
                 </div><!-- end row -->
@@ -268,12 +246,12 @@
     </div><!-- end #page hfeed site -->
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="{% static 'recipes/js/vendor/modernizr-3.7.1.min.js' %}"></script>
-    <script src="{% static 'recipes/js/vendor/jquery-3.4.1.min.js' %}"></script>
+    <script src="{% static 'js/vendor/modernizr-3.7.1.min.js' %}"></script>
+    <script src="{% static 'js/vendor/jquery-3.4.1.min.js' %}"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="{% static 'recipes/js/bootstrap.bundle.min.js' %}"></script>
-    <script src="{% static 'recipes/js/plugin.js' %}"></script>
-    <script src="{% static 'recipes/js/main.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/plugin.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
 
     {% block script %}{% endblock %}
 
@@ -283,31 +261,15 @@
 
 
 <!-- Bootstrap core CSS -->
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %">
+<link rel="stylesheet" href="{% static 'css/bootstrap-grid.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/carousel.css' %}">
+<link rel="stylesheet" href="{% static 'css/atayeb_bootstrap_theme.css' %}">
+<link rel="stylesheet" href="{% static 'css/main.css' %}">
+<link rel="shortcut icon" href="{% static 'images/atayeb_logo_icon.ico' %}">
 
-{#
-<link rel="stylesheet" href="{% static 'recipes/css/bootstrap.min.css' %}">#}
-{#
-<link rel="stylesheet" href="{% static 'recipes/css/bootstrap-grid.min.css' %}">#}
-{#
-<link rel="stylesheet" href="{% static 'recipes/css/carousel.css' %}">#}
-{#
-<link rel="stylesheet" href="{% static 'recipes/css/atayeb_bootstrap_theme.css' %}">#}
-{#
-<link rel="stylesheet" href="{% static 'recipes/css/main.css' %}">#}
-{#
-<link rel="shortcut icon" href="{% static 'recipes/images/atayeb_logo_icon.ico' %}">#}
-
-
-{##}
-{#
-<!-- jQuery first, then Popper.js, then Bootstrap JS, then Fontawesome JS -->#}
-{#
-<script src="{% static 'recipes/js/jquery-3.4.1.slim.min.js' %}"></script>#}
-{#
-<script src="{% static 'recipes/js/popper.min.js' %}"></script>#}
-{#
-<script src="{% static 'recipes/js/bootstrap.min.js' %}"></script>#}
-{#
-<script src="{% static 'recipes/js/fontawesome-all.min.js' %}"></script>#}
-
-{#{% block javascript %}{% endblock %}#}
+<!-- jQuery first, then Popper.js, then Bootstrap JS, then Fontawesome JS -->
+<script src="{% static 'js/jquery-3.4.1.slim.min.js' %}"></script>
+<script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/fontawesome-all.min.js' %}"></script>

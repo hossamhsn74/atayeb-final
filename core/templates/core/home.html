@@ -5,17 +5,17 @@
 {% block logo %}
     
     {% if logo %}
-    {% for item in logo %}
-    <div class="site-branding navbar-brand">
-        <a href="{% url 'core:home' %}"><img src="{{item.image.url}}" height="50px"
-            alt="Food Recipe Web Template" title="أطايب"></a>
-    </div><!-- end logo -->  
-    {% endfor %}  
+        {% for item in logo %}
+        <div class="site-branding navbar-brand">
+            <a href="{% url 'core:home' %}"><img src="{{item.image.url}}" 
+                alt="Food Recipe Web Template" title="أطايب"></a>
+        </div><!-- end logo -->  
+        {% endfor %}  
     {% else %}
-    <div class="site-branding navbar-brand">
-        <a href="{% url 'core:home' %}"><img src="{% static 'recipes/images/assets/default_ingredients.jpg' %}" height="50px"
-            alt="Food Recipe Web Template" title="أطايب"></a>
-    </div><!-- end logo -->
+        <div class="site-branding navbar-brand">
+            <a href="{% url 'core:home' %}"><img src="{% static 'images/atayeb_logo_300.png' %}" height="50px"
+                alt="Food Recipe Web Template" title="أطايب"></a>
+        </div><!-- end logo -->
     {% endif %}
 {% endblock %}                    
 
@@ -23,25 +23,33 @@
 
     <!-- SLIDER SECTION -->
     <div class="owl-carousel owl-theme">
-        {% for item in images %}
-        <div class="item">
-            <img src="{{item.image.url}}" alt="slide 1">
-            <!-- <div class="caption">
-{#                <h2 class="animated bounce">أشهى الأطباق المنزلية</h2>#}
-{#                <button class="btn btn-primary">EXPLORE NOW</button>#}
-            </div> -->
-        </div><!-- end item -->
-        {% endfor %}
+        {% if images %}
+            {% for item in images %}
+            <div class="item">
+                <img src="{{item.image.url}}" alt="slide 1">
+            </div><!-- end item -->
+            {% endfor %}
+        {% else %}
+            <div class="item">
+                <img src="{% static 'images/assets/slide-13.png' %}" alt="slide 1">
+                <div class="caption">
+                    <h2 class="animated bounce">أشهى الأطباق المنزلية</h2>
+                    <button class="btn btn-primary">EXPLORE NOW</button>
+                </div> 
+            </div><!-- end item -->
+        {% endif %}
+
     </div><!-- end owl-carousel -->
 
     <div class="choice-section">
-        <div class="container">
-            <div class="section-title">
-                <h3>Editor's Choice</h3>
-            </div><!-- end section-title -->
-            <div class="row">
-                {% for key, value in echoice.items %}
-                <div class="col-6 col-md-3">
+        {% if not echoice %}
+            <div class="container">
+                <div class="section-title">
+                    <h3>اختيار المحررين</h3>
+                </div><!-- end section-title -->
+                <div class="row">
+                        {% for key, value in echoice.items %}
+                        <div class="col-6 col-md-3">
                     <div class="big-bone">
                         <a href="#" class="figure-caption">
                             <div class="caption-inner">
@@ -49,7 +57,7 @@
                                 <span>{{value|length}}</span>
                             </div>
                         </a>
-                        <figure><img src="{% static 'recipes/images/content/food-l.png' %}" alt="food l"></figure>
+                        <figure><img src="{% static 'images/content/food-l.png' %}" alt="food l"></figure>
                     </div>
                     <div class="small-bone">
                         <!-- {% for item in value %}
@@ -59,15 +67,83 @@
                                 <figure><img src="{% static 'recipes/images/content/food-s.png' %}" alt="food s"></figure>
                             {%endif%}
                         {% endfor %} -->
-                        <figure><img src="{% static 'recipes/images/content/food-s.png' %}" alt="food s"></figure>
-                        <figure><img src="{% static 'recipes/images/content/food-s.png' %}" alt="food s"></figure>
+                        <figure><img src="{% static 'images/content/food-s.png' %}" alt="food s"></figure>
+                        <figure><img src="{% static 'images/content/food-s.png' %}" alt="food s"></figure>
                     </div>
-                </div><!-- end col -->
-                {% endfor %}
+                        </div><!-- end col -->
+                        {% endfor %}
+                </div><!-- end row -->
 
-            </div><!-- end row -->
-
-        </div><!-- end container -->
+            </div><!-- end container -->
+        {% else %}
+            <div class="container">
+                <div class="section-title">
+                    <h3>اختيار المحررين</h3>
+                </div><!-- end section-title -->
+                <div class="row">
+                    <div class="col-6 col-md-3">
+                    <div class="big-bone">
+                        <a href="#" class="figure-caption">
+                            <div class="caption-inner">
+                                <p>Sweets</p>
+                                <span>0 Recipes</span>
+                            </div>
+                        </a>
+                        <figure><img src="{% static 'images/content/food-l.png' %}" alt="food l"></figure>
+                    </div>
+                    <div class="small-bone">
+                        <figure><img src="{% static 'images/content/food-s.png' %}" alt="food s"></figure>
+                        <figure><img src="{% static 'images/content/food-s.png' %}" alt="food s"></figure>
+                    </div>
+                    </div><!-- end col -->
+                    <div class="col-6 col-md-3">
+                    <div class="big-bone">
+                    <a href="#" class="figure-caption">
+                        <div class="caption-inner">
+                            <p>Sweets</p>
+                            <span>0 Recipes</span>
+                        </div>
+                    </a>
+                    <figure><img src="{% static 'images/content/food-l.png' %}" alt="food l"></figure>
+                </div>
+                <div class="small-bone">
+                    <figure><img src="{% static 'images/content/food-s.png' %}" alt="food s"></figure>
+                    <figure><img src="{% static 'images/content/food-s.png' %}" alt="food s"></figure>
+                </div>
+                    </div><!-- end col -->
+                    <div class="col-6 col-md-3">
+                <div class="big-bone">
+                    <a href="#" class="figure-caption">
+                        <div class="caption-inner">
+                            <p>Sweets</p>
+                            <span>0 Recipes</span>
+                        </div>
+                    </a>
+                    <figure><img src="{% static 'images/content/food-l.png' %}" alt="food l"></figure>
+                </div>
+                <div class="small-bone">
+                    <figure><img src="{% static 'images/content/food-s.png' %}" alt="food s"></figure>
+                    <figure><img src="{% static 'images/content/food-s.png' %}" alt="food s"></figure>
+                </div>
+                    </div><!-- end col -->
+                    <div class="col-6 col-md-3">
+                <div class="big-bone">
+                    <a href="#" class="figure-caption">
+                        <div class="caption-inner">
+                            <p>Sweets</p>
+                            <span>0 Recipes</span>
+                        </div>
+                    </a>
+                    <figure><img src="{% static 'images/content/food-l.png' %}" alt="food l"></figure>
+                </div>
+                <div class="small-bone">
+                    <figure><img src="{% static 'images/content/food-s.png' %}" alt="food s"></figure>
+                    <figure><img src="{% static 'images/content/food-s.png' %}" alt="food s"></figure>
+                </div>
+                    </div><!-- end col -->
+                </div><!-- end row -->
+            </div><!-- end container -->
+        {% endif %}
     </div><!-- end editor-section -->
 
     <div class="features-section parallax-bg">
@@ -102,96 +178,105 @@
     </div><!-- end features -->
 
     <div class="recipes-section">
-        <div class="container">
-            <div class="section-title">
-                <h3>وصفات خاصة</h3>
-            </div><!-- end section-title -->
-            <div class="row">
-                {% if recent_recipes %}
-                {% for recipe in recent_recipes%}
-                <div class="col-6 col-md-3">
-                    <div class="recipe-thumb">
-                        {% if recipe.image %}
-                        <img src="{{ recipe.image.url }}" alt="Recipe Image">
-                        {% else %}
-                        <img src="{% static 'recipes/images/assets/default_no_pic.png' %}" width="100px" height="100px" alt="Recipe Image">
-                        {% endif%}
-                        <a href="{% url 'recipes:recipe-single'  recipe.id %}" class="view-recipe">عرض الوصفة</a>
-                    </div>
-                    <div class="recipe-desc">
-                        <h2 class="recipe-title">
-                            <a href="{% url 'recipes:recipe-single'  recipe.id %}"> {{recipe.name}} </a>
-                        </h2>
-                        <p><em> بواسطة {{ recipe.author}} </em></p>
-                        <span><i class="fas fa-clock"></i> {{recipe.prep_time}} دقيقة </span>
-                    </div><!-- end recipe-desc -->
-                </div><!-- end col -->
-                {% endfor %}
-                {% else %}
-                    <div class="row justify-content-center">
-                        <h2>لا توجد وصفات متاحة حاليا .. نعمل علي اضافة المزيد قريبا ! </h2>
-                    </div>
-                {% endif%}
-          
-            </div><!-- end row -->
+        {% if recent_recipes %}
+            <div class="container">
+                <div class="section-title">
+                    <h3>وصفات خاصة</h3>
+                </div><!-- end section-title -->
+                
+                <div class="row">
+                    {% for recipe in recent_recipes%}
+                        <div class="col-6 col-md-3">
+                            <div class="recipe-thumb">
+                                {% if not recipe.image %}
+                                    <img src="{{recipe.image.url}}" alt="Recipe Image">
+                                {% else %}
+                                    <img src="{% static 'images/assets/default_no_pic.png' %}" alt="Recipe Image">
+                                {% endif%}
+                                <a href="{% url 'recipes:recipe-single'  recipe.id %}" class="view-recipe">عرض الوصفة</a>
+                            </div>
+                            <div class="recipe-desc">
+                                <h2 class="recipe-title">
+                                    <a href="{% url 'recipes:recipe-single'  recipe.id %}"> {{recipe.name}} </a>
+                                </h2>
+                                <p><em> بواسطة {{recipe.author}} </em></p>
+                                <span><i class="fas fa-clock"></i> {{recipe.prep_time}} دقيقة </span>
+                            </div><!-- end recipe-desc -->
+                        </div><!-- end col -->
+                    {% endfor %}
+                </div><!-- end row -->
 
-            <div class="row">
-                <div class="centered">
-                    <a href="{% url 'recipes:recipes' %}" class="btn btn-line">VIEW ALL RECIPES</a>
-                </div><!-- end centered -->
-            </div><!-- end row -->
-        </div><!-- end container -->
+                <div class="row">
+                    <div class="centered">
+                        <a href="{% url 'recipes:recipes' %}" class="btn btn-line">VIEW ALL RECIPES</a>
+                    </div><!-- end centered -->
+                </div><!-- end row -->   
+
+            </div><!-- end container -->
+        {% else %}
+            <div class="row justify-content-center">
+                <h2>لا توجد وصفات متاحة حاليا .. نعمل علي اضافة المزيد قريبا ! </h2>
+            </div>
+        {% endif%}
     </div><!-- end recipes -->
 
     <div class="editor-section">
+        {% if editors %}
         <div class="container">
             <div class="section-title">
-                <h3>أطايب Editor</h3>
+                <h3>محرري أطايب</h3>
             </div><!-- end section-title -->
             <div class="row justify-content-center">
                 {% for profile in editors %}
-                <div class="col-6 col-md-2">
-                    <div class="author-col">
-                        <figure class="auth-ava">
-                            {% if profile.image.url %}
-                                <img src="{{profile.image.url}}" width="100px" height="100px"  alt="Avatar">
-                            {% else %}
-                                <img src="{% static 'recipes/images/content/ava-1.png' %}" width="100px" height="100px" alt="Avatar">
-                            {% endif %}
-                        </figure>
-                        <h4>{{profile.user.username}}</h4>
-                    </div><!-- end author-col -->
-                </div><!-- end col -->
+                    <div class="col-6 col-md-2">
+                        <div class="author-col">
+                            <figure class="auth-ava">
+                                {% if not profile.image %}
+                                    <img src="{{profile.image.url}}" width="100px" height="100px" alt="Avatar">
+                                {% else %}
+                                    <img src="{% static 'images/content/ava-1.png' %}" alt="Avatar">
+                                {% endif %}
+                            </figure>
+                            <h4>{{profile.user.username}}</h4>
+                        </div><!-- end author-col -->
+                    </div><!-- end col -->
                 {% endfor %}
             </div><!-- end row -->
         </div><!-- end container -->
+        {% endif %}
     </div><!-- end editor-section -->
 
     <div class="blog-section">
-        <div class="container">
-            <div class="section-title">
-                <h3>RECENT BLOG POST</h3>
-            </div><!-- end section-title -->
-            <div class="row">
-                {% for post in recent_posts %}
-                <div class="col-6 col-md-3 blog-list">
-                    <figure class="blog-thumb">
-                        <img src="{{post.image.url}}" height="250px" width="300px" alt="blog">
-                    </figure>
-                    <div class="entry-header">
-                        <h2 class="post-title entry-title">
-                            <a href="{% url 'blog:blog-single'  post.id %}">{{post.title}}</a>
-                        </h2>
-                    </div><!-- end entry-header -->
-                    <div class="post-meta">
-                        <time class="published" datetime="2019-12-22"
-                        title="December 22, 2019 - 21:12 pm">{{post.date_created|date}} </time>
-                        <div class="cat"><a href="#">{{post.category}}</a></div>
-                    </div>
-                </div><!-- end col -->
-                {% endfor %}
-            </div><!-- end row -->
-        </div><!-- end container -->
+        {% if recent_posts %}
+            <div class="container">
+                <div class="section-title">
+                    <h3>أحدث المنشورات </h3>
+                </div><!-- end section-title -->
+                <div class="row">
+                    {% for post in recent_posts %}
+                        <div class="col-6 col-md-3 blog-list">
+                            <figure class="blog-thumb">
+                                {% if not post.image %}
+                                    <img src="{{post.image.url}}" height="180px" width="270px" alt="blog">
+                                {% else %}
+                                    <img src="{% static 'images/content/blog-1.png' %}" alt="blog">
+                                {% endif %}
+                            </figure>
+                            <div class="entry-header">
+                                <h2 class="post-title entry-title">
+                                    <a href="{% url 'blog:blog-single'  post.id %}">{{post.title}}</a>
+                                </h2>
+                            </div><!-- end entry-header -->
+                            <div class="post-meta">
+                                <time class="published" datetime="2019-12-22"
+                                title="December 22, 2019 - 21:12 pm">{{post.date_created|date}} </time>
+                                <div class="cat"><a href="#">{{post.category}}</a></div>
+                            </div>
+                        </div><!-- end col -->
+                    {% endfor %}
+                </div><!-- end row -->
+            </div><!-- end container -->
+        {% endif %}
     </div><!-- end blog-section -->
 
 
