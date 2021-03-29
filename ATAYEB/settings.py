@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'core.apps.CoreConfig',
     'blog.apps.BlogConfig',
     'recipes.apps.RecipesConfig',
-    'events',
+    # 'events',
     'user',
     'crispy_forms',
     'allauth',

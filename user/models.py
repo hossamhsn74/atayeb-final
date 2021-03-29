@@ -6,7 +6,7 @@ from django_resized import ResizedImageField
 
 class Profile(models.Model):
     image = ResizedImageField(
-        default='static/recipes/images/assets/default_profile_picture.png', upload_to='profile_images')
+        default=None, upload_to='profile_images/')
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.TextField(max_length=250, blank=True,
                            default="Contributer User")
@@ -17,7 +17,8 @@ class Profile(models.Model):
 
 def create_profile(sender, **kwarg):
     if kwarg['created']:
-        Profile.objects.create(user=kwarg['instance'])
+        profile = Profile.objects.create(user=kwarg['instance'])
+    
 
 
 post_save.connect(create_profile, sender=User)

@@ -17,7 +17,12 @@
 
                     <div class="profile-details">
                         <figure class="profile-ava">
-                            <img src="{{ profile.image.url}}" height="150px" width="150px" alt="Author">
+                            {% if profile.image %}
+                                <img src="{{ profile.image.url}}" height="150px" width="150px" alt="Author">
+                            {% else%}
+                                <img src="{% static 'images/content/auth-ava.png'%}" alt="Author">
+                            {% endif %}
+
                         </figure>
                         <div class="profile-context">
                             <div class="profile-name">
@@ -44,11 +49,13 @@
                                     aria-controls="recipe" aria-selected="false">وصفاتي
                                     <strong>({{recipes.count}})</strong></a>
                             </li>
+                            {% if bookmarks %}
                             <li class="nav-item">
                                 <a class="nav-link" id="bookmark-tab" data-toggle="tab" href="#bookmark" role="tab"
                                     aria-controls="bookmark" aria-selected="false">وصفاتي المفضلة
                                     <strong> ({{bookmarks.count}}) </strong></a>
                             </li>
+                            {% endif %}
                             <li class="nav-item">
                                 <a class="nav-link" id="article-tab" data-toggle="tab" href="#article" role="tab"
                                     aria-controls="article" aria-selected="true">تدويناتي
@@ -64,7 +71,7 @@
                                     <div class="col-4">
                                         <div class="recipe-thumb">
                                             <img src="{{ recipe.image.url }}" alt="Recipe Image">
-                                            <a href="#" class="bookmarker"><i class="fas fa-bookmark"></i></a>
+                                            <a href="{% url 'recipes:recipe-bookmark' recipe.id %}" class="bookmarker"><i class="fas fa-bookmark"></i></a>
                                             <a href="{% url 'recipes:recipe-single'  recipe.id %}"
                                                 class="view-recipe">عرض الوصفة</a>
                                         </div>
@@ -85,6 +92,7 @@
                                 </div>
                                 {% endif%}
                             </div><!-- end tab -->
+                            {% if bookmarks %}
                             <div class="tab-pane fade" id="bookmark" role="tabpanel" aria-labelledby="bookmark-tab">
                                 <div class="row">
                                     {% for recipe in bookmarks %}
@@ -106,6 +114,7 @@
                                     {% endfor %}
                                 </div><!-- end row -->
                             </div>
+                            {% endif %}
                             <div class="tab-pane fade" id="article" role="tabpanel" aria-labelledby="article-tab">
                                 <div class="article-list">
                                     <div class="row">

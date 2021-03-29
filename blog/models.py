@@ -32,8 +32,8 @@ class Post(models.Model):
         PostCategory, on_delete=models.CASCADE, verbose_name='فئة المنشور')
     date_created = models.DateTimeField(
         default=timezone.now, verbose_name='تاريخ الإضافة')
-    image = ResizedImageField(null=True, blank=True,
-                              default='static/images/assets/default_no_pic.png',
+    image = ResizedImageField(null=False, blank=False,
+                              default=None,
                               upload_to='post_images/',
                               verbose_name='الصورة')
     author = models.ForeignKey(
