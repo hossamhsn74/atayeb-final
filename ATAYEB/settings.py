@@ -98,26 +98,21 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
+
     # 'default': {
-    #     'ENGINE': 'django.db.backends.postgresql',
     #     'HOST': os.environ.get('DB_HOST'),
-    #     'NAME': os.environ.get('DB_NAME'),
-    #     'USER': os.environ.get('DB_USER'),
-    #     'PASSWORD': os.environ.get('DB_PASSWORD'),
-    # }
-
-    # 'default': {
     #     'ENGINE': 'sql_server.pyodbc',
-    #     'NAME': '*********',
-    #     'USER': 'sa',
-    #     'PASSWORD': '********',
-    #     'HOST': '192.168.1.97',
+    #     'HOST': 'dbserver.your-domain.com',
     #     'PORT': '1433',
-
+    #     'NAME': 'project',
+    #     'USER': 'project_user',
+    #     'PASSWORD': 'project_password',
     #     'OPTIONS': {
-    #         'driver': 'ODBC Driver 13 for SQL Server',
+    #         'driver': 'ODBC Driver 17 for SQL Server',
+    #         'unicode_results': True,
     #     },
     # },
+
 }
 
 # Password validation
