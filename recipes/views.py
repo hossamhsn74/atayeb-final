@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views.generic import CreateView, DetailView, ListView
-from django_renderpdf.views import PDFView
+# from django_renderpdf.views import PDFView
 from recipes.models import (Recipe, RecipeCategory, RecipeComment,
                             RecipeIngredient, RecipeInstruction,
                             RecipeNutritionFacts, Bookmarks, Tag)
@@ -47,34 +47,34 @@ class RecipeDetailsView(DetailView):
         return context
 
 
-class ExportToPDFView(PDFView):
-    template_name = 'recipes/pdf-view.html'
-    prompt_download = True
+# class ExportToPDFView(PDFView):
+#     template_name = 'recipes/pdf-view.html'
+#     prompt_download = True
 
-    @property
-    def download_name(self) -> str:
-        return f"recipe{self.kwargs['pk']}.pdf"
+#     @property
+#     def download_name(self) -> str:
+#         return f"recipe{self.kwargs['pk']}.pdf"
 
-    def get_context_data(self, *args, **kwargs):
-        context = super().get_context_data(*args, **kwargs)
+#     def get_context_data(self, *args, **kwargs):
+#         context = super().get_context_data(*args, **kwargs)
 
-        recipe = Recipe.objects.get(id=kwargs['pk'])
-        context['recipe'] = recipe
+#         recipe = Recipe.objects.get(id=kwargs['pk'])
+#         context['recipe'] = recipe
 
-        ingredents_qs = RecipeIngredient.objects.filter(
-            recipe=context['recipe'].id)
-        context['ingredents'] = [*ingredents_qs]
+#         ingredents_qs = RecipeIngredient.objects.filter(
+#             recipe=context['recipe'].id)
+#         context['ingredents'] = [*ingredents_qs]
 
-        instructions_qs = RecipeInstruction.objects.filter(
-            recipe=context['recipe'].id
-        ).order_by('order')
-        context['instructions'] = [*instructions_qs]
+#         instructions_qs = RecipeInstruction.objects.filter(
+#             recipe=context['recipe'].id
+#         ).order_by('order')
+#         context['instructions'] = [*instructions_qs]
 
-        related_nutration_facts_qs = RecipeNutritionFacts.objects.filter(
-            recipe=context['recipe'].id
-        )
-        context['nutration_facts'] = [*related_nutration_facts_qs]
-        return context
+#         related_nutration_facts_qs = RecipeNutritionFacts.objects.filter(
+#             recipe=context['recipe'].id
+#         )
+#         context['nutration_facts'] = [*related_nutration_facts_qs]
+#         return context
 
 
 @login_required
