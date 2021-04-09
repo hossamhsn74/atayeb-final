@@ -98,20 +98,21 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
-
     # 'default': {
-    #     'HOST': os.environ.get('DB_HOST'),
     #     'ENGINE': 'sql_server.pyodbc',
-    #     'HOST': 'dbserver.your-domain.com',
+    #     'HOST': '192.168.100.246',
     #     'PORT': '1433',
-    #     'NAME': 'project',
-    #     'USER': 'project_user',
-    #     'PASSWORD': 'project_password',
-    #     'OPTIONS': {
-    #         'driver': 'ODBC Driver 17 for SQL Server',
-    #         'unicode_results': True,
-    #     },
+    #     'NAME': 'atayeb',
+    #     'USER': 'atayeb',
+    #     'PASSWORD': 'asd123!@#',
+    #     # 'OPTIONS': {
+    #     #     'driver': 'ODBC Driver 17 for SQL Server',
+    #     #     'unicode_results': True,
+    #     # },
     # },
+    # RS818,
+    # DSM6.2.3
+    #Arabic_CI_AS
 
 }
 
