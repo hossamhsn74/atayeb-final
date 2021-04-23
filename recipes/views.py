@@ -152,10 +152,10 @@ def SubmitRecipeView(request):
             order +=1
 
         # # create ingredianets
-        ingredients_input = request.POST.get('ingredients')
-        ingredients_list = [x.strip() for x in ingredients_input.split('\n')]
-        for item in instructions_list:
-            RecipeIngredient.objects.create(recipe=recipe, )
+        # ingredients_input = request.POST.get('ingredients')
+        # ingredients_list = [x.strip() for x in ingredients_input.split('\n')]
+        # for item in instructions_list:
+        #     RecipeIngredient.objects.create(recipe=recipe, )
 
 
         # create nutration facts
