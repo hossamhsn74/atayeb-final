@@ -6,6 +6,7 @@ from django.views.generic import TemplateView
 app_name = 'blog'
 
 urlpatterns = [
+    path('submit-post/', SubmitBlogPost, name='submit-post'),
     path('blog/', PostListView.as_view(), name='blog'),
     path('blog/<int:pk>', PostDetailsView.as_view(),
          name='blog-single'),

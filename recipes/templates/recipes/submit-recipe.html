@@ -16,7 +16,7 @@
                     <h3>مرحبا بك ..</h3>
                     <p> نشكرك علي مشاركتنا وصفتك</p>
                 </header>
-                <form action="{% url 'recipes:add-recipe' %}" method="POST">
+                <form action="{% url 'recipes:submit-recipe' %}" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class="row">
                         <div class="col-12 form-group">
@@ -50,7 +50,7 @@
                         <div class="col-12 col-md-6 form-group">
                             <label for="recipeImage">صورة الوصفة</label>
                             <input type="file" class="form-control-file" id="recipeImage" aria-describedby="sizeHelp"
-                                name="image" required>
+                                name="recipeImage" required>
                             <small id="sizeHelp" class="form-text text-muted">Recommended size: 1440px by 800px or
                                 larger</small>
                         </div>
@@ -91,24 +91,19 @@
                             <label for="ingredientTextarea">المكونات والمقادير</label>
                             <textarea name="ingredients" class="form-control" id="ingredientTextarea"
                                 aria-describedby="ingredientHelp" rows="6" required ></textarea>
-                            <small id="ingredientHelp" class="form-text text-muted">Enter one ingredient per line. Use a
-                                double dash to start new section titles. (ex. --Section Title). Separate the ingredient
-                                amount from the ingredient name with double space if you want to follow Google's rich
-                                snippets formatting.</small>
+                            <small id="ingredientHelp" class="form-text text-muted">Enter one ingredient per line.</small>
                         </div><!-- end form-group -->
 
                         <div class="col-12 form-group">
                             <label for="directionTextarea">طريقة الاعداد</label>
                             <textarea name="instructions" class="form-control" id="directionTextarea"
                                 aria-describedby="directionHelp" rows="6" required></textarea>
-                            <small id="directionHelp" class="form-text text-muted">Add all of the cooking steps, one per
-                                line. You can use a double dash for section titles (ex. --Section Title). You can also
-                                use the [timer length=30]30 Minutes[/timer] shortcode to add a timer link.</small>
+                            <small id="directionHelp" class="form-text text-muted">Every Step in single line please</small>
                         </div><!-- end form-group -->
 
 
                     </div><!-- end row -->
-
+<!-- 
                     <div class="row">
                         <div class="col nutrition-box">
                             <div class="inner">
@@ -116,70 +111,84 @@
                                 <div class="form-row">
                                     <div class="form-group col-6 col-md-4">
                                         <label for="inputNutrition1">اجمالي الدهون</label>
-                                        <input type="text" class="form-control" id="inputNutrition1">
+                                        <input type="text" class="form-control" id="totalFatA" placeholder="amount">
+                                        <input type="text" class="form-control" id="totalFatP" placeholder="%">
                                     </div>
                                     <div class="form-group col-6 col-md-4">
                                         <label for="inputNutrition2">حجم الوجبة</label>
-                                        <input type="text" class="form-control" id="inputNutrition2">
+                                        <input type="text" class="form-control" id="mealSizeA" placeholder="amount">
+                                        <input type="text" class="form-control" id="mealSizeP" placeholder="%">
                                     </div>
                                     <div class="form-group col-6 col-md-4">
                                         <label for="inputNutrition3">سعرات حراريه</label>
-                                        <input type="text" class="form-control" id="inputNutrition3">
+                                        <input type="text" class="form-control" id="calA" placeholder="amount">
+                                        <input type="text" class="form-control" id="calP" placeholder="%">
                                     </div>
 
                                     <div class="form-group col-6 col-md-4">
                                         <label for="inputNutrition4">الدهون المشبعة</label>
-                                        <input type="text" class="form-control" id="inputNutrition4">
+                                        <input type="text" class="form-control" id="fatsA" placeholder="amount">
+                                        <input type="text" class="form-control" id="fatsP" placeholder="daily %">
                                     </div>
                                     <div class="form-group col-6 col-md-4">
                                         <label for="inputNutrition5">الدهون الأحادية غير المشبعة</label>
-                                        <input type="text" class="form-control" id="inputNutrition5">
+                                        <input type="text" class="form-control" id="fats1A" placeholder="amount">
+                                        <input type="text" class="form-control" id="fats1P" placeholder="%">
                                     </div>
                                     <div class="form-group col-6 col-md-4">
                                         <label for="inputNutrition6">دهون غير مشبعة</label>
-                                        <input type="text" class="form-control" id="inputNutrition6">
+                                        <input type="text" class="form-control" id="fats2A" placeholder="amount">
+                                        <input type="text" class="form-control" id="fats2P" placeholder="%">
                                     </div>
 
                                     <div class="form-group col-6 col-md-4">
                                         <label for="inputNutrition7">صوديوم</label>
-                                        <input type="text" class="form-control" id="inputNutrition7">
+                                        <input type="text" class="form-control" id="sodiumA" placeholder="amount">
+                                        <input type="text" class="form-control" id="sodiumP" placeholder="%">
                                     </div>
                                     <div class="form-group col-6 col-md-4">
                                         <label for="inputNutrition8">ألياف</label>
-                                        <input type="text" class="form-control" id="inputNutrition8">
+                                        <input type="text" class="form-control" id="fibersA" placeholder="amount">
+                                        <input type="text" class="form-control" id="fibersP" placeholder="%">
                                     </div>
                                     <div class="form-group col-6 col-md-4">
                                         <label for="inputNutrition9">الكوليسترول</label>
-                                        <input type="text" class="form-control" id="inputNutrition9">
+                                        <input type="text" class="form-control" id="colestrolA" placeholder="amount">
+                                        <input type="text" class="form-control" id="colestrolP" placeholder=" %">
                                     </div>
 
                                     <div class="form-group col-6 col-md-4">
                                         <label for="inputNutrition10">اجمالي الكربوهيدرات</label>
-                                        <input type="text" class="form-control" id="inputNutrition10">
+                                        <input type="text" class="form-control" id="carbA" placeholder="amount">
+                                        <input type="text" class="form-control" id="carbP" placeholder="%">
                                     </div>
                                     <div class="form-group col-6 col-md-4">
                                         <label for="inputNutrition11">الدهون المتحولة</label>
-                                        <input type="text" class="form-control" id="inputNutrition11">
+                                        <input type="text" class="form-control" id="fats3A" placeholder="amount">
+                                        <input type="text" class="form-control" id="fats3P" placeholder="%">
                                     </div>
                                     <div class="form-group col-6 col-md-4">
                                         <label for="inputNutrition12">البروتين</label>
-                                        <input type="text" class="form-control" id="inputNutrition12">
+                                        <input type="text" class="form-control" id="protienA" placeholder="amount">
+                                        <input type="text" class="form-control" id="protienP" placeholder="%">
                                     </div>
 
                                     <div class="form-group col-6 col-md-4">
                                         <label for="inputNutrition13">السكر</label>
-                                        <input type="text" class="form-control" id="inputNutrition13">
+                                        <input type="text" class="form-control" id="sugerA" placeholder="amount">
+                                        <input type="text" class="form-control" id="sugerP" placeholder="%">
                                     </div>
                                     <div class="form-group col-6 col-md-4">
                                         <label for="inputNutrition14">البوتاسيوم</label>
-                                        <input type="text" class="form-control" id="inputNutrition14">
+                                        <input type="text" class="form-control" id="postaiumA" placeholder="amount">
+                                        <input type="text" class="form-control" id="postaiumP" placeholder="%">
                                     </div>
                                 </div>
                                 <!-- end form-row -->
                             </div>
                         </div>
                         <!-- end nutrition box -->
-                    </div>
+                    </div> -->
                     <!-- end row -->
 
                     <div class="row">

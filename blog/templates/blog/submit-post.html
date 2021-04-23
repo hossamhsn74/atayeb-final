@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="head-title">
+    <div class="container">
+        <h2 class="page-title">اضف وصفتك</h2>
+    </div><!-- end container -->
+</div><!-- end head-title -->
+
+<div id="main">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="submit-recipe col-md-8">
+                <header>
+                    <h3>مرحبا بك ..</h3>
+                    <p> نشكرك علي مشاركتنا وصفتك</p>
+                </header>
+                <form action="{% url 'blog:submit-post' %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-12 form-group">
+                            <label for="InputRecipeTitle">العنوان</label>
+                            <input type="text" class="form-control" id="InputRecipeTitle" aria-describedby="titleHelp"
+                                 name="title" required>
+                            <small id="titleHelp" class="form-text text-muted">Keep it short and descriptive</small>
+                        </div>
+                    </div><!-- end row -->
+
+                    <div class="row">
+                        <div class="col-12 col-md-6 form-group">
+                            <label for="recipeCatFormControlSelect">فئة المنشور</label>
+                            <select required class="form-control" id="recipeCatFormControlSelect" name="category">
+                                <option selected>اختر الفئة</option>
+                                {% for category in categories %}
+                                <option value="{{category.name}}">{{category.name}}</option>
+                                {% endfor%}
+                                <option value="other">اخري</option>
+
+                            </select>
+                        </div><!-- end col -->
+                        <div class="col-12 col-md-6 form-group">
+                            <label for="recipeImage">فئة اخري</label>
+                            <input type="text" class="form-control-file" id="recipeImage" aria-describedby="sizeHelp"
+                                name="other_category">
+                        </div>
+                    </div><!-- end row -->
+
+                    <div class="row">
+                        <div class="col-12 col-md-6 form-group">
+                            <label for="recipeImage">صورة المنشور</label>
+                            <input type="file" class="form-control-file" id="postImage" aria-describedby="sizeHelp"
+                                name="postImage" required>
+                            <small id="sizeHelp" class="form-text text-muted">Recommended size: 1440px by 800px or
+                                larger</small>
+                        </div>
+                    </div><!-- end row -->
+
+                    <div class="row">
+                        <div class="col form-group">
+                            <label for="descTextarea">محتوي المنشور</label>
+                            <textarea name="body" class="form-control" id="descTextarea" rows="6" required></textarea>
+                        </div><!-- end form-group -->
+                    </div><!-- end row -->
+
+                    <div class="row">
+                        <div class="col-12 form-group">
+                            <label for="ingredientTextarea">العلامات</label>
+                            <textarea name="tags" class="form-control" id="ingredientTextarea"
+                                aria-describedby="ingredientHelp" rows="4" required></textarea>
+                            <small id="ingredientHelp" class="form-text text-muted"> 
+                                ادخل العلامات متبوعه بعلامه "," 
+                            </small>
+                        </div><!-- end form-group -->
+
+                    </div><!-- end row -->
+
+                    <div class="row">
+                        <p class="form-submit">
+                            <input class="btn btn-primary" name="submit" type="submit" id="button" value="أضف وصفة">
+                        </p>
+                    </div>
+
+
+                </form>
+            </div><!-- end col -->
+        </div><!-- end row -->
+    </div><!-- end container -->
+</div><!-- end main -->
+
+{% endblock %}

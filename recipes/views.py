@@ -1,11 +1,12 @@
-from django.shortcuts import render, redirect
-from django.views.generic import CreateView, DetailView, ListView
-# from django_renderpdf.views import PDFView
-from recipes.models import (Recipe, RecipeCategory, RecipeComment,
-                            RecipeIngredient, RecipeInstruction,
-                            RecipeNutritionFacts, Bookmarks, Tag)
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import redirect, render
+from django.views.generic import CreateView, DetailView, ListView
 from user.models import Profile
+
+# from django_renderpdf.views import PDFView
+from recipes.models import (Bookmarks, Recipe, RecipeCategory, RecipeComment,
+                            RecipeIngredient, RecipeInstruction,
+                            RecipeNutritionFacts, Tag)
 
 
 class RecipeListView(ListView):
@@ -99,66 +100,128 @@ def RecipeIndexView(request):
     return render(request, "recipes/recipe-index.html", context)
 
 
-# @login_required
-# def SubmitRecipeView(request):
-#     categories = RecipeCategory.objects.all()
-#     context = {}
-#     context['categories'] = [*categories]
-#     return render(request, "recipes/submit-recipe.html", context=context)
+@login_required
+def SubmitRecipeView(request):
+    if request.method == 'POST':
+        # author
+        recipe_author = Profile.objects.get(user=request.user)
+        recipe_image = request.FILES["recipeImage"]
+        recipe_name = request.POST.get('name')
+        recipe_feeds_up_to = request.POST.get('feeds_up_to')
+        recipe_prep_time = request.POST.get('prep_time')
+        recipe_description = request.POST.get('description')
+
+        category_field = request.POST.get('category')
+
+        if category_field == "other":
+            other_category_field = request.POST.get('other_category')
+            recipe_category = RecipeCategory.objects.get_or_create(
+                name=other_category_field)[0]
+        else:
+            recipe_category = RecipeCategory.objects.get(
+                name=request.POST.get('category'))
+
+        # tags
+        recipe_tags = []
+        tags_input = request.POST.get('tags')
+        tags_list = [x.strip() for x in tags_input.split(',')]
+
+        for item in tags_list:
+            recipe_tags.append(Tag.objects.get_or_create(name=item))
+
+        # create recipe item
+        recipe = Recipe.objects.create(
+            name=recipe_name, category=recipe_category,
+            description=recipe_description, feeds_up_to=recipe_feeds_up_to,
+            prep_time=recipe_prep_time, author=recipe_author,
+            image=recipe_image)
+        # add tags to post
+        # need to be implemented here
+
+        for item in recipe_tags:
+            recipe.tags.add(item[0].id)
 
 
-# def AddRecipeView(request):
-#     category_field = request.POST['category']
-#     if category_field == "other":
-#         other_category_field = request.POST['other_category']
-#         recipe_category = RecipeCategory.objects.get_or_create(
-#             name=other_category_field)
-#     else:
-#         recipe_category = RecipeCategory.objects.get(
-#             name=request.POST['category'])
+        # create instructions
+        recipe_instructions = []
+        instructions_input = request.POST.get('instructions')
+        instructions_list = [x.strip() for x in instructions_input.split('\n')]
+        order = 1
+        for item in instructions_list:
+            RecipeInstruction.objects.create(order=order, description=item, recipe=recipe)
+            order +=1
 
-#     recipe_name = request.POST['name']
-#     recipe_image = request.POST['image']
-#     recipe_feeds_up_to = request.POST['feeds_up_to']
-#     recipe_prep_time = request.POST['prep_time']
-#     recipe_description = request.POST['description']
+        # # create ingredianets
+        ingredients_input = request.POST.get('ingredients')
+        ingredients_list = [x.strip() for x in ingredients_input.split('\n')]
+        for item in instructions_list:
+            RecipeIngredient.objects.create(recipe=recipe, )
 
-#     # author
-#     recipe_author = Profile.objects.get(user=request.user)
 
-#     # tags
-#     recipe_tags = []
-#     tags_input = request.POST['tags']
-#     tags_list = [x.strip() for x in tags_input.split(',')]
+        # create nutration facts
+        if request.POST.get('totalFatA') and request.POST.get('totalFatP'):
+            fact1 = RecipeNutritionFacts.objects.create(recipe=recipe, element="اجمالي الدهون", quantity=request.POST.get(
+                'totalFatA'), daily_percent=request.POST.get('totalFatP'))
+            fact1.save()
 
-#     for item in tags_list:
-#         recipe_tags.append(Tag.objects.get_or_create(name=item))
+        if request.POST.get('mealSizeA') and request.POST.get('mealSizeP'):
+            RecipeNutritionFacts.objects.create(recipe=recipe, element="حجم الوجبة", quantity=request.POST.get(
+                'mealSizeA'), daily_percent=request.POST.get('mealSizeP'))
 
-#     # create recipe item
-#     recipe = Recipe.objects.create(
-#         name=recipe_name, category=recipe_category,
-#         description=recipe_description, feeds_up_to=recipe_feeds_up_to,
-#         prep_time=recipe_prep_time, author=recipe_author,
-#         image=recipe_image)
+        if request.POST.get('postaiumA') and request.POST.get('postaiumP'):
+            RecipeNutritionFacts.objects.create(recipe=recipe, element="البوتاسيوم", quantity=request.POST.get(
+                'postaiumA'), daily_percent=request.POST.get('postaiumP'))
 
-#     for item in recipe_tags:
-#         recipe.tags.add(item[0].id)
+        if request.POST.get('sugerA') and request.POST.get('sugerP'):
+            RecipeNutritionFacts.objects.create(recipe=recipe, element="السكر", quantity=request.POST.get(
+                'sugerA'), daily_percent=request.POST.get('sugerP'))
 
-    # create instructions
-    # recipe_instructions = []
-    # instructions_input = request.POST['instructions']
-    # instructions_list = [x.strip() for x in tags_input.split(',')]
+        if request.POST.get('protienA') and request.POST.get('protienP'):
+            RecipeNutritionFacts.objects.create(recipe=recipe, element="البروتين", quantity=request.POST.get(
+                'protienA'), daily_percent=request.POST.get('protienP'))
 
-    # for item in instructions_list:
-    #     recipe_instructions.append(RecipeInstruction.objects.get_or_create(
-    #         recipe=recipe, description=description, order=order))
+        if request.POST.get('fats3A') and request.POST.get('fats3P'):
+            RecipeNutritionFacts.objects.create(recipe=recipe, element="الدهون المتحولة", quantity=request.POST.get(
+                'fats3A'), daily_percent=request.POST.get('fats3P'))
 
-    # create ingredianets
-    # ingredients_input = request.POST['ingredients']
+        if request.POST.get('carbA') and request.POST.get('carbP'):
+            RecipeNutritionFacts.objects.create(recipe=recipe, element="اجمالي الكربوهيدرات", quantity=request.POST.get(
+                'carbA'), daily_percent=request.POST.get('carbP'))
 
-    # create nutration facts
+        if request.POST.get('fatsA') and request.POST.get('fatsP'):
+            RecipeNutritionFacts.objects.create(recipe=recipe, element="الدهون المشبعة", quantity=request.POST.get(
+                'fatsA'), daily_percent=request.POST.get('fatsP'))
 
-    # return redirect("recipes:recipes")
+        if request.POST.get('fats1A') and request.POST.get('fats1P'):
+            RecipeNutritionFacts.objects.create(recipe=recipe, element="الدهون الأحادية غير المشبعة", quantity=request.POST.get(
+                'fats1A'), daily_percent=request.POST.get('fats1P'))
+
+        if request.POST.get('fats2A') and request.POST.get('fats2P'):
+            RecipeNutritionFacts.objects.create(recipe=recipe, element="دهون غير مشبعة", quantity=request.POST.get(
+                'fats2A'), daily_percent=request.POST.get('fats2P'))
+
+        if request.POST.get('sodiumA') and request.POST.get('sodiumP'):
+            RecipeNutritionFacts.objects.create(recipe=recipe, element="صوديوم", quantity=request.POST.get(
+                'sodiumA'), daily_percent=request.POST.get('sodiumP'))
+
+        if request.POST.get('fibersA') and request.POST.get('fibersP'):
+            RecipeNutritionFacts.objects.create(recipe=recipe, element="ألياف", quantity=request.POST.get(
+                'cfibersAalA'), daily_percent=request.POST.get('fibersP'))
+
+        if request.POST.get('colestrolA') and request.POST.get('colestrolP'):
+            RecipeNutritionFacts.objects.create(recipe=recipe, element="الكوليسترول", quantity=request.POST.get(
+                'colestrolA'), daily_percent=request.POST.get('colestrolP'))
+
+        if request.POST.get('calA') and request.POST.get('calP'):
+            RecipeNutritionFacts.objects.create(recipe=recipe, element="سعرات حراريه", quantity=request.POST.get(
+                'calA'), daily_percent=request.POST.get('calP'))
+
+        return redirect("recipes:recipes")
+
+    categories = RecipeCategory.objects.all()
+    context = {}
+    context['categories'] = [*categories]
+    return render(request, "recipes/submit-recipe.html", context=context)
 
 
 def SearchRecipes(request):

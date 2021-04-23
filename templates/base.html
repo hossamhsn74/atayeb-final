@@ -60,9 +60,9 @@
                                                     الوصفات</a>
                                                 <a class="dropdown-item" href="{% url 'recipes:recipe-index' %}">دليل
                                                     الوصفات</a>
-                                                <!-- <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item" href="#">وصفة
-                                                    جديدة</a> -->
+                                                <div class="dropdown-divider"></div>
+                                                <a class="dropdown-item" href="{% url 'recipes:submit-recipe' %}">وصفة
+                                                    جديدة</a>
                                             </div>
                                         </li>
 
@@ -73,7 +73,12 @@
                                             <div class="dropdown-menu" aria-labelledby="navbarDropdown3">
                                                 <a class="dropdown-item" href="{% url 'blog:blog' %}">التدوينات</a>
                                                 <a class="dropdown-item" href="{% url 'blog:archive' %}">الأرشيف</a>
+                                                <div class="dropdown-divider"></div>
+                                                <a class="dropdown-item" href="{% url 'blog:submit-post' %}">منشور
+                                                    جديد</a>
                                             </div>
+                                          
+
                                         </li>
 
                                         <li class="nav-item active">
