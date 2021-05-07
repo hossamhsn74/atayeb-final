@@ -41,7 +41,7 @@ class Recipe(models.Model):
     author = models.ForeignKey(
         Profile, on_delete=models.CASCADE, verbose_name='الكاتب')
     description = models.TextField(verbose_name="الوصف", blank=True, null=True)
-    tags = models.ManyToManyField(Tag, verbose_name="العلامات")
+    tags = models.CharField(max_length=300, null=True, blank=True, verbose_name="العلامات")
 
     def __str__(self):
         return self.name
@@ -95,13 +95,17 @@ class RecipeComment(models.Model):
         verbose_name_plural = "التعليقات"
         ordering = ('-comment_date',)
 
+# UNIT_CHOICES = (
+#     # مل جرام - حرام -كيلو جرام - مغلقة كبيرة 0 معلقة صغيره - كوب -كوب كبير
+# )
 
 class RecipeIngredient(models.Model):
     recipe = models.ForeignKey(
         Recipe, on_delete=models.CASCADE, verbose_name='الوصفة')
     ingredient = models.ForeignKey(
         Ingredient, on_delete=models.CASCADE, verbose_name='المكون')
-    quantity = models.CharField(max_length=255, verbose_name='المقادير')
+    quantity = models.CharField(max_length=255, verbose_name='الكمية')
+    unit = models.CharField(max_length=255, verbose_name='وحدة القياس')
 
     def __str__(self):
         return self.recipe.name

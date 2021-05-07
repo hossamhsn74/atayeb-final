@@ -1,5 +1,4 @@
-{% load static %}
-{% load i18n %}
+{% load static %} {% load i18n %}
 <!DOCTYPE html>
 <html lang="ar">
 
@@ -32,16 +31,14 @@
                     <div class="row">
 
                         <div class="col col-md-2">
-                            {% block logo %}
-                            {% endblock %}
-                        </div><!-- end col-md-3 -->
+                            {% block logo %} {% endblock %}
+                        </div>
+                        <!-- end col-md-3 -->
 
                         <div class="col-12 col-md-8">
                             <nav class="site-navigation navbar navbar-expand-lg navbar-light">
 
-                                <button class="navbar-toggler" type="button" data-toggle="collapse"
-                                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                                    aria-expanded="false" aria-label="Toggle navigation">
+                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                                     <span class="navbar-toggler-icon"></span>
                                 </button>
 
@@ -52,9 +49,7 @@
                                                     class="sr-only">(current)</span></a>
                                         </li>
                                         <li class="nav-item dropdown">
-                                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1"
-                                                role="button" data-toggle="dropdown" aria-haspopup="true"
-                                                aria-expanded="false">الوصفات</a>
+                                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">الوصفات</a>
                                             <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
                                                 <a class="dropdown-item" href="{% url 'recipes:recipes' %}">قائمة
                                                     الوصفات</a>
@@ -67,9 +62,7 @@
                                         </li>
 
                                         <li class="nav-item dropdown">
-                                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown3"
-                                                role="button" data-toggle="dropdown" aria-haspopup="true"
-                                                aria-expanded="false">المدونة</a>
+                                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">المدونة</a>
                                             <div class="dropdown-menu" aria-labelledby="navbarDropdown3">
                                                 <a class="dropdown-item" href="{% url 'blog:blog' %}">التدوينات</a>
                                                 <a class="dropdown-item" href="{% url 'blog:archive' %}">الأرشيف</a>
@@ -77,7 +70,7 @@
                                                 <a class="dropdown-item" href="{% url 'blog:submit-post' %}">منشور
                                                     جديد</a>
                                             </div>
-                                          
+
 
                                         </li>
 
@@ -94,8 +87,7 @@
 
                                         <li class="nav-item dropdown">
                                             {% if user.is_authenticated %}
-                                            <a class="nav-link dropdown-toggle" href="#" id="userLoggedIn" role="button"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <a class="nav-link dropdown-toggle" href="#" id="userLoggedIn" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 <i class="fas fa-user-alt fa-lg"></i>
                                             </a>
                                             <div class="dropdown-menu" aria-labelledby="userLoggedIn">
@@ -114,9 +106,7 @@
                                             </div>
 
                                             {% else %}
-                                            <a class="nav-link dropdown-toggle" href="#" id="userNotLoggedIn"
-                                                role="button" data-toggle="dropdown" aria-haspopup="true"
-                                                aria-expanded="false">
+                                            <a class="nav-link dropdown-toggle" href="#" id="userNotLoggedIn" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 <i class="fas fa-user-alt-slash fa-lg"></i>
                                             </a>
                                             <div class="dropdown-menu" aria-labelledby="userNotLoggedIn">
@@ -129,9 +119,12 @@
                                             {% endif %}
                                         </li>
                                     </ul>
-                                </div><!-- end navbar-collapse -->
-                            </nav><!-- end site-navigation -->
-                        </div><!-- end col-md-6 -->
+                                </div>
+                                <!-- end navbar-collapse -->
+                            </nav>
+                            <!-- end site-navigation -->
+                        </div>
+                        <!-- end col-md-6 -->
 
                         <div class="col-md-2">
                             <nav class="social-navigation">
@@ -147,15 +140,21 @@
                                         <i class="fas fa-search openclosesearch"></i><i
                                             class="fas fa-times openclosesearch" style="display:none"></i>
                                     </button>
-                                </div><!-- end search-container -->
+                                </div>
+                                <!-- end search-container -->
                             </nav>
-                        </div><!-- end col-md-3 -->
+                        </div>
+                        <!-- end col-md-3 -->
 
-                    </div><!-- end row -->
+                    </div>
+                    <!-- end row -->
 
-                </div><!-- end container-fluid -->
-            </div><!-- end header-navigation -->
-        </header><!-- end #masthead -->
+                </div>
+                <!-- end container-fluid -->
+            </div>
+            <!-- end header-navigation -->
+        </header>
+        <!-- end #masthead -->
 
         <div class="container searchbardiv" id="formsearch">
             <form role="search" action="{% url 'recipes:search' %}" method="get" id="searchform">
@@ -168,10 +167,10 @@
                     </div>
                 </div>
             </form>
-        </div><!-- end searchbardiv -->
+        </div>
+        <!-- end searchbardiv -->
 
-        {% block content %}
-        {% endblock %}
+        {% block content %} {% endblock %}
 
         <!-- <div class="footer-instagram">
             <div class="ig-btn">
@@ -200,7 +199,7 @@
                 <a href="#"><i class="fab fa-youtube"></i>Youtube</a>
             </div>
         </div> -->
-            <!-- end container -->
+        <!-- end container -->
         <!-- footer-social -->
 
         <div class="bottom">
@@ -210,11 +209,13 @@
                         <div class="widget widget-about">
                             <div class="widget-inner">
                                 <h3 class="widget-title">أطايب</h3>
-                                <p>كتاب الطبخ الخاص بك معك في كل مكان وفي أي وقت. تمتع بأشهى الأطباق المنزلية ضمن تشكيلة
-                                    كبيرة ومتنوعة.</p>
-                            </div><!-- end widget-inner -->
-                        </div><!-- end widget -->
-                    </div><!-- end col -->
+                                <p>كتاب الطبخ الخاص بك معك في كل مكان وفي أي وقت. تمتع بأشهى الأطباق المنزلية ضمن تشكيلة كبيرة ومتنوعة.</p>
+                            </div>
+                            <!-- end widget-inner -->
+                        </div>
+                        <!-- end widget -->
+                    </div>
+                    <!-- end col -->
                     <div class="col-md-6">
                         <div class="widget widget-subscribe">
                             <div class="widget-inner">
@@ -226,29 +227,43 @@
                                         <input type="email" name="EMAIL" placeholder="Your email address" required="">
                                         <input type="submit" value="سجل">
                                     </form>
-                                </div><!-- end subscribe-form -->
-                            </div><!-- end widget-inner -->
-                        </div><!-- end widget -->
-                    </div><!-- end col -->
-                </div><!-- end row -->
+                                </div>
+                                <!-- end subscribe-form -->
+                            </div>
+                            <!-- end widget-inner -->
+                        </div>
+                        <!-- end widget -->
+                    </div>
+                    <!-- end col -->
+                </div>
+                <!-- end row -->
                 <div class="row no-gutters">
                     <div class="col-md-6">
                         <div class="copy">
                             <p>&copy; 2020 أطايب Web Template. Made with <i class="fas fa-heart"></i> by Honeypress</p>
-                        </div><!-- end copy -->
-                    </div><!-- end col -->
+                        </div>
+                        <!-- end copy -->
+                    </div>
+                    <!-- end col -->
                     <div class="col-md-6">
                         <ul class="bottom-nav">
                             <li><a href="{% url 'core:home' %}">Home</a></li>
                             <li><a href="{% url 'core:contacts' %}">Contact Us</a></li>
-                            <li><a href="#"></a></li>
+                            <li>
+                                <a href="#"></a>
+                            </li>
                         </ul>
-                    </div><!-- end col -->
-                </div><!-- end row -->
-            </div><!-- end container -->
-        </div><!-- end bottom -->
+                    </div>
+                    <!-- end col -->
+                </div>
+                <!-- end row -->
+            </div>
+            <!-- end container -->
+        </div>
+        <!-- end bottom -->
 
-    </div><!-- end #page hfeed site -->
+    </div>
+    <!-- end #page hfeed site -->
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="{% static 'js/vendor/modernizr-3.7.1.min.js' %}"></script>
@@ -274,7 +289,7 @@
 <link rel="shortcut icon" href="{% static 'images/atayeb_logo_icon.ico' %}">
 
 <!-- jQuery first, then Popper.js, then Bootstrap JS, then Fontawesome JS -->
-<script src="{% static 'js/jquery-3.4.1.slim.min.js' %}"></script>
+<script src="{% static 'js/vendor/jquery-3.4.1.slim.min.js' %}"></script>
 <script src="{% static 'js/popper.min.js' %}"></script>
 <script src="{% static 'js/bootstrap.min.js' %}"></script>
 <script src="{% static 'js/fontawesome-all.min.js' %}"></script>

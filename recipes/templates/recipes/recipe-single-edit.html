@@ -20,7 +20,7 @@
                     <div class="row">
                         <div class="col-12 form-group">
                             <label for="InputRecipeTitle">اسم الوصفة</label>
-                            <input type="text" class="form-control" id="InputRecipeTitle" aria-describedby="titleHelp" placeholder="مثال : بسبوسة" name="name" required>
+                            <input type="text" class="form-control" value="{{recipe.name}}" id="InputRecipeTitle" aria-describedby="titleHelp" placeholder="مثال : بسبوسة" name="name" required>
                             <small id="titleHelp" class="form-text text-muted">Keep it short and descriptive</small>
                         </div>
                     </div>
@@ -29,7 +29,7 @@
                     <div class="row">
                         <div class="col-12 form-group">
                             <label for="recipeCatFormControlSelect">فئة الوصفة</label>
-                            <input class="form-control" id="recipeCatFormControlSelect" list=category_list name="category" placeholder="اختار او ابحث عن فئة لوصفتك ..">
+                            <input class="form-control" value="{{recipe.category}}" id="recipeCatFormControlSelect" list=category_list name="category" placeholder="اختار او ابحث عن فئة لوصفتك ..">
                             <datalist id="category_list">
                               <select size={{categories|length}}>
                                 {% for category in categories %}
@@ -59,7 +59,7 @@
                     <div class="row">
                         <div class="col form-group">
                             <label for="descTextarea">الوصف</label>
-                            <textarea name="description" class="form-control" id="descTextarea" rows="6" required></textarea>
+                            <input name="description" class="form-control" value="{{recipe.description}}" id="descTextarea" rows="6" required></input>
                         </div>
                         <!-- end form-group -->
                     </div>
@@ -68,108 +68,28 @@
                     <div class="row">
                         <div class="col-12 col-md-6 form-group">
                             <label for="timeRange1">وقت التحضير</label>
-                            <input name="prep_time" type="number" value="1" class="form-control" min="1" max="90" step="1" id="timeRange1" required>
+                            <input name="prep_time" type="number" value="{{recipe.prep_time}}" class="form-control" min="1" max="90" step="1" id="timeRange1" required>
                         </div>
 
                         <div class="col-12 col-md-6 form-group">
                             <label for="timeRange1"> حجم الوجبة يكفي (اشخاص)</label>
-                            <input name="feeds_up_to" type="number" value="1" class="form-control" min="1" max="90" step="1" id="timeRange1" required>
+                            <input name="feeds_up_to" type="number" value="{{recipe.feeds_up_to}}" class="form-control" min="1" max="90" step="1" id="timeRange1" required>
                         </div>
                     </div>
                     <!-- end row -->
                     <div class="row">
                         <div class="col-12 form-group">
+
                             <label for="tag_div">العلامات</label>
                             <div id="tag_div">
-                                <input class="col-6 form-control" type="text" id="tag-name" placeholder="أضف علامة ..">
-                                <input type="text" id="tags-array" name="tags-array" hidden />
-                                <a href="#" id="add-tag-btn" class="btn btn-primary"> أضف علامة </a>
+                                <input type="text" id="tags-array" value="{{recipe.tags}}" name="tags-array" />
                             </div>
-                            <ul style="list-style: square;" id="list"></ul>
                             <hr>
 
                         </div>
                     </div>
 
-                    <label for="ingredientTextarea">المكونات والمقادير</label>
-                    <div class="row">
-                        <div class="col-md-6 " style="display: inline-block;">
-                            <input type="text" id="ing-array" name="ing-array" hidden />
 
-                            <div class="col form-group">
-                                <select class="form-control" name="ing_category" aria-placeholder="وحدة القياس" required>
-                                    {% for category in ing_categories %}
-                                    <option value="{{category.name}}"> {{category.name}}</option> 
-                                    {% endfor%}
-
-                                </select>
-                                <!-- <input class="form-control" list=ing_category_list name="ing-category" placeholder="اختار او ابحث عن فئة للمكون ..">
-                                <datalist id="ing_category_list">
-                                  <select size={{categories|length}}>
-                                    {% for category in ing_categories %}
-                                    <option value="{{category.name}}">{{category.name}}</option>
-                                    {% endfor%}
-                                  </select>
-                                </datalist> -->
-                            </div>
-                            <div class="col form-group">
-                                <input class="form-control" type="text" name="ing_name" placeholder="اسم المكون">
-                            </div>
-                            <div class="col form-group">
-                                <input class="form-control" type="text" name="ing_quantity" placeholder="الكمية">
-                            </div>
-
-                            <div class="col form-group">
-                                <select class="form-control" name="ing_unit" aria-placeholder="وحدة القياس" required>
-                                    <option value="جرام"> جرام</option>
-                                    <option value="كيلو جم"> كيلو جرام</option>
-                                    <option value="مل جرام"> مل جرام</option>
-                                    <option value="معلفة كبيرة"> معلفة كبيرة</option>
-                                    <option value="معلقة صغيرة"> معلقة صغيرة</option>
-                                    <option value="كوب"> كوب</option>
-                                    <option value="رشة"> رشة</option>
-
-                                </select>
-                            </div>
-                            <a href="#" id="add-ing-btn" class="col-12 col-md-6 form-group btn btn-primary">أضف الي المكونات </a>
-                        </div>
-                        <div class="col-md-6" style="display: inline-block;">
-                            <ul id="ing_list">
-                                <li>test</li>
-                                <li>test</li>
-                                <li>test</li>
-                                <li>test</li>
-                                <li>test</li>
-                                <li>test</li>
-                                <li>test</li>
-                                <li>test</li>
-                                <li>test</li>
-                                <li>test</li>
-                            </ul>
-                        </div>
-
-
-                    </div>
-                    <hr>
-
-                    <!-- end form-group -->
-                    <div>
-                        <div class="form-group">
-                            <label for="directionTextarea">طريقة الاعداد</label>
-
-                            <div id="directionTextarea">
-                                <input style="display: inline;" class="form-control col-lg-10 col-md-6" type="text" id="step-name" placeholder="أضف خطوة للاعداد ..">
-                                <input class="form-control" type="text" id="steps-array" name="steps-array" hidden />
-                                <a style="display: inline;" href="#" id="add-step-btn" class="btn btn-primary col-md-6">أضف خطوة </a>
-
-                                <ol id="steps-list" class="drag-sort-enable">
-                                    <!-- steps added here -->
-                                </ol>
-                                <hr>
-                            </div>
-                        </div>
-                        <!-- end form-group -->
-                    </div>
                     <!-- end row -->
                     <!-- 
                     <div class="row">

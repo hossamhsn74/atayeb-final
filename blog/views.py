@@ -1,8 +1,12 @@
-from django.shortcuts import render, redirect
-from django.views.generic import CreateView, DetailView, ListView
-from blog.models import (Post, PostCategory, PostComment, Tag)
+import re
+
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.shortcuts import redirect, render
+from django.views.generic import CreateView, DetailView, ListView, DeleteView, UpdateView
 from user.models import Profile
+
+from blog.models import Post, PostCategory, PostComment, Tag
 
 
 class PostListView(ListView):
@@ -55,7 +59,15 @@ class PostDetailsView(DetailView):
         context["index_data"] = data
 
         context['tags'] = [*Tag.objects.all()]
-        print("tags = ", context['post'].tags)
+
+        # handle post tags
+        feature_list = re.split("', '|\['|']|''",  context['post'].tags)
+        le = len(feature_list)-1
+        feature_list_new = []
+        for z in range(1, le):
+            feature_list_new.append(feature_list[z])
+        context['tags_list'] = feature_list_new
+
         return context
 
 
@@ -110,11 +122,13 @@ def SubmitBlogPost(request):
 
         # tags
         post_tags = []
-        tags_input = request.POST.get('tags')
-        tags_list = [x.strip() for x in tags_input.split(',')]
+        tags_input = request.POST.get('tags-array')
+        split_features = list(tags_input.split(','))
+        post_tags = [Tag.objects.get_or_create(
+            name=item)[0].name for item in split_features]
 
-        for item in tags_list:
-            post_tags.append(Tag.objects.get_or_create(name=item))
+        for item in post_tags:
+            Tag.objects.get_or_create(name=item)
 
         # category
         category_field = request.POST.get('category')
@@ -129,17 +143,31 @@ def SubmitBlogPost(request):
 
         # create recipe item
         post = Post.objects.create(
-            title=post_title, category=post_category, author=post_author, image=post_image, body=post_body)
+            title=post_title, category=post_category, tags=[*post_tags], author=post_author, image=post_image, body=post_body)
         post.save()
-
-        # add tags to post
-        # need to be implemented here
-        for item in post_tags:
-            post.tags.add(item[0].id)
-
         return redirect("blog:blog")
 
     categories = PostCategory.objects.all()
     context = {}
     context['categories'] = [*categories]
     return render(request, "blog/submit-post.html", context=context)
+
+
+
+class PostDeleteView(UserPassesTestMixin, LoginRequiredMixin, DeleteView):
+    login_url = 'user:login'
+    model = Post
+    success_url = '/'
+    template_name = 'blog/confirm_delete.html'
+
+    def test_func(self):
+        obj = self.get_object()
+        if self.request.user.profile == obj.author:
+            return True
+        return False
+
+
+class PostUpdateView(UpdateView):
+    model = Post
+    fields = ['title', 'category', 'image', 'body', 'tags' ]
+    template_name_suffix = '_update_form'

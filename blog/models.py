@@ -39,7 +39,7 @@ class Post(models.Model):
     author = models.ForeignKey(
         Profile, on_delete=models.CASCADE, verbose_name='الكاتب')
     body = models.TextField(verbose_name="المحتوي", blank=True, null=True)
-    tags = models.ManyToManyField(Tag)
+    tags = models.CharField(max_length=300, null=True, blank=True, verbose_name="العلامات")
 
     def __str__(self):
         return self.title

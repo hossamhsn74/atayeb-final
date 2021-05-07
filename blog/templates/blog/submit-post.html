@@ -1,12 +1,11 @@
-{% extends 'base.html' %}
-{% load static %}
-
-{% block content %}
+{% extends 'base.html' %} {% load static %} {% block content %}
 <div class="head-title">
     <div class="container">
         <h2 class="page-title">اضف وصفتك</h2>
-    </div><!-- end container -->
-</div><!-- end head-title -->
+    </div>
+    <!-- end container -->
+</div>
+<!-- end head-title -->
 
 <div id="main">
     <div class="container">
@@ -21,16 +20,16 @@
                     <div class="row">
                         <div class="col-12 form-group">
                             <label for="InputRecipeTitle">العنوان</label>
-                            <input type="text" class="form-control" id="InputRecipeTitle" aria-describedby="titleHelp"
-                                 name="title" required>
+                            <input type="text" class="form-control" id="InputRecipeTitle" aria-describedby="titleHelp" name="title" required>
                             <small id="titleHelp" class="form-text text-muted">Keep it short and descriptive</small>
                         </div>
-                    </div><!-- end row -->
+                    </div>
+                    <!-- end row -->
 
                     <div class="row">
                         <div class="col-12 col-md-6 form-group">
                             <label for="recipeCatFormControlSelect">فئة المنشور</label>
-                            <select required class="form-control" id="recipeCatFormControlSelect" name="category">
+                            <select class="form-control" id="recipeCatFormControlSelect" name="category" required>
                                 <option selected>اختر الفئة</option>
                                 {% for category in categories %}
                                 <option value="{{category.name}}">{{category.name}}</option>
@@ -38,43 +37,47 @@
                                 <option value="other">اخري</option>
 
                             </select>
-                        </div><!-- end col -->
+                        </div>
+                        <!-- end col -->
                         <div class="col-12 col-md-6 form-group">
                             <label for="recipeImage">فئة اخري</label>
-                            <input type="text" class="form-control-file" id="recipeImage" aria-describedby="sizeHelp"
-                                name="other_category">
+                            <input type="text" class="form-control-file" id="recipeImage" aria-describedby="sizeHelp" name="other_category">
                         </div>
-                    </div><!-- end row -->
+                    </div>
+                    <!-- end row -->
 
                     <div class="row">
                         <div class="col-12 col-md-6 form-group">
                             <label for="recipeImage">صورة المنشور</label>
-                            <input type="file" class="form-control-file" id="postImage" aria-describedby="sizeHelp"
-                                name="postImage" required>
+                            <input type="file" class="form-control-file" id="postImage" aria-describedby="sizeHelp" name="postImage" required>
                             <small id="sizeHelp" class="form-text text-muted">Recommended size: 1440px by 800px or
                                 larger</small>
                         </div>
-                    </div><!-- end row -->
+                    </div>
+                    <!-- end row -->
 
                     <div class="row">
                         <div class="col form-group">
                             <label for="descTextarea">محتوي المنشور</label>
                             <textarea name="body" class="form-control" id="descTextarea" rows="6" required></textarea>
-                        </div><!-- end form-group -->
-                    </div><!-- end row -->
+                        </div>
+                        <!-- end form-group -->
+                    </div>
+                    <!-- end row -->
 
                     <div class="row">
                         <div class="col-12 form-group">
-                            <label for="ingredientTextarea">العلامات</label>
-                            <textarea name="tags" class="form-control" id="ingredientTextarea"
-                                aria-describedby="ingredientHelp" rows="4" required></textarea>
-                            <small id="ingredientHelp" class="form-text text-muted"> 
-                                ادخل العلامات متبوعه بعلامه "," 
-                            </small>
-                        </div><!-- end form-group -->
+                            <label for="tag_div">العلامات</label>
+                            <div id="tag_div">
+                                <input type="text" id="tag-name" placeholder="أضف علامة ..">
+                                <input type="text" id="tags-array" name="tags-array" hidden />
 
-                    </div><!-- end row -->
+                                <a href="#" id="add-tag-btn" class="btn btn-primary"> أضف </a>
+                            </div>
+                            <ul style="list-style: none;" id="list"></ul>
 
+                        </div>
+                    </div>
                     <div class="row">
                         <p class="form-submit">
                             <input class="btn btn-primary" name="submit" type="submit" id="button" value="أضف وصفة">
@@ -83,9 +86,57 @@
 
 
                 </form>
-            </div><!-- end col -->
-        </div><!-- end row -->
-    </div><!-- end container -->
-</div><!-- end main -->
+            </div>
+            <!-- end col -->
+        </div>
+        <!-- end row -->
+    </div>
+    <!-- end container -->
+</div>
+<!-- end main -->
+<script>
+    var add_tag_btn = document.getElementById('add-tag-btn');
+    var tag_name = document.getElementById('tag-name');
+    var list = document.getElementById('list');
+    var tags_array = document.getElementById('tags-array');
+    var items = [];
 
+    add_tag_btn.addEventListener('click', function(e) {
+        e.preventDefault()
+
+        let val = tag_name.value;
+        if (val !== '') {
+            if (items.indexOf(val) >= 0) {
+                alert('العلامة موجوده مسبقا !');
+            } else {
+                items.push(val);
+                render();
+                tag_name.value = '';
+                tag_name.focus();
+            }
+
+        } else {
+            alert('اضف علامة!');
+        }
+        tags_array.value = items;
+        console.log("tags_array = " + tags_array.value);
+    });
+
+    function render() {
+        list.innerHTML = '';
+        items.map((item, index) => {
+            list.innerHTML += `<li><span>${item}</span><a href="javascript: remove(${index})"> <img src="{% static 'images/assets/exit.svg' %}">  </a></li>`;
+        });
+    }
+
+    function remove(i) {
+        items = items.filter(item => items.indexOf(item) != i);
+        render();
+    }
+
+    window.onload = function() {
+        render();
+        // tag_name.focus();
+    }
+</script>
 {% endblock %}

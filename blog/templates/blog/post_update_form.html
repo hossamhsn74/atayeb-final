@@ -1,0 +1,31 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<div class="head-title">
+    <div class="container">
+        <h2 class="page-title">اضف وصفتك</h2>
+    </div>
+    <!-- end container -->
+</div>
+<!-- end head-title -->
+
+<div id="main">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="submit-recipe col-md-8">
+                <!-- <header>
+                    <h3>مرحبا بك ..</h3>
+                    <p> نشكرك علي مشاركتنا وصفتك</p>
+                </header> -->
+                <form class="form-group" method="post">{% csrf_token %} {{ form.as_p}}
+
+                    <input type="submit" value="Update">
+                </form>
+            </div>
+            <!-- end col -->
+        </div>
+        <!-- end row -->
+    </div>
+    <!-- end container -->
+</div>
+<!-- end main -->
+
+{% endblock %}

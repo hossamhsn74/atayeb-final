@@ -1,0 +1,29 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+<div class="head-title">
+    <div class="container">
+        <h2 class="page-title">حذف الوصفات</h2>
+    </div>
+    <!-- end container -->
+</div>
+<!-- end head-title -->
+
+<div id="main">
+    <div class="container">
+        <div class="card main-card mb-4">
+            <h5 class="card-header">تأكيد حذف</h5>
+            <div class="card-body clearfix">
+                <h6 class="pb-1 mb-3 mt-4">هل أنت متأكد من أنك تريد حذف "{{ object.name }}"؟</h6>
+                <form class="float-left" action="#" method="POST">
+                    {% csrf_token %}
+                    <input class="btn btn-danger mt-3" type="submit" value="حذف"> {# <a class="btn btn-primary mt-3 back-btn" href="{% url 'recipes:recipe-single' object.id %}">تراجع</a>#}
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <!-- end container -->
+</div>
+<!-- end main -->
+
+{% endblock %}
