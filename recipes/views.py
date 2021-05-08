@@ -1,15 +1,18 @@
+import re
+import json
+
+
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
                                   UpdateView)
-from user.models import Profile
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-
 from django_renderpdf.views import PDFView
-from recipes.models import (Bookmarks, Recipe, RecipeCategory, RecipeComment,
-                            RecipeIngredient, RecipeInstruction,
-                            RecipeNutritionFacts, IngredientCategory, Tag)
-import re
+from user.models import Profile
+
+from recipes.models import (Bookmarks, Ingredient, IngredientCategory, Recipe,
+                            RecipeCategory, RecipeComment, RecipeIngredient,
+                            RecipeInstruction, RecipeNutritionFacts, Tag)
 
 
 class RecipeListView(ListView):
@@ -28,7 +31,7 @@ class RecipeDetailsView(DetailView):
         context = super(RecipeDetailsView, self).get_context_data(**kwargs)
 
         ingredents_qs = RecipeIngredient.objects.filter(
-            recipe=context['recipe'].id)
+            recipe=context['recipe'].id).order_by('ingredient__category')
         context['ingredents'] = [*ingredents_qs]
 
         instructions_qs = RecipeInstruction.objects.filter(
@@ -57,24 +60,6 @@ class RecipeDetailsView(DetailView):
         return context
 
 
-def RecipeUpdateView(request, pk):
-    if request.method == "POST":
-        # new_plan = request.POST['plan']
-        # new_username = request.POST['username']
-        # new_password = request.POST['password']
-        # new_price = request.POST['price']
-        # recipe = get_object_or_404(Service, id=id)
-        # recipe.plan = new_plan
-        # recipe.username = new_username
-        # recipe.password = new_password
-        # recipe.price = new_price
-        # recipe.save()
-        return redirect('recipes:recipe-single', id=recipe.id)
-    recipe = get_object_or_404(Recipe, id=pk)
-    print("contxt = ", recipe)
-    return render(request, "recipes/recipe-single-edit.html", context={"recipe": recipe})
-
-
 class ExportToPDFView(PDFView):
     template_name = 'recipes/pdf-view.html'
     prompt_download = True
@@ -90,7 +75,7 @@ class ExportToPDFView(PDFView):
         context['recipe'] = recipe
 
         ingredents_qs = RecipeIngredient.objects.filter(
-            recipe=context['recipe'].id)
+            recipe=context['recipe'].id).order_by('ingredient__category')
         context['ingredents'] = [*ingredents_qs]
 
         instructions_qs = RecipeInstruction.objects.filter(
@@ -131,48 +116,56 @@ def RecipeIndexView(request):
 def SubmitRecipeView(request):
     if request.method == 'POST':
         # author
-        # recipe_author = Profile.objects.get(user=request.user)
-        # recipe_image = request.FILES["recipeImage"]
-        # recipe_name = request.POST.get('name')
-        # recipe_feeds_up_to = request.POST.get('feeds_up_to')
-        # recipe_prep_time = request.POST.get('prep_time')
-        # recipe_description = request.POST.get('description')
+        recipe_author = Profile.objects.get(user=request.user)
+        recipe_image = request.FILES["recipeImage"]
+        recipe_name = request.POST.get('name')
+        recipe_feeds_up_to = request.POST.get('feeds_up_to')
+        recipe_prep_time = request.POST.get('prep_time')
+        recipe_description = request.POST.get('description')
 
         # category
-        # recipe_category = RecipeCategory.objects.get_or_create(
-        #     request.POST['category'])[0]
+        recipe_category = RecipeCategory.objects.get_or_create(
+            name=request.POST['category'])[0]
 
         # # tags
-        # recipe_tags = []
-        # tags_input = request.POST.get('tags-array')
-        # split_features = list(tags_input.split(','))
-        # recipe_tags = [Tag.objects.get_or_create(
-        #     name=item)[0].name for item in split_features]
+        recipe_tags = []
+        tags_input = request.POST.get('tags-array')
+        split_features = list(tags_input.split(','))
+        recipe_tags = [Tag.objects.get_or_create(
+            name=item)[0].name for item in split_features]
 
-        # for item in recipe_tags:
-        #     Tag.objects.get_or_create(name=item)
+        for item in recipe_tags:
+            Tag.objects.get_or_create(name=item)
 
         # # create recipe item
-        # recipe = Recipe.objects.create(
-        #     name=recipe_name, category=recipe_category,
-        #     description=recipe_description, feeds_up_to=recipe_feeds_up_to,
-        #     prep_time=recipe_prep_time, author=recipe_author,
-        #     image=recipe_image, tags=[*recipe_tags])
+        recipe = Recipe.objects.create(
+            name=recipe_name, category=recipe_category,
+            description=recipe_description, feeds_up_to=recipe_feeds_up_to,
+            prep_time=recipe_prep_time, author=recipe_author,
+            image=recipe_image, tags=[*recipe_tags])
 
         # create instructions
-        # steps_input = str(request.POST['steps-array'])
-        # steps_list = [x.strip() for x in steps_input.split(',')]
-        # order = 1
-        # for item in steps_list:
-        #     RecipeInstruction.objects.create(
-        #         order=order, description=item, recipe=recipe)
-        #     order += 1
+        steps_input = str(request.POST['steps-array'])
+        steps_list = [x.strip() for x in steps_input.split(',')]
+        order = 1
+        for item in steps_list:
+            RecipeInstruction.objects.create(
+                order=order, description=item, recipe=recipe)
+            order += 1
 
         # # create ingredianets
-        # ingredients_input = request.POST.get('ingredients')
-        # ingredients_list = [x.strip() for x in ingredients_input.split('\n')]
-        # for item in instructions_list:
-        #     RecipeIngredient.objects.create(recipe=recipe, )
+        ingredients_input = json.loads(request.POST['ing-array'])
+
+        for item in ingredients_input:
+            ingredient_cat = item[0]
+            ingredient_name = item[1]
+            ingredient_quantity = item[2]
+            ingredient_unit = item[3]
+            cat = IngredientCategory.objects.get(name=ingredient_cat)
+            ing = Ingredient.objects.get_or_create(
+                name=ingredient_name, category=cat)
+            RecipeIngredient.objects.create(
+                recipe=recipe, ingredient=ing[0], quantity=ingredient_quantity, unit=ingredient_unit)
 
         # create nutration facts
         # if request.POST.get('totalFatA') and request.POST.get('totalFatP'):
@@ -269,6 +262,13 @@ class RecipeDeleteView(UserPassesTestMixin, LoginRequiredMixin, DeleteView):
         if self.request.user.profile == obj.author:
             return True
         return False
+
+
+class RecipeUpdateView(UpdateView):
+    model = Recipe
+    fields = ['name', 'category', 'feeds_up_to',
+              'prep_time', 'image', 'description', 'tags']
+    template_name_suffix = '_update_form'
 
 
 class RecipeInstructionUpdateView(UpdateView):

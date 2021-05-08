@@ -1,5 +1,4 @@
-{% load static %}
-{% load i18n %}
+{% load static %} {% load i18n %}
 <!DOCTYPE html>
 <html dir="rtl" lang="ar">
 
@@ -29,13 +28,15 @@
             <div class="head-title">
                 <div class="container col-6">
                     <h2 class="page-title">{{recipe.name}}</h2>
-                </div><!-- end container -->
-            </div><!-- end head-title -->
+                </div>
+                <!-- end container -->
+            </div>
+            <!-- end head-title -->
         </div>
 
         <div class="container" style="display: inline-block;">
             <div class="recipe-content" style="display: block;">
-                
+
                 <div class="row">
                     <div class="col">
                         <div class="recipe-lvl">
@@ -43,55 +44,63 @@
                                 <span>الفئة : {{recipe.category}}</span>
                                 <span> الكاتب : {{recipe.author}}</span>
                                 <span> تاريخ الاضافة : {{recipe.date_created}} </span>
-                            </div><!-- recipe author -->
+                            </div>
+                            <!-- recipe author -->
 
-                        </div><!-- end recipe level -->
-                    </div><!-- end col -->
-                </div><!-- end row -->
+                        </div>
+                        <!-- end recipe level -->
+                    </div>
+                    <!-- end col -->
+                </div>
+                <!-- end row -->
                 <hr>
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-12">
                         <div class="detail-desc">
                             <p><strong>الوصف</strong></p>
                             <p>{{recipe.description}}</p>
-                        </div><!-- recipe desc -->
+                        </div>
                         <hr>
-                        <span> تكفي لعدد  {{recipe.feeds_up_to}} اشخاص </span>  
+                        <span> تكفي لعدد  {{recipe.feeds_up_to}} اشخاص </span>
                         <span>وقت التحضير : {{recipe.prep_time}} دقيقة ,</span>
+                        <!-- recipe desc -->
 
-                    </div><!-- end col -->
-                    <div class="col-6">
+                    </div>
+                    <!-- end col -->
+                    <!-- <div class="col-6">
                         <figure class="recipe-pict">
                             <img src="{% static 'images/atayeb_logo_300.png' %}" width="200px" height="200px"  alt="Recipe Image">
                         </figure>
-                    </div><!-- end col -->
-                </div><!-- end row -->
+                    </div> -->
+                </div>
+                <!-- end row -->
                 <hr>
                 <div class="row">
                     {% if ingredents %}
-                        <div class="ingredient col-md-4">
+                    <div class="ingredient col-md-4">
                         <p><strong>المكونات والمقادير</strong></p>
                         <ul style="list-style: none;">
                             {% for item in ingredents %}
-                            <li> <span> {{item.quantity}} {{item.ingredient}} </span></li>
+                            <li> <span>  {{item.quantity}} {{item.unit}} {{item.ingredient}} </span></li>
                             {% endfor %}
                         </ul>
-                        </div><!-- end col -->
-                        <br>
+                    </div>
+                    <!-- end col -->
+                    <br> {% endif %} {% if instructions %}
+                    <div class="direction col-md-8">
+                        <p><strong>طريقة الإعداد</strong></p>
+                        <ul style="list-style: none;">
+                            {% for item in instructions %}
+                            <li>
+                                <p>{{item.description}}</p>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <!-- end col -->
                     {% endif %}
-                    {% if instructions %}
-                        <div class="direction col-md-8">
-                            <p><strong>طريقة الإعداد</strong></p>
-                            <ul style="list-style: none;" >
-                                {% for item in instructions %}
-                                <li>
-                                    <p>{{item.description}}</p>
-                                </li>
-                                {% endfor %}
-                            </ul>
-                        </div><!-- end col -->
-                    {% endif %}
-                </div><!-- end row -->
+                </div>
+                <!-- end row -->
 
                 {% if nutration_facts %}
                 <hr>
@@ -107,25 +116,30 @@
                             </tr>
                             {% endfor %}
                         </table>
-                    </div><!-- end col -->
+                    </div>
+                    <!-- end col -->
                     <div class="col-6">
                         <div class="nutrition-bar">
                             {% for item in nutration_facts %}
                             <div class="progress">
-                                <div class="progress-bar" role="progressbar" style="width: {{item.daily_percent}}%"
-                                    aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div class="progress-bar" role="progressbar" style="width: {{item.daily_percent}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                             {% endfor %}
                         </div>
-                    </div><!-- end col -->
-                </div><!-- end row -->
+                    </div>
+                    <!-- end col -->
+                </div>
+                <!-- end row -->
                 {% endif %}
-            </div><!-- end recipe content -->
+            </div>
+            <!-- end recipe content -->
 
-        </div><!-- end container -->
+        </div>
+        <!-- end container -->
 
 
-    </div><!-- end container-fluid -->
+    </div>
+    <!-- end container-fluid -->
 
 
 

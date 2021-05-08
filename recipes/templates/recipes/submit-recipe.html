@@ -37,6 +37,7 @@
                                 {% endfor%}
                               </select>
                             </datalist>
+
                         </div>
                         <!-- end col -->
                         <!-- <div class="col-12 col-md-6 form-group">
@@ -94,10 +95,10 @@
                     <label for="ingredientTextarea">المكونات والمقادير</label>
                     <div class="row">
                         <div class="col-md-6 " style="display: inline-block;">
-                            <input type="text" id="ing-array" name="ing-array" hidden />
+                            <input type="text" id="ing-array" name="ing-array" hidden/>
 
                             <div class="col form-group">
-                                <select class="form-control" name="ing_category" aria-placeholder="وحدة القياس" required>
+                                <select class="form-control" id="ing_category" aria-placeholder="وحدة القياس" required>
                                     {% for category in ing_categories %}
                                     <option value="{{category.name}}"> {{category.name}}</option> 
                                     {% endfor%}
@@ -113,14 +114,14 @@
                                 </datalist> -->
                             </div>
                             <div class="col form-group">
-                                <input class="form-control" type="text" name="ing_name" placeholder="اسم المكون">
+                                <input class="form-control" type="text" id="ing_name" placeholder="اسم المكون">
                             </div>
                             <div class="col form-group">
-                                <input class="form-control" type="text" name="ing_quantity" placeholder="الكمية">
+                                <input class="form-control" type="text" id="ing_quantity" placeholder="الكمية">
                             </div>
 
                             <div class="col form-group">
-                                <select class="form-control" name="ing_unit" aria-placeholder="وحدة القياس" required>
+                                <select class="form-control" id="ing_unit" aria-placeholder="وحدة القياس" required>
                                     <option value="جرام"> جرام</option>
                                     <option value="كيلو جم"> كيلو جرام</option>
                                     <option value="مل جرام"> مل جرام</option>
@@ -135,15 +136,7 @@
                         </div>
                         <div class="col-md-6" style="display: inline-block;">
                             <ul id="ing_list">
-                                <li>test</li>
-                                <li>test</li>
-                                <li>test</li>
-                                <li>test</li>
-                                <li>test</li>
-                                <li>test</li>
-                                <li>test</li>
-                                <li>test</li>
-                                <li>test</li>
+
                                 <li>test</li>
                             </ul>
                         </div>
@@ -425,15 +418,16 @@
     // ingredient component
     var add_ing_btn = document.getElementById("add-ing-btn");
 
-    var ing_category = document.getElementsByName('ing_category');
-    var ing_name = document.getElementsByName('ing_name');
-    var ing_quantity = document.getElementsByName('ing_quantity');
-    var ing_unit = document.getElementsByName('ing_unit');
+    var ing_category = document.getElementById('ing_category');
+    var ing_name = document.getElementById('ing_name');
+    var ing_quantity = document.getElementById('ing_quantity');
+    var ing_unit = document.getElementById('ing_unit');
 
     var ing_list = document.getElementById('ing_list');
     var ing_array = document.getElementById('ing-array');
     var ingredients = [];
-    // var single_item = [];
+    var single_item = [];
+    count_item = 0;
 
     add_ing_btn.addEventListener('click', function(e) {
         e.preventDefault()
@@ -446,37 +440,27 @@
             if (ingredients.indexOf(namee) >= 0) {
                 alert('المكون موجوده مسبقا !');
             } else {
-                // single_item['category'] = ing_category.value;
-                // single_item['name'] = ing_name.value;
-                // single_item['quantity'] = ing_quantity.value;
-                // single_item['unit'] = ing_unit.value;
-                // console.log("single on add = " + single_item);
-                ingredients.push({
-                    category: ing_category.value,
-                    name: ing_name.value,
-                    quantity: ing_quantity.value,
-                    unit: ing_unit.value,
-
-                });
+                single_item.push(cat);
+                single_item.push(namee);
+                single_item.push(quan);
+                single_item.push(unit);
+                ingredients.push(single_item);
                 render_ingredients();
-                ing_category.value = '';
                 ing_name.value = '';
                 ing_quantity.value = '';
-                ing_unit.value = '';
+                single_item = [];
                 // ing_name.focus();
             }
 
         } else {
             alert('اضف مكون للوصفة!');
         }
-        ing_array.value = ingredients;
-        console.log("ing_array = " + ingredients);
+        ing_array.value = JSON.stringify(ingredients);
     });
 
     function render_ingredients() {
         ing_list.innerHTML = '';
         ingredients.map((single_ing, index) => {
-            console.log("singel = " + single_ing);
             ing_list.innerHTML += `<li><span>${single_ing}</span><a href="javascript: remove_ingredients(${index})"> <img src="{% static 'images/assets/exit.svg' %}">  </a></li>`;
         });
     }

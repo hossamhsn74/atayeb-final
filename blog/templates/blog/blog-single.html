@@ -27,11 +27,13 @@
                                 <!-- end entry-date -->
 
                                 <div class="social-shares">
+                                    {%if request.user.profile == post.author %}
                                     <div class="other-share">
                                         <a href="{% url 'blog:blog-delete' post.id %}"><i class="fas fa-trash"></i></a>
                                         <a href="{% url 'blog:blog-update' post.id %}"><i class="fas fa-edit"></i></a>
 
                                     </div>
+                                    {% endif %}
                                     <!-- end other-share -->
                                 </div>
                                 <!-- end social-share -->
