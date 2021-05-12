@@ -5,6 +5,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.shortcuts import redirect, render
 from django.views.generic import CreateView, DetailView, ListView, DeleteView, UpdateView
 from user.models import Profile
+from django.urls import reverse
 
 from blog.models import Post, PostCategory, PostComment, Tag
 
@@ -171,3 +172,6 @@ class PostUpdateView(UpdateView):
     model = Post
     fields = ['title', 'category', 'image', 'body', 'tags' ]
     template_name_suffix = '_update_form'
+
+    def get_success_url(self):
+        return reverse('blog:blog-single', kwargs={'pk': self.object.id})

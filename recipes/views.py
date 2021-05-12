@@ -1,6 +1,6 @@
 import re
 import json
-
+from django.urls import reverse
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
@@ -269,6 +269,9 @@ class RecipeUpdateView(UpdateView):
     fields = ['name', 'category', 'feeds_up_to',
               'prep_time', 'image', 'description', 'tags']
     template_name_suffix = '_update_form'
+    
+    def get_success_url(self):
+        return reverse('recipes:recipe-single', kwargs={'pk': self.object.id})
 
 
 class RecipeInstructionUpdateView(UpdateView):
@@ -276,8 +279,14 @@ class RecipeInstructionUpdateView(UpdateView):
     fields = ['order', 'description', ]
     template_name_suffix = 'steps_update_form'
 
+    def get_success_url(self):
+        return reverse('recipes:recipe-single', kwargs={'pk': self.object.recipe.id})
 
 class RecipeIngredientsUpdateView(UpdateView):
     model = RecipeIngredient
     fields = ['ingredient', 'quantity', 'unit']
     template_name_suffix = '_update_form'
+
+    def get_success_url(self):
+        return reverse('recipes:recipe-single', kwargs={'pk': self.object.recipe.id})
+
