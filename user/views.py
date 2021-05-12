@@ -199,8 +199,11 @@ def MyProfileView(request):
     context = {}
     context['profile'] = profile
     context['recipes'] = recipes
-    context['bookmarks'] = bookmarks
-    context['posts'] = posts
+    if bookmarks != None:
+        context['bookmarks'] = bookmarks
+        
+    if posts != None:
+        context['posts'] = posts
 
     
     recent_posts_qs = Post.objects.all().order_by('date_created')[:4]
